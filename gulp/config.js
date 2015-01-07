@@ -23,7 +23,7 @@ module.exports = {
         dest: dest + "/images"
     },
     markup: {
-        src: src + "/html/**",
+        src: src + "/html/**/*.html",
         dest: dest
     },
     browserify: {
