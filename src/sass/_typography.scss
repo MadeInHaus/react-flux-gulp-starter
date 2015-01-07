@@ -1,0 +1,42 @@
+//
+// Typography
+// ---------------------------
+
+// Links
+// ------
+a {
+    color: $linkColor;
+    text-decoration: none;
+    &:hover {
+        color: $linkColorHover;
+        text-decoration: underline;
+    }
+}
+
+// Body text
+// ----------
+p { margin: 0 0 $baseLineHeight / 2; }
+
+
+// Emphasis & Misc
+// -----------------
+em { font-style: italic; }
+cite { font-style: normal; }
+
+
+// Headings
+// ---------
+h1, h2, h3, h4, h5, h6 {
+    margin: ($baseLineHeight / 2) 0;
+    font-weight: $headingsFontWeight;
+    font-family: $headingsFontFamily;
+    line-height: 1;
+    color: $headingsColor;
+    text-rendering: optimizelegibility; // Fix the character spacing for headings
+}
+h1 { font-size: 3.6em; }
+h2 { font-size: 3.0em; }
+h3 { font-size: 2.4em; }
+h4 { font-size: 1.8em; }
+h5 { font-size: 1.4em; }
+h6 { font-size: 1.2em; }

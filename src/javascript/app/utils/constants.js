@@ -1,0 +1,12 @@
+module.exports.FRAME_RATE = 24;
+module.exports.SHOW_CLASS = 'show';
+module.exports.INITING_CLASS = 'is-initing';
+module.exports.PRELOADING_CLASS = 'is-preloading';
+module.exports.READY_CLASS = 'is-ready';
+module.exports.MENU_OPEN_CLASS = 'menu-is-open';
+module.exports.FOOTER_OPEN_CLASS = 'footer-is-open';
+module.exports.SHARE_OPEN_CLASS = 'share-is-open';
+module.exports.LOADING_IMAGES_CLASS = 'is-loading-images';
+module.exports.GAMEPLAY_CLASS = 'gameplay-in-progress';
+module.exports.RESIZE_WARNING_CLASS = 'your-aspect-ratio-is-jacked';
+module.exports.TRANSITION_IN_CLASS = 'is-transitioning-in';

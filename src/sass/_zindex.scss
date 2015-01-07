@@ -1,0 +1,21 @@
+//
+// Stacking order (z-index)
+// ---------------------------
+
+$zindex: (
+    element3: 2000,
+    element2: 1000,
+    element1: -1000
+);
+
+.element3 {
+    z-index: map-get($zindex, element3);
+}
+
+.element2 {
+    z-index: map-get($zindex, element2);
+}
+
+.element1 {
+    z-index: map-get($zindex, element1);
+}

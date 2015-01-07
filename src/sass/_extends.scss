@@ -1,0 +1,106 @@
+//
+// @extends
+// ---------------------------
+
+// Animations
+// -----------
+
+// All
+%transition-all { transition: all $transTime $easeDefault; }
+%transition-all-fast { transition: all $transTimeFast $easeDefault; }
+%transition-all-slow { transition: all $transTimeSlow $easeDefault; }
+%transition-all-super-slow { transition: all $transTimeSuperSlow $easeDefault; }
+
+// Opacity
+%transition-opacity { transition: opacity $transTime $easeDefault; }
+%transition-opacity-fast { transition: opacity $transTimeFast $easeDefault; }
+%transition-opacity-slow { transition: opacity $transTimeSlow $easeDefault; }
+%transition-opacity-super-slow { transition: opacity $transTimeSuperSlow $easeDefault; }
+
+// Transform
+%transition-transform { transition: transform $transTime $easeDefault; }
+%transition-transform-fast { transition: transform $transTimeFast $easeDefault; }
+%transition-transform-slow { transition: transform $transTimeSlow $easeDefault; }
+%transition-transform-super-slow { transition: transform $transTimeSuperSlow $easeDefault; }
+
+// Background color
+%transition-background-color { transition: background-color $transTime $easeDefault; }
+
+// Transition delays
+%transition-no-delay { transition-delay: 0s; }
+%transition-short-delay { transition-delay: 0.1s; }
+%transition-standard-delay { transition-delay: 0.3s; }
+%transition-long-delay { transition-delay: 1s; }
+
+// Translate3d reset
+%translate3d-reset { transform: translate3d(0,0,0); }
+
+
+// Layout
+// -------
+
+%spread {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+%horizontal-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+%vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+// Responsive media embeds
+// -------------------------
+
+.embed-container {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%; // 16:9 aspect ratio (adjust accordingly)
+    overflow: hidden;
+    iframe, object, embed, video, img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Misc
+// -------------------------
+
+%hide-text {
+    @include hide-text;
+}
+
+%background-cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+%background-contain {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
