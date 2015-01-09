@@ -49,5 +49,9 @@ module.exports = {
         cssSrc: dest + '/css/*.css',
         jsSrc: dest + '/js/*.js',
         dest: dest
+    },
+    s3: {
+        awsCreds: './aws.json',
+        src: dest
     }
 };

@@ -92,3 +92,6 @@ celerybeat.pid
 *.sw[op]
 nohup.out
 project/settings/hosts/localhost.py
+
+# Keep AWS credentials out of the repo
+aws.json
