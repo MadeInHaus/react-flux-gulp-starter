@@ -1,11 +1,17 @@
 var dest = "./build";
 var src = './src';
+var modRewrite = require('connect-modrewrite');
 
 module.exports = {
     browserSync: {
         server: {
             // Serve up our build folder
-            baseDir: dest
+            baseDir: dest,
+            middleware: [
+                modRewrite([
+                    '^[^\\.]*$ /index.html [L]'
+                ])
+            ]
         }
     },
     sass: {
