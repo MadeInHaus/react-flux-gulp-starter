@@ -18,13 +18,37 @@ $ npm install
 
 #### 3. Run gulp
 
-To work locally:
+Start a local dev environment:
 ```js
 $ gulp
 ```
 
-To build for production:
+Generate a production build:
 ```js
 $ gulp production
 ```
 
+#### 4. Deployment
+
+The following command will deploy to AWS S3:
+```js
+$ gulp deploy
+```
+AWS credentials should be defined in an gitignored JSON file called `aws.json`:
+
+```
+{
+    "accessKeyId": "your-key-id",
+    "secretAccessKey": "your-secret-access-key",
+    "region": "your-s3-region",
+    "dev": {
+        "bucket": "your-dev-bucket-name"
+    },
+    "staging": {
+        "bucket": "your-staging-bucket-name"
+    },
+    "prod": {
+        "bucket": "your-production-bucket-name"
+    }
+}
+```
