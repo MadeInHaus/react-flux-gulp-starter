@@ -50,8 +50,8 @@ module.exports = {
         jsSrc: dest + '/js/*.js',
         dest: dest
     },
-    s3: {
-        awsCreds: './aws.json',
-        src: dest
+    settings: {
+        src: './settings.json',
+        dest: dest
     }
 };
