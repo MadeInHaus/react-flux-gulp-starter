@@ -8,7 +8,7 @@ module.exports = Marionette.ItemView.extend({
         this.delegateEvents();
     },
 
-    serializeData: function() {
+    templateHelpers: function() {
         return {
             'staticUrl': window.config.staticUrl
         };
