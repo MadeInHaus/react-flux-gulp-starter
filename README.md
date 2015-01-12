@@ -30,25 +30,41 @@ $ gulp production
 
 #### 4. Deployment
 
-The following command will deploy to AWS S3:
+The following command will deploy to [AWS S3](http://aws.amazon.com/s3/):
 ```js
-$ gulp deploy
+$ gulp deploy --[env]
 ```
-AWS credentials should be defined in an gitignored JSON file called `aws.json`:
+
+This boilerplate assumes you've created a `settings.json` file in the project root. _This file should be (git)ignored as it contains sensitive information, i.e. AWS keys, etc._ When deployment is finished, a [Slack](http://slack.com) hook will be triggered in a channel of your choice. If you haven't heard of Slack, close Skype immediately and [read about it](http://slack.com).
+
+##### Environment options
+
+- `--dev` or `--development`
+- `--stage` or `--staging`
+- `--prod` or `--production`
+
+One of these arguments is required to successfully deploy files to S3, i.e `gulp deploy --staging`.
+
+##### Sample `settings.json`:
 
 ```
 {
-    "accessKeyId": "your-key-id",
-    "secretAccessKey": "your-secret-access-key",
-    "region": "your-s3-region",
-    "dev": {
-        "bucket": "your-dev-bucket-name"
+    "slack": {
+        "domain": "haus",
+        "token": "YOUR_SLACK_TOKEN",
+        "username": "Arnold Scavonegger",
+        "message": "New build up on: ",
+        "channel": "#dev-internal"
     },
-    "staging": {
-        "bucket": "your-staging-bucket-name"
-    },
-    "prod": {
-        "bucket": "your-production-bucket-name"
+    "aws": {
+        "accessKeyId": "YOUR_AWS_KEY",
+        "secretAccessKey": "YOUR_AWS_SECRET_KEY",
+        "region": "us-east-1",
+        "bucket": {
+            "dev": "YOUR_DEV_BUCKET",
+            "staging": "YOUR_STAGING_BUCKET",
+            "prod": "YOUR_PROD_BUCKET"
+        }
     }
 }
 ```
