@@ -6,6 +6,11 @@
     "type": "git",
     "url": "git://github.com/MadeInHaus/backbone-marionette-gulp-starter.git"
   },
+  "browserify": {
+    "transform": [
+      "hbsfy"
+    ]
+  },
   "devDependencies": {
     "browser-sync": "~1.3.6",
     "browserify": "^8.0.2",
