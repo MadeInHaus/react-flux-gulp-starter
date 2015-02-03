@@ -6,7 +6,7 @@ var handleErrors = require('../util/handleErrors');
 var config = require('../config').sass;
 var autoprefixer = require('gulp-autoprefixer');
 
-gulp.task('sass', function() {
+var taskDef = function () {
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
@@ -19,4 +19,8 @@ gulp.task('sass', function() {
         .pipe(browserSync.reload({
             stream: true
         }));
-});
+};
+
+module.exports = taskDef;
+
+gulp.task('sass', taskDef);
