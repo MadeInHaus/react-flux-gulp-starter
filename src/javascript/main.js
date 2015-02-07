@@ -1,5 +1,4 @@
-var app = require('./app/app.js');
-var AppRouter = require('./app/routers/AppRouter.js');
+var React = require('react');
+var App = require('./app/app')
 
-app.appRouter = new AppRouter();
-app.start();
+React.render(<App />, document.getElementById('app'));

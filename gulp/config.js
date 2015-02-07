@@ -40,7 +40,7 @@ module.exports = {
             dest: dest + '/js',
             outputName: 'main.js',
             // Additional file extentions to make optional
-            extensions: ['.coffee', '.js', '.hbs'],
+            extensions: ['.coffee', '.js', '.jsx', '.hbs'],
             // list of modules to make require-able externally
             //require: ['some-module', 'another-module']
         }]
