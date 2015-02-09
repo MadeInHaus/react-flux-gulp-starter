@@ -36,7 +36,7 @@ module.exports = {
         // A separate bundle will be generated for each
         // bundle config in the list below
         bundleConfigs: [{
-            entries: src + '/javascript/main.js',
+            entries: src + '/javascript/main.jsx',
             dest: dest + '/js',
             outputName: 'main.js',
             // Additional file extentions to make optional
