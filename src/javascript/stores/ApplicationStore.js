@@ -8,18 +8,17 @@ var ApplicationStore = createStore({
     storeName: 'ApplicationStore',
 
     handlers: {
-        'CHANGE_ROUTE': 'handleNavigate'
+        'CHANGE_ROUTE': 'onChangeRoute'
     },
 
     initialize: function () {
         this.currentRoute = null;
     },
 
-    handleNavigate: function (route) {
+    onChangeRoute: function (route) {
         if (this.currentRoute && route.path === this.currentRoute.path) {
             return;
         }
-
         this.currentRoute = _.omit(route, 'routes');
         this.emitChange();
     },
