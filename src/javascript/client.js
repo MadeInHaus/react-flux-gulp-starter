@@ -12,17 +12,12 @@ debugMain.enable('App, Fluxible, Fluxible:*');
 
 function renderApp(context, Handler) {
     debug('React Rendering');
-    var elTest = document.getElementById('test');
     var Component = React.createFactory(Handler);
     React.render(
         Component({ context: context.getComponentContext() }),
         document.getElementById('app'),
         function renderAppComplete() {
             debug('React Rendered');
-            if (firstRender) {
-                firstRender = false;
-                debug('Isomorphic Test ' + (elTest === document.getElementById('test') ? "PASSED" : "FAILED"));
-            }
         }
     );
 }
@@ -36,6 +31,7 @@ app.rehydrate(window.App, function (err, context) {
             // Don't call the action on the first render on top of the server rehydration
             // Otherwise there is a race condition where the action gets executed before
             // render has been called, which can cause the checksum to fail.
+            firstRender = false;
             renderApp(context, Handler);
         } else {
             context.executeAction(navigateAction, state, function () {
