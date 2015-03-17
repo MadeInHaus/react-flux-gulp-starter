@@ -2,17 +2,17 @@ require('node-jsx').install({ extension: '.jsx' })
 
 var express = require('express');
 var expressState = require('express-state');
-//var favicon = require('serve-favicon');
-var navigateAction = require('./src/javascript/actions/navigate');
 var debug = require('debug')('Server');
 var React = require('react');
-var app = require('./src/javascript/app');
-var HtmlComponent = React.createFactory(require('./src/javascript/components/Html.jsx'));
 var Router = require('react-router');
+var app = require('./src/javascript/app');
+var Html = require('./src/javascript/components/Html.jsx');
+var navigateAction = require('./src/javascript/actions/navigate');
 
 var server = express();
+
 expressState.extend(server);
-//server.use(favicon(__dirname + '/../favicon.ico'));
+
 server.use('/', express.static(__dirname + '/build'));
 
 server.use(function (req, res, next) {
@@ -23,14 +23,14 @@ server.use(function (req, res, next) {
 
             res.expose(app.dehydrate(context), 'App');
 
-            var Component = React.createFactory(Handler);
+            var HtmlComponent = React.createFactory(Html);
+            var HandlerComponent = React.createFactory(Handler);
             var html = React.renderToStaticMarkup(HtmlComponent({
                 state: res.locals.state,
-                markup: React.renderToString(Component({ context: context.getComponentContext() }))
+                markup: React.renderToString(HandlerComponent({ context: context.getComponentContext() }))
             }));
 
-            var doctype = '<!doctype html>\n';
-            res.send(doctype + html);
+            res.send('<!doctype html>' + html);
 
         });
     });

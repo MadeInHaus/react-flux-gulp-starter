@@ -9,11 +9,14 @@ var Nav = React.createClass({
     mixins: [StateMixin],
 
     render: function() {
+        var homeClass = this.isActive('/') ? 'selected' : '';
+        var aboutClass = this.isActive('/about') ? 'selected' : ''
+        var deadClass = this.isActive('/sgfjhsdgfjhsdgfjsd') ? 'selected' : ''
         return (
-            <ul className="pure-menu pure-menu-open pure-menu-horizontal">
-                <li className={this.isActive('/') ? 'pure-menu-selected' : ''}><Link to='/'>Home</Link></li>
-                <li className={this.isActive('/about') ? 'pure-menu-selected' : ''}><Link to='/about'>About</Link></li>
-                <li><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
+            <ul>
+                <li className={homeClass}><Link to='/'>Home</Link></li>
+                <li className={aboutClass}><Link to='/about'>About</Link></li>
+                <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
             </ul>
         );
     }
