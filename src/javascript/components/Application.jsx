@@ -26,9 +26,11 @@ var Application = React.createClass({
 
     render: function () {
         return (
-            <div id="test">
+            <div>
                 <Nav />
-                <RouteHandler />
+                <main>
+                    <RouteHandler />
+                </main>
                 <Timestamp />
             </div>
         );

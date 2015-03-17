@@ -1,0 +1,21 @@
+#app {
+    > div {
+        overflow: hidden;
+
+        > main {
+            margin: 2.2em 2em 2em 15em;
+        }
+
+        > footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #eee;
+
+            > p {
+                margin: 0;
+                padding: 1em;
+            }
+        }
+    }
+}

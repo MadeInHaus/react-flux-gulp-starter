@@ -13,11 +13,13 @@ var Nav = React.createClass({
         var aboutClass = this.isActive('/about') ? 'selected' : ''
         var deadClass = this.isActive('/sgfjhsdgfjhsdgfjsd') ? 'selected' : ''
         return (
-            <ul>
-                <li className={homeClass}><Link to='/'>Home</Link></li>
-                <li className={aboutClass}><Link to='/about'>About</Link></li>
-                <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li className={homeClass}><Link to='/'>Home</Link></li>
+                    <li className={aboutClass}><Link to='/about'>About</Link></li>
+                    <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
+                </ul>
+            </nav>
         );
     }
 

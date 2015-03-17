@@ -28,7 +28,9 @@ var Timestamp = React.createClass({
 
     render: function() {
         return (
-            <p onClick={this.onReset}>{this.state.time}</p>
+            <footer>
+                <p onClick={this.onReset}>{this.state.time}</p>
+            </footer>
         );
     }
 
