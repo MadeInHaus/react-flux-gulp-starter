@@ -14,5 +14,6 @@ app.plug(fetchrPlugin({
 app.registerStore(require('./stores/ApplicationStore'));
 app.registerStore(require('./stores/TimeStore'));
 app.registerStore(require('./stores/DataStore'));
+app.registerStore(require('./stores/LocaleStore'));
 
 module.exports = app;

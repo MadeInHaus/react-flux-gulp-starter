@@ -1,5 +1,9 @@
 require('node-jsx').install({ extension: '.jsx' })
 
+if (!global.Intl) {
+    global.Intl = require('intl');
+}
+
 var express = require('express');
 var expressState = require('express-state');
 var bodyParser = require('body-parser');
@@ -29,6 +33,8 @@ fetchrPlugin.registerService(dataService);
 server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 
 server.use(function (req, res, next) {
+    var locale = req.acceptsLanguages(['en', 'de', 'pt']) || 'en';
+
     var context = app.createContext({
         // The fetchr plugin depends on this
         req: req,
@@ -38,7 +44,7 @@ server.use(function (req, res, next) {
     });
 
     Router.run(app.getComponent(), req.path, function (Handler, state) {
-        context.executeAction(loadDataAction, {}, function() {
+        context.executeAction(loadDataAction, { locale: locale }, function() {
             context.executeAction(navigateAction, state, function (err) {
 
                 if (err) {
@@ -54,9 +60,18 @@ server.use(function (req, res, next) {
 
                 var HtmlComponent = React.createFactory(Html);
                 var HandlerComponent = React.createFactory(Handler);
+
+                var componentContext = context.getComponentContext();
+                var localeStoreState = componentContext.getStore('LocaleStore').getState();
+
                 var html = React.renderToStaticMarkup(HtmlComponent({
+                    locale: locale, // <html lang={locale}>
                     state: res.locals.state,
-                    markup: React.renderToString(HandlerComponent({ context: context.getComponentContext() }))
+                    markup: React.renderToString(HandlerComponent({
+                        context: componentContext,
+                        locales: localeStoreState.locales,
+                        formats: localeStoreState.formats
+                    }))
                 }));
 
                 res.send('<!doctype html>' + html);

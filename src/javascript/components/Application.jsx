@@ -1,15 +1,17 @@
 'use strict';
 
 var React = require('react');
+var ReactIntl = require('react-intl');
+var FluxibleMixin = require('fluxible').Mixin;
+var IntlMixin = ReactIntl.IntlMixin;
 var Nav = require('./Nav.jsx');
 var Timestamp = require('./Timestamp.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
-var FluxibleMixin = require('fluxible').Mixin;
 var RouteHandler = require('react-router').RouteHandler;
 
 var Application = React.createClass({
 
-    mixins: [FluxibleMixin],
+    mixins: [FluxibleMixin, IntlMixin],
 
     statics: {
         storeListeners: [ApplicationStore]

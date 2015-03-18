@@ -5,7 +5,7 @@ var React = require('react');
 var Html = React.createClass({
     render: function() {
         return (
-            <html>
+            <html lang={this.props.locale}>
             <head>
                 <meta charSet="utf-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

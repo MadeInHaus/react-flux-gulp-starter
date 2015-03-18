@@ -4,7 +4,7 @@ var fs = require('fs');
 
 module.exports = {
 
-    name: 'data', // http://localhost:3001/api/resource/data
+    name: 'data', // http://localhost:3000/api/resource/data
 
     // at least one of the CRUD methods is required
     read: function(req, resource, params, config, callback) {

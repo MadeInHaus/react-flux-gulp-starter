@@ -12,9 +12,15 @@ debugMain.enable('App, Fluxible, Fluxible:*');
 
 function renderApp(context, Handler) {
     debug('React Rendering');
-    var Component = React.createFactory(Handler);
+    var HandlerComponent = React.createFactory(Handler);
+    var componentContext = context.getComponentContext();
+    var localeStoreState = componentContext.getStore('LocaleStore').getState();
     React.render(
-        Component({ context: context.getComponentContext() }),
+        HandlerComponent({
+            context: componentContext,
+            locales: localeStoreState.locales,
+            formats: localeStoreState.formats
+        }),
         document.getElementById('app'),
         function renderAppComplete() {
             debug('React Rendered');

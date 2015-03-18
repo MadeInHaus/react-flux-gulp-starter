@@ -1,13 +1,17 @@
 'use strict';
 
 var React = require('react');
-var updateTime = require('../actions/updateTime');
-var TimeStore = require('../stores/TimeStore');
+var ReactIntl = require('react-intl');
 var FluxibleMixin = require('fluxible').Mixin;
+var IntlMixin = ReactIntl.IntlMixin;
+var FormattedDate = ReactIntl.FormattedDate;
+var FormattedTime = ReactIntl.FormattedTime;
+var TimeStore = require('../stores/TimeStore');
+var updateTime = require('../actions/updateTime');
 
 var Timestamp = React.createClass({
 
-    mixins: [FluxibleMixin],
+    mixins: [FluxibleMixin, IntlMixin],
 
     statics: {
         storeListeners: [TimeStore]
@@ -29,7 +33,11 @@ var Timestamp = React.createClass({
     render: function() {
         return (
             <footer>
-                <p onClick={this.onReset}>{this.state.time}</p>
+                <p onClick={this.onReset}>
+                    <FormattedDate value={this.state.time} format="standard" />
+                    <span>, </span>
+                    <FormattedTime value={this.state.time} format="hhmmss" />
+                </p>
             </footer>
         );
     }

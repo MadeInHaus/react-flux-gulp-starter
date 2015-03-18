@@ -11,9 +11,9 @@ var NotFound = require('./NotFound.jsx');
 
 var routes = (
     <Route name="app" path="/" handler={Application}>
-        <Route name="about" handler={About}/>
-        <DefaultRoute name="home" handler={Home}/>
-        <NotFoundRoute handler={NotFound}/>
+        <Route name="about" handler={About} />
+        <DefaultRoute name="home" handler={Home} />
+        <NotFoundRoute handler={NotFound} />
     </Route>
 );
 

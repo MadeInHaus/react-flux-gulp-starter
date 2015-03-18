@@ -6,6 +6,11 @@ var TimeStore = createStore({
 
     storeName: 'TimeStore',
 
+    handlers: {
+        'CHANGE_ROUTE': 'handleTimeChange',
+        'UPDATE_TIME': 'handleTimeChange'
+    },
+
     initialize: function () {
         this.time = new Date();
     },
@@ -15,11 +20,6 @@ var TimeStore = createStore({
         this.emitChange();
     },
 
-    handlers: {
-        'CHANGE_ROUTE': 'handleTimeChange',
-        'UPDATE_TIME': 'handleTimeChange'
-    },
-
     getState: function () {
         return {
             time: this.time.toString()
@@ -27,9 +27,7 @@ var TimeStore = createStore({
     },
 
     dehydrate: function () {
-        return {
-            time: this.time.toString()
-        };
+        return this.getState();
     },
 
     rehydrate: function (state) {
