@@ -2,11 +2,9 @@
 
 var fs = require('fs');
 
-var _data = [ 'The', 'quick', 'brown', 'fox', 'jumps', 'over', 'a', 'lazy', 'dog' ];
-
 module.exports = {
 
-    name: 'data',
+    name: 'data', // http://localhost:3001/api/resource/data
 
     // at least one of the CRUD methods is required
     read: function(req, resource, params, config, callback) {
@@ -17,9 +15,6 @@ module.exports = {
                 callback(null, JSON.parse(data));
             }
         });
-        setTimeout(function () {
-            //callback(null, JSON.parse(JSON.stringify(_data)));
-        }, 10);
     },
 
     // create: function(req, resource, params, body, config, callback) {}
