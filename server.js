@@ -70,7 +70,8 @@ server.use(function (req, res, next) {
                     markup: React.renderToString(HandlerComponent({
                         context: componentContext,
                         locales: localeStoreState.locales,
-                        formats: localeStoreState.formats
+                        formats: localeStoreState.formats,
+                        messages: localeStoreState.messages
                     }))
                 }));
 

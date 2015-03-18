@@ -21,6 +21,9 @@ var LocaleStore = createStore({
                 hhmmss: { hour: "numeric", minute: "numeric", second: "numeric" }
             }
         };
+        this.messages = {
+            currentTimeDate: "It's {currentTime, time, hhmmss} on {currentTime, date, standard}."
+        };
     },
 
     onSetLocale: function (locale) {
@@ -31,7 +34,8 @@ var LocaleStore = createStore({
     getState: function () {
         return {
             locales: this.locale,
-            formats: this.formats
+            formats: this.formats,
+            messages: this.messages
         };
     },
 
@@ -42,6 +46,7 @@ var LocaleStore = createStore({
     rehydrate: function (state) {
         this.locale = state.locale;
         this.formats = state.formats;
+        this.messages = state.messages;
     }
 
 });

@@ -19,7 +19,8 @@ function renderApp(context, Handler) {
         HandlerComponent({
             context: componentContext,
             locales: localeStoreState.locales,
-            formats: localeStoreState.formats
+            formats: localeStoreState.formats,
+            messages: localeStoreState.messages
         }),
         document.getElementById('app'),
         function renderAppComplete() {

@@ -4,8 +4,7 @@ var React = require('react');
 var ReactIntl = require('react-intl');
 var FluxibleMixin = require('fluxible').Mixin;
 var IntlMixin = ReactIntl.IntlMixin;
-var FormattedDate = ReactIntl.FormattedDate;
-var FormattedTime = ReactIntl.FormattedTime;
+var FormattedMessage = ReactIntl.FormattedMessage;
 var TimeStore = require('../stores/TimeStore');
 var updateTime = require('../actions/updateTime');
 
@@ -31,12 +30,11 @@ var Timestamp = React.createClass({
     },
 
     render: function() {
+        var currentTime = new Date(this.state.time);
         return (
             <footer>
                 <p onClick={this.onReset}>
-                    <FormattedDate value={this.state.time} format="standard" />
-                    <span>, </span>
-                    <FormattedTime value={this.state.time} format="hhmmss" />
+                    <FormattedMessage message={this.getIntlMessage('currentTimeDate')} currentTime={currentTime} />
                 </p>
             </footer>
         );
