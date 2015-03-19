@@ -51,7 +51,7 @@ module.exports = {
             entries: src + '/javascript/client-intl.js',
             dest: dest + '/js',
             outputName: 'client-intl.js',
-            extensions: ['.js', '.jsx']
+            extensions: ['.js']
         }]
     },
     production: {

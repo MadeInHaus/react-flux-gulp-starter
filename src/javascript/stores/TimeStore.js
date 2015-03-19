@@ -22,7 +22,7 @@ var TimeStore = createStore({
 
     getState: function () {
         return {
-            time: this.time.toString()
+            time: this.time.getTime()
         };
     },
 
