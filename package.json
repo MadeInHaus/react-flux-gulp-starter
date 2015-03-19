@@ -1,6 +1,7 @@
 {
   "name": "react-gulp-starter",
   "version": "0.2.0",
+  "engines" : { "node": ">=0.12" },
   "private": true,
   "description": "React-Gulp starter with common tasks and scenarios",
   "repository": {
