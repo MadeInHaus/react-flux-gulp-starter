@@ -34,7 +34,9 @@ var Timestamp = React.createClass({
         return (
             <footer>
                 <p onClick={this.onReset}>
-                    <FormattedMessage message={this.getIntlMessage('currentTimeDate')} currentTime={currentTime} />
+                    <FormattedMessage
+                        message={this.getIntlMessage('currentTimeDate')}
+                        currentTime={currentTime} />
                 </p>
             </footer>
         );

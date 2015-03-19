@@ -7,11 +7,11 @@ var LocaleStore = createStore({
     storeName: 'LocaleStore',
 
     handlers: {
-        'SET_LOCALE': 'onSetLocale'
+        'SET_LOCALES': 'onSetLocales'
     },
 
     initialize: function () {
-        this.locale = null;
+        this.locales = null;
         this.formats = {
             date: {
                 standard: { day: "numeric", month: "long", year: "numeric" }
@@ -26,14 +26,14 @@ var LocaleStore = createStore({
         };
     },
 
-    onSetLocale: function (locale) {
-        this.locale = locale;
+    onSetLocales: function (locales) {
+        this.locales = locales;
         this.emitChange();
     },
 
     getState: function () {
         return {
-            locales: this.locale,
+            locales: this.locales,
             formats: this.formats,
             messages: this.messages
         };
@@ -44,7 +44,7 @@ var LocaleStore = createStore({
     },
 
     rehydrate: function (state) {
-        this.locale = state.locale;
+        this.locales = state.locales;
         this.formats = state.formats;
         this.messages = state.messages;
     }

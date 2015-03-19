@@ -22,7 +22,8 @@ var Html = React.createClass({
             <body>
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
                 <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
-                <script src="/js/client.js" defer></script>
+                <script dangerouslySetInnerHTML={{__html: this.props.yepnope}}></script>
+                <script dangerouslySetInnerHTML={{__html: this.props.yepnopeTest}}></script>
             </body>
             </html>
         );
