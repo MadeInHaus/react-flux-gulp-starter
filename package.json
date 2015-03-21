@@ -4,6 +4,10 @@
   "engines" : { "node": ">=0.12" },
   "private": true,
   "description": "React-Gulp starter with common tasks and scenarios",
+  "scripts": {
+    "postinstall": "gulp production",
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/MadeInHaus/react-gulp-starter.git"
