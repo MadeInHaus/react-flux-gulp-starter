@@ -1,18 +1,25 @@
 var dest = "./build";
 var src = './src';
-var modRewrite = require('connect-modrewrite');
+var port = 3000;
 
 module.exports = {
-    browserSync: {
-        server: {
-            // Serve up our build folder
-            baseDir: dest,
-            middleware: [
-                modRewrite([
-                    '^[^\\.]*$ /index.html [L]'
-                ])
-            ]
+    nodemon: {
+        script: './server.js',
+        ext: 'js',
+        ignore: ['build/*', 'node_modules/*'],
+        env: {
+            'NODE_ENV': 'development',
+            'DEBUG': 'Server',
+            'PORT': port
         }
+    },
+    browserSync: {
+        // Don't use browsersync's static browser.
+        // We just proxy into the actual server.js here.
+        proxy: 'localhost:' + port,
+        port: port + 1,
+        notify: false,
+        open: false
     },
     sass: {
         src: src + "/sass/**/*.{sass,scss}",
@@ -36,13 +43,15 @@ module.exports = {
         // A separate bundle will be generated for each
         // bundle config in the list below
         bundleConfigs: [{
-            entries: src + '/javascript/main.jsx',
+            entries: src + '/javascript/client.js',
             dest: dest + '/js',
-            outputName: 'main.js',
-            // Additional file extentions to make optional
-            extensions: ['.coffee', '.js', '.jsx', '.hbs'],
-            // list of modules to make require-able externally
-            //require: ['some-module', 'another-module']
+            outputName: 'client.js',
+            extensions: ['.js', '.jsx']
+        },{
+            entries: src + '/javascript/client-intl.js',
+            dest: dest + '/js',
+            outputName: 'client-intl.js',
+            extensions: ['.js']
         }]
     },
     production: {

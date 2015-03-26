@@ -10,15 +10,8 @@ button {
 
 .btn {
     display: inline-block;
-
     &:hover {}
-
     &:focus {}
-
-    &.active,
-    &:active {}
-
-    &.disabled,
-    &[disabled] {}
-
+    &.active, &:active {}
+    &.disabled, &[disabled] {}
 }
