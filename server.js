@@ -1,84 +1,51 @@
-require('node-jsx').install({ extension: '.jsx' })
+// Inspired by
+// http://fluxible.io/tutorials/routing.html
+// https://github.com/yahoo/flux-examples/tree/master/react-router
 
-if (!global.Intl) {
-    // Intl polyfill for node <= 0.10
-    global.Intl = require('intl');
-}
+require('node-jsx').install({ extension: '.jsx' })
 
 var express = require('express');
 var expressState = require('express-state');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var csrf = require('csurf');
 var debug = require('debug')('Server');
 var React = require('react');
 var Router = require('react-router');
 var app = require('./src/javascript/app');
 var Html = require('./src/javascript/components/Html.jsx');
-var loadDataAction = require('./src/javascript/actions/loadData');
 var navigateAction = require('./src/javascript/actions/navigate');
-var dataService = require('./src/javascript/services/data');
 
 var server = express();
 
 expressState.extend(server);
 
 server.use('/', express.static(__dirname + '/build'));
-server.use(cookieParser());
-server.use(bodyParser.json());
-server.use(csrf({ cookie: true }));
-
-// Register 'data' REST service and set up the fetchr middleware
-var fetchrPlugin = app.getPlugin('FetchrPlugin');
-fetchrPlugin.registerService(dataService);
-server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
 
 server.use(function (req, res, next) {
-    var locale = req.acceptsLanguages(['en', 'de', 'pt']) || 'en';
-
-    var context = app.createContext({
-        // The fetchr plugin depends on this
-        req: req,
-        xhrContext: {
-            _csrf: req.csrfToken()
-        }
-    });
+    var context = app.createContext();
 
     Router.run(app.getComponent(), req.path, function (Handler, state) {
-        context.executeAction(loadDataAction, { locales: [locale] }, function() {
-            context.executeAction(navigateAction, state, function (err) {
 
-                if (err) {
-                    if (err.status && err.status === 404) {
-                        next();
-                    } else {
-                        next(err);
-                    }
-                    return;
-                }
+        context.executeAction(navigateAction, state, function (err) {
 
-                res.expose(app.dehydrate(context), 'App');
+            var appState = app.dehydrate(context);
 
-                var HtmlComponent = React.createFactory(Html);
-                var HandlerComponent = React.createFactory(Handler);
+            res.expose(appState, 'App');
 
-                var componentContext = context.getComponentContext();
-                var localeStoreState = componentContext.getStore('LocaleStore').getState();
+            var HtmlComponent = React.createFactory(Html);
+            var HandlerComponent = React.createFactory(Handler);
+            var componentContext = context.getComponentContext();
 
-                var html = React.renderToStaticMarkup(HtmlComponent({
-                    locale: locale, // <html lang={locale}>
-                    state: res.locals.state,
-                    markup: React.renderToString(HandlerComponent({
-                        context: componentContext,
-                        locales: localeStoreState.locales,
-                        formats: localeStoreState.formats,
-                        messages: localeStoreState.messages
-                    }))
-                }));
+            var markup = React.renderToString(
+                HandlerComponent({ context: componentContext })
+            );
 
-                res.send('<!doctype html>' + html);
+            var html = React.renderToStaticMarkup(HtmlComponent({
+                title: "react-flux-gulp-starter",
+                state: res.locals.state,
+                markup: markup
+            }));
 
-            });
+            res.send('<!doctype html>' + html);
+
         });
     });
 });

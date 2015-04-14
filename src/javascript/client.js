@@ -10,25 +10,6 @@ var firstRender = true;
 
 debugMain.enable('App, Fluxible, Fluxible:*');
 
-function renderApp(context, Handler) {
-    debug('React Rendering');
-    var HandlerComponent = React.createFactory(Handler);
-    var componentContext = context.getComponentContext();
-    var localeStoreState = componentContext.getStore('LocaleStore').getState();
-    React.render(
-        HandlerComponent({
-            context: componentContext,
-            locales: localeStoreState.locales,
-            formats: localeStoreState.formats,
-            messages: localeStoreState.messages
-        }),
-        document.getElementById('app'),
-        function renderAppComplete() {
-            debug('React Rendered');
-        }
-    );
-}
-
 debug('Rehydrating..');
 
 app.rehydrate(window.App, function (err, context) {
@@ -47,3 +28,16 @@ app.rehydrate(window.App, function (err, context) {
         }
     });
 });
+
+function renderApp(context, Handler) {
+    debug('React Rendering');
+    var HandlerComponent = React.createFactory(Handler);
+    var componentContext = context.getComponentContext();
+    React.render(
+        HandlerComponent({ context: componentContext }),
+        document.getElementById('app'),
+        function renderAppComplete() {
+            debug('React Rendered');
+        }
+    );
+}

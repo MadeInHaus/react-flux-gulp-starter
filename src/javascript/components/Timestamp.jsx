@@ -1,16 +1,13 @@
 'use strict';
 
 var React = require('react');
-var ReactIntl = require('react-intl');
 var FluxibleMixin = require('fluxible').Mixin;
-var IntlMixin = ReactIntl.IntlMixin;
-var FormattedMessage = ReactIntl.FormattedMessage;
 var TimeStore = require('../stores/TimeStore');
 var updateTime = require('../actions/updateTime');
 
 var Timestamp = React.createClass({
 
-    mixins: [FluxibleMixin, IntlMixin],
+    mixins: [FluxibleMixin],
 
     statics: {
         storeListeners: [TimeStore]
@@ -33,11 +30,7 @@ var Timestamp = React.createClass({
         var currentTime = new Date(this.state.time);
         return (
             <footer>
-                <p onClick={this.onReset}>
-                    <FormattedMessage
-                        message={this.getIntlMessage('currentTimeDate')}
-                        currentTime={currentTime} />
-                </p>
+                <p onClick={this.onReset}>{currentTime.toTimeString()}</p>
             </footer>
         );
     }
