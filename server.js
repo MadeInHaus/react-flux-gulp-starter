@@ -9,6 +9,7 @@ var expressState = require('express-state');
 var debug = require('debug')('Server');
 var React = require('react');
 var Router = require('react-router');
+var FluxibleComponent = require('fluxible/addons/FluxibleComponent');
 var app = require('./src/javascript/app');
 var Html = require('./src/javascript/components/Html.jsx');
 var navigateAction = require('./src/javascript/actions/navigate');
@@ -32,11 +33,12 @@ server.use(function (req, res, next) {
 
             var HtmlComponent = React.createFactory(Html);
             var HandlerComponent = React.createFactory(Handler);
-            var componentContext = context.getComponentContext();
 
-            var markup = React.renderToString(
-                HandlerComponent({ context: componentContext })
-            );
+            var markup = React.renderToString(React.createElement(
+                FluxibleComponent,
+                { context: context.getComponentContext() },
+                HandlerComponent()
+            ));
 
             var html = React.renderToStaticMarkup(HtmlComponent({
                 title: "react-flux-gulp-starter",

@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Router = require('react-router');
+var FluxibleComponent = require('fluxible/addons/FluxibleComponent');
 var debugMain = require('debug');
 var debug = debugMain('App');
 var app = require('./app');
@@ -32,9 +33,12 @@ app.rehydrate(window.App, function (err, context) {
 function renderApp(context, Handler) {
     debug('React Rendering');
     var HandlerComponent = React.createFactory(Handler);
-    var componentContext = context.getComponentContext();
     React.render(
-        HandlerComponent({ context: componentContext }),
+        React.createElement(
+            FluxibleComponent,
+            { context: context.getComponentContext() },
+            HandlerComponent()
+        ),
         document.getElementById('app'),
         function renderAppComplete() {
             debug('React Rendered');

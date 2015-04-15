@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var FluxibleMixin = require('fluxible').Mixin;
+var FluxibleMixin = require('fluxible/addons/FluxibleMixin');
 var Nav = require('./Nav.jsx');
 var Timestamp = require('./Timestamp.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');

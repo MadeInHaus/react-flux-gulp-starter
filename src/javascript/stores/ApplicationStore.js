@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var createStore = require('fluxible/utils/createStore');
+var createStore = require('fluxible/addons').createStore;
 
 var ApplicationStore = createStore({
 
