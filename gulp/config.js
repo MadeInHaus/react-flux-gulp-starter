@@ -54,6 +54,26 @@ module.exports = {
         jsSrc: dest + '/js/*.js',
         dest: dest
     },
+    heroku: {
+        development: {
+            branch: 'dev',
+            remoteName: 'dev',
+            remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_DEV.git',
+            website: 'http://HEROKU_APP_NAME_DEV.herokuapp.com'
+        },
+        staging: {
+            branch: 'staging',
+            remoteName: 'staging',
+            remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_STAGING.git',
+            website: 'http://HEROKU_APP_NAME_STAGING.herokuapp.com'
+        },
+        production: {
+            branch: 'master',
+            remoteName: 'prod',
+            remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_PRODUCTION.git',
+            website: 'http://HEROKU_APP_NAME_PRODUCTION.herokuapp.com'
+        }
+    },
     settings: {
         src: './settings.json',
         dest: dest
