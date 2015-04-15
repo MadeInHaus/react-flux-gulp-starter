@@ -1,7 +1,9 @@
 {
   "name": "react-gulp-starter",
   "version": "0.2.0",
-  "engines" : { "node": ">=0.12" },
+  "engines": {
+    "node": ">=0.12"
+  },
   "private": true,
   "description": "React-Gulp starter with common tasks and scenarios",
   "scripts": {
@@ -38,11 +40,11 @@
     "gulp-watch": "^4.1.0",
     "minimist": "^1.1.0",
     "node-jsx": "^0.12.4",
-    "node-slack": "0.0.5",
     "pretty-hrtime": "~0.2.1",
+    "q": "^1.2.0",
     "reactify": "^1.0.0",
     "require-dir": "^0.1.0",
-    "s3": "^4.3.1",
+    "slack-node": "0.0.95",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "^2.2.1"
   },
