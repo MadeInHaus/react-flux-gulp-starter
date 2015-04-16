@@ -34,31 +34,31 @@ $ gulp production
 
 #### 4.1. Setup
 
-You only need to do this once:
+You only need to do this once.
 
-First, by default, Heroku does not install modules specified in you package.json's `devDependencies` section, but it needs those to build your site.
+We assume that you have an app set up at Heroku. Below, please substitute all occurences of `###HEROKU_APP_NAME###` with your actual Heroku app name.
 
-Install the [Heroku Toolbelt](https://toolbelt.heroku.com/) and log in to Heroku:
+First, install the [Heroku Toolbelt](https://toolbelt.heroku.com/) and log in to Heroku:
 
 ```sh
 $ heroku login
 ```
 
-Run this to set the config variable `NPM_CONFIG_PRODUCTION` to `false` (substitute `HEROKU_APP_NAME` with your actual Heroku app name):
+By default, Heroku does not install modules specified in you package.json's `devDependencies` section, but it needs those to build your site. You tell Heroku to install dev dependencies by setting the config variable `NPM_CONFIG_PRODUCTION` to `false`:
 
 ```sh
-$ heroku config:set NPM_CONFIG_PRODUCTION=false --app HEROKU_APP_NAME
+$ heroku config:set NPM_CONFIG_PRODUCTION=false --app ###HEROKU_APP_NAME###
 ```
 
-Finally, add your Heroku app's repo as a remote. Run this in the project's root directory (and again, substitute `HEROKU_APP_NAME` with your actual Heroku app name):
+Finally, add your Heroku app's repo as a remote. Run this in the project's root directory:
 
 ```sh
-$ heroku git:remote -a HEROKU_APP_NAME
+$ heroku git:remote -a ###HEROKU_APP_NAME###
 ```
 
 ##### 4.2. Deploy
 
-Just push it, that is all:
+Just push it. That is all.
 
 ```sh
 $ git push heroku master
