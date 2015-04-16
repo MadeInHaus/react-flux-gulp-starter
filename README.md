@@ -19,52 +19,103 @@ $ npm install
 #### 3. Run gulp
 
 Start a local dev environment:
-```js
+
+```sh
 $ gulp
 ```
 
 Generate a production build:
-```js
+
+```sh
 $ gulp production
 ```
 
-#### 4. Deployment
+#### 4. Deploy to Heroku
 
-The following command will deploy to [AWS S3](http://aws.amazon.com/s3/):
+Follow steps 4.1 to 4.4 below, then:
+
+```sh
+$ gulp heroku-push --[env]
+```
+
+Where `[env]` is one of these:
+
+- `dev` or `development`
+- `stage` or `staging`
+- `prod` or `production`
+
+##### 4.1. Edit config.js
+
+In `./gulp/config.js`, in the `heroku` section, replace `HEROKU_APP_NAME_*` with your respective Heroku app names for development, staging and production. Change `branch` and `remoteName` if needed.
+
 ```js
-$ gulp deploy --[env]
-```
-
-This boilerplate assumes you've created a `settings.json` file in the project root. _This file should be (git)ignored as it contains sensitive information, i.e. AWS keys, etc._ When deployment is finished, a [Slack](http://slack.com) hook will be triggered in a channel of your choice. If you haven't heard of Slack, close Skype immediately and [read about it](http://slack.com).
-
-##### Environment options
-
-- `--dev` or `--development`
-- `--stage` or `--staging`
-- `--prod` or `--production`
-
-One of these arguments is required to successfully deploy files to S3, i.e `gulp deploy --staging`.
-
-##### Sample `settings.json`:
-
-```
-{
-    "slack": {
-        "domain": "haus",
-        "token": "YOUR_SLACK_TOKEN",
-        "username": "Arnold Scavonegger",
-        "message": "New build up on: ",
-        "channel": "#dev-internal"
+heroku: {
+    development: {
+        branch: 'dev',
+        remoteName: 'dev',
+        remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_DEV.git',
+        website: 'http://HEROKU_APP_NAME_DEV.herokuapp.com'
     },
-    "aws": {
-        "accessKeyId": "YOUR_AWS_KEY",
-        "secretAccessKey": "YOUR_AWS_SECRET_KEY",
-        "region": "us-east-1",
-        "bucket": {
-            "dev": "YOUR_DEV_BUCKET",
-            "staging": "YOUR_STAGING_BUCKET",
-            "prod": "YOUR_PROD_BUCKET"
-        }
+    staging: {
+        branch: 'staging',
+        remoteName: 'staging',
+        remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_STAGING.git',
+        website: 'http://HEROKU_APP_NAME_STAGING.herokuapp.com'
+    },
+    production: {
+        branch: 'master',
+        remoteName: 'prod',
+        remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_PRODUCTION.git',
+        website: 'http://HEROKU_APP_NAME_PRODUCTION.herokuapp.com'
     }
 }
 ```
+
+##### 4.2. Create settings.json for Slack integration (optional)
+
+If you like Gulp to send a message to a Slack channel when a deploy was successful, create a `./settings.json` file that looks like this:
+
+```js
+{
+    "slack": {
+        "domain": "YOUR_SLACK_SUBDOMAIN",
+        "username": "Joe Doe",
+        "message": "New build up on: ",
+        "channel": "#YOUR_SLACK_CHANNEL",
+        "webhook": "https://hooks.slack.com/services/YOUR_SLACK_CHANNEL_WEBHOOK"
+    }
+}
+```
+
+##### 4.3. Tell Heroku to install devDependencies
+
+By default, Heroku does not install modules specified in you package.json's `devDependencies` section, but it needs those to build your site.
+
+Login to Heroku if you haven't yet:
+
+```sh
+$ heroku login
+```
+
+Then execute this for each Heroku app (dev, staging, production):
+
+```sh
+$ heroku config:set NPM_CONFIG_PRODUCTION=false --app HEROKU_APP_NAME
+```
+
+##### 4.4. Add Heroku remotes to your local git repository
+
+If you haven't done it yet:
+
+```sh
+$ gulp remotes --[env]
+```
+
+##### 4.5. Deploy
+
+The following command will deploy your app to Heroku:
+
+```sh
+$ gulp heroku-push --[env]
+```
+
