@@ -32,7 +32,7 @@ $ gulp production
 
 #### 4. Deploy to Heroku
 
-Follow steps 4.1 to 4.4 below, then:
+Follow steps 4.1 to 4.4 (or #yolo 4.5) below, then:
 
 ```sh
 $ gulp heroku-push --[env]
