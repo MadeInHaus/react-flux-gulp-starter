@@ -115,7 +115,7 @@ $ gulp remotes --[env]
 
 If you have a simple setup with only one master branch and one Heroku app:
 
-`./gulp/config.js`:
+In `./gulp/config.js`:
 
 ```js
 heroku: {
@@ -127,6 +127,7 @@ heroku: {
     }
 }
 ```
+And then:
 
 ```sh
 $ heroku login
