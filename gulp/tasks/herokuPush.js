@@ -21,8 +21,8 @@ gulp.task('heroku-push', function (callback) {
     } else if (isProd) {
         env = 'production';
     } else {
-        console.error('No environment set.');
-        return;
+        console.log('No environment set, defaulting to development.');
+        env = 'development';
     }
 
     console.log('Pushing latest to Heroku ' + env + ' environment...\n\n');

@@ -111,11 +111,26 @@ If you haven't done it yet:
 $ gulp remotes --[env]
 ```
 
-##### 4.5. Deploy
+##### 4.5. YOLO version of the above:
 
-The following command will deploy your app to Heroku:
+If you have a simple setup with only one master branch and one Heroku app:
 
-```sh
-$ gulp heroku-push --[env]
+`./gulp/config.js`:
+
+```js
+heroku: {
+    development: {
+        branch: 'master',
+        remoteName: 'prod',
+        remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME.git',
+        website: 'http://HEROKU_APP_NAME.herokuapp.com'
+    }
+}
 ```
 
+```sh
+$ heroku login
+$ heroku config:set NPM_CONFIG_PRODUCTION=false --app HEROKU_APP_NAME
+$ gulp remotes --dev
+$ gulp heroku-push
+```
