@@ -30,7 +30,7 @@ var Timestamp = React.createClass({
         var currentTime = new Date(this.state.time);
         return (
             <footer>
-                <p onClick={this.onReset}>{currentTime.toTimeString()}</p>
+                <p onClick={this.onReset}>{currentTime.toGMTString()}</p>
             </footer>
         );
     }
