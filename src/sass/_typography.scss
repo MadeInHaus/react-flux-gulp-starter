@@ -6,8 +6,6 @@
 // ------
 a {
     color: $linkColor;
-    font-size: 1.6em;
-    text-decoration: none;
     &:hover {
         color: $linkColorHover;
         text-decoration: underline;
@@ -18,7 +16,6 @@ a {
 // ----------
 p {
     margin: 0 0 $baseLineHeight / 2;
-    font-size: 1.6em;
 }
 
 
@@ -38,9 +35,9 @@ h1, h2, h3, h4, h5, h6 {
     color: $headingsColor;
     text-rendering: optimizelegibility; // Fix the character spacing for headings
 }
-h1 { font-size: 3.0em; }
-h2 { font-size: 2.4em; }
-h3 { font-size: 2.2em; }
-h4 { font-size: 2.0em; }
-h5 { font-size: 1.8em; }
-h6 { font-size: 1.6em; }
+h1 { @include rem(font-size, $baseFontSize + 1.4); }
+h2 { @include rem(font-size, $baseFontSize + 0.8); }
+h3 { @include rem(font-size, $baseFontSize + 0.6); }
+h4 { @include rem(font-size, $baseFontSize + 0.4); }
+h5 { @include rem(font-size, $baseFontSize + 0.2); }
+h6 { @include rem(font-size, $baseFontSize); }

@@ -18,7 +18,7 @@ var Navigation = React.createClass({
             <ul className="navigation">
                 <li className={homeClass}><Link to='/'>Home</Link></li>
                 <li className={aboutClass}><Link to='/about'>About</Link></li>
-                <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
+                <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>404</Link></li>
             </ul>
         );
     }

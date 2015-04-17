@@ -19,8 +19,8 @@ $hrBorder:                  $black !default;
 
 // Links
 // -------------------------
-$linkColor:                 #08c !default;
-$linkColorHover:            darken($linkColor, 10%) !default;
+$linkColor:                 #444 !default;
+$linkColorHover:            darken($linkColor, 20%) !default;
 
 
 // Typography
@@ -36,7 +36,7 @@ $medium:                    500 !default;
 $bold:                      600 !default;
 $ultraBold:                 800 !default;
 
-$baseFontSize:              10px !default;
+$baseFontSize:              1.6 !default;
 $baseFontFamily:            $sans !default;
 $baseLineHeight:            22px !default;
 

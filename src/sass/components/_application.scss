@@ -1,20 +1,31 @@
+body {
+    background-image: url(/images/theme-art.png);
+}
+
 #app {
     > div {
         overflow: hidden;
 
         > nav {
             position: fixed;
+            background-image: url(/images/logo.png);
+            background-repeat: no-repeat;
+            @include rem(background-size, 10, 10);
+            @include rem(margin, 2.2);
+            @include rem(padding-top, 10);
+            @include rem(width, 10);
+            text-align: center;
         }
 
         > main {
-            margin: 2.2em 2em 2em 15em;
+            @include rem(margin, 3, 2, 2, 17);
         }
 
         > footer {
             position: fixed;
             bottom: 0;
             width: 100%;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #444;
         }
     }
 }

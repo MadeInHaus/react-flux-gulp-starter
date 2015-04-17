@@ -16,6 +16,7 @@
 // Updated inheritence version: http://blog.teamtreehouse.com/box-sizing-secret-simple-css-layouts#comment-50223
 html {
     box-sizing: border-box;
+    font-size: 62.5%;
 }
 *,
 *:before,
@@ -26,7 +27,7 @@ html {
 // Body reset
 // -----------
 body {
-    font-size: $baseFontSize;
+    @include rem(font-size, $baseFontSize);
     font-family: $baseFontFamily;
     color: $textColor;
     background-color: $bodyBackground;

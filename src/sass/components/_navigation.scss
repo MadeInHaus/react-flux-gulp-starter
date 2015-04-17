@@ -1,5 +1,4 @@
 .navigation {
-    margin: 2em;
     padding: 0;
 
     li {
@@ -7,12 +6,15 @@
         line-height: 1.5;
 
         a {
-            color: black;
-            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         &.selected a {
-            color: blue;
+            font-weight: bold;
         }
     }
 }
