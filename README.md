@@ -44,7 +44,7 @@ First, install the [Heroku Toolbelt](https://toolbelt.heroku.com/) and log in to
 $ heroku login
 ```
 
-By default, Heroku does not install modules specified in you package.json's `devDependencies` section, but it needs those to build your site. You tell Heroku to install dev dependencies by setting the config variable `NPM_CONFIG_PRODUCTION` to `false`:
+By default, Heroku does not install modules specified in your package.json's `devDependencies` section, but it needs those to build your site. You tell Heroku to install dev dependencies by setting the config variable `NPM_CONFIG_PRODUCTION` to `false`:
 
 ```
 $ heroku config:set NPM_CONFIG_PRODUCTION=false --app ###HEROKU_APP_NAME###
