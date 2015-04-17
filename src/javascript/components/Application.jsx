@@ -2,7 +2,7 @@
 
 var React = require('react');
 var FluxibleMixin = require('fluxible/addons/FluxibleMixin');
-var Nav = require('./Nav.jsx');
+var Navigation = require('./Navigation.jsx');
 var Timestamp = require('./Timestamp.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouteHandler = require('react-router').RouteHandler;
@@ -27,11 +27,15 @@ var Application = React.createClass({
     render: function () {
         return (
             <div>
-                <Nav />
+                <nav>
+                    <Navigation />
+                </nav>
                 <main>
                     <RouteHandler />
                 </main>
-                <Timestamp />
+                <footer>
+                    <Timestamp />
+                </footer>
             </div>
         );
     }

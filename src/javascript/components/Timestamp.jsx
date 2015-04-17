@@ -29,9 +29,10 @@ var Timestamp = React.createClass({
     render: function() {
         var currentTime = new Date(this.state.time);
         return (
-            <footer>
-                <p onClick={this.onReset}>{currentTime.toGMTString()}</p>
-            </footer>
+            <div className="timestamp">
+                <span>{currentTime.toGMTString()}</span>
+                <button onClick={this.onReset}>Update</button>
+            </div>
         );
     }
 

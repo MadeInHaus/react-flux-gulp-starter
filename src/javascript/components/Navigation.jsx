@@ -3,7 +3,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 
-var Nav = React.createClass({
+var Navigation = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func.isRequired
@@ -15,16 +15,14 @@ var Nav = React.createClass({
         var aboutClass = isActive('/about') ? 'selected' : ''
         var deadClass = isActive('/sgfjhsdgfjhsdgfjsd') ? 'selected' : ''
         return (
-            <nav>
-                <ul>
-                    <li className={homeClass}><Link to='/'>Home</Link></li>
-                    <li className={aboutClass}><Link to='/about'>About</Link></li>
-                    <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
-                </ul>
-            </nav>
+            <ul className="navigation">
+                <li className={homeClass}><Link to='/'>Home</Link></li>
+                <li className={aboutClass}><Link to='/about'>About</Link></li>
+                <li className={deadClass}><Link to='/sgfjhsdgfjhsdgfjsd'>Dead link</Link></li>
+            </ul>
         );
     }
 
 });
 
-module.exports = Nav;
+module.exports = Navigation;

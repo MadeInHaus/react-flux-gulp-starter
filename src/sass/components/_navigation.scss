@@ -1,0 +1,18 @@
+.navigation {
+    margin: 2em;
+    padding: 0;
+
+    li {
+        display: block;
+        line-height: 1.5;
+
+        a {
+            color: black;
+            font-weight: bold;
+        }
+
+        &.selected a {
+            color: blue;
+        }
+    }
+}
