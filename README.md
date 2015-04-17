@@ -32,7 +32,7 @@ $ gulp production
 
 #### 4. Deploy to Heroku
 
-#### 4.1. Setup
+##### 4.1. Setup
 
 You only need to do this once.
 
