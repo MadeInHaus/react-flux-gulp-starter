@@ -53,7 +53,7 @@ $ heroku config:set NPM_CONFIG_PRODUCTION=false --app ###HEROKU_APP_NAME###
 Finally, add your Heroku app's repo as a remote. Run this in the project's root directory:
 
 ```
-$ heroku git:remote -a ###HEROKU_APP_NAME###
+$ heroku git:remote --app ###HEROKU_APP_NAME###
 ```
 
 ##### 4.2. Deploy
