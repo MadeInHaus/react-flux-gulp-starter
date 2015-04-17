@@ -16,6 +16,10 @@ We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this
 - [browser-sync](http://www.browsersync.io/)
 - etc, see [package.json](https://raw.githubusercontent.com/MadeInHaus/react-flux-gulp-starter/master/package.json)
 
+#### Demo
+
+[https://react-flux-gulp-starter-test.herokuapp.com/](https://react-flux-gulp-starter-test.herokuapp.com/)
+
 ## Getting Started
 
 #### 1. Install gulp globally:
