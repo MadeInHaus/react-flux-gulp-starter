@@ -1,6 +1,20 @@
-# React-Flux-Gulp Starter
+# Isomorphic React-Flux-Gulp Boilerplate
 
-We don't always choose React/Flux/Gulp, but when we do, we clone this.
+We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this.
+
+- [react](https://facebook.github.io/react/) 0.13
+- [react-router](https://github.com/rackt/react-router) 0.13
+- [fluxible](http://fluxible.io/) 0.4
+- [lodash](https://lodash.com/) 3.6
+- [express](http://expressjs.com/) 4.12
+
+#### Build tools
+
+- [gulp](http://gulpjs.com/)
+- [sass](http://sass-lang.com/)
+- [browserify](http://browserify.org/)
+- [browser-sync](http://www.browsersync.io/)
+- etc, see [package.json](https://raw.githubusercontent.com/MadeInHaus/react-flux-gulp-starter/master/package.json)
 
 ## Getting Started
 
