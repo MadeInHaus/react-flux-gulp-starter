@@ -2,7 +2,7 @@
 
 var React = require('react');
 var Router = require('react-router');
-var FluxibleComponent = require('fluxible/addons/FluxibleComponent');
+var FluxibleComponent = require('fluxible-addons-react/FluxibleComponent');
 var debugMain = require('debug');
 var debug = debugMain('App');
 var app = require('./app');

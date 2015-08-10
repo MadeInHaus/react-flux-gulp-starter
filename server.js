@@ -4,12 +4,13 @@
 
 require('node-jsx').install({ extension: '.jsx' })
 
+
 var express = require('express');
 var expressState = require('express-state');
 var debug = require('debug')('Server');
 var React = require('react');
 var Router = require('react-router');
-var FluxibleComponent = require('fluxible/addons/FluxibleComponent');
+var FluxibleComponent = require('fluxible-addons-react/FluxibleComponent');
 var app = require('./src/javascript/app');
 var Html = require('./src/javascript/components/Html.jsx');
 var navigateAction = require('./src/javascript/actions/navigate');
