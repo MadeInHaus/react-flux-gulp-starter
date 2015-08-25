@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (actionContext, payload, done) {
+export default function updateTime (actionContext, payload, done) {
     actionContext.dispatch('UPDATE_TIME');
     done();
 };

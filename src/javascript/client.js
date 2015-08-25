@@ -1,21 +1,23 @@
 'use strict';
 
-var React = require('react');
-var Router = require('react-router');
-var FluxibleComponent = require('fluxible-addons-react/FluxibleComponent');
-var debugMain = require('debug');
-var debug = debugMain('App');
-var app = require('./app');
-var navigateAction = require('./actions/navigate');
+import React from 'react';;
+import Router from 'react-router';
+import {FluxibleComponent} from 'fluxible-addons-react';
+import app from './app';
+import navigateAction from './actions/navigate';
+
+import debug from 'debug';
+
+var appDebug = debug('App');
 var firstRender = true;
 
-debugMain.enable('App, Fluxible, Fluxible:*');
+debug.enable('App, Fluxible, Fluxible:*');
 
-debug('Rehydrating..');
+appDebug('Rehydrating..');
 
 app.rehydrate(window.App, function (err, context) {
     if (err) { throw err; }
-    Router.run(app.getComponent(), Router.HistoryLocation, function (Handler, state) {
+    Router.run(app.getComponent(), Router.HistoryLocation, (Handler, state) => {
         if (firstRender) {
             // Don't call the action on the first render on top of the server rehydration
             // Otherwise there is a race condition where the action gets executed before
@@ -23,7 +25,7 @@ app.rehydrate(window.App, function (err, context) {
             firstRender = false;
             renderApp(context, Handler);
         } else {
-            context.executeAction(navigateAction, state, function () {
+            context.executeAction(navigateAction, state, () => {
                 renderApp(context, Handler);
             });
         }
@@ -31,17 +33,17 @@ app.rehydrate(window.App, function (err, context) {
 });
 
 function renderApp(context, Handler) {
-    debug('React Rendering');
-    var HandlerComponent = React.createFactory(Handler);
+    appDebug('React Rendering');
+    var handlerComponent = React.createFactory(Handler);
     React.render(
         React.createElement(
             FluxibleComponent,
             { context: context.getComponentContext() },
-            HandlerComponent()
+            handlerComponent()
         ),
         document.getElementById('app'),
-        function renderAppComplete() {
-            debug('React Rendered');
+        () => {
+            appDebug('React Rendered');
         }
     );
 }

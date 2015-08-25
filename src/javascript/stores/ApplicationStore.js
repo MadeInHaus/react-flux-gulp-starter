@@ -1,43 +1,40 @@
 'use strict';
 
-var _ = require('lodash');
-var createStore = require('fluxible/addons').createStore;
+import _ from 'lodash';
+import BaseStore from 'fluxible/addons/BaseStore';
 
-var ApplicationStore = createStore({
-
-    storeName: 'ApplicationStore',
-
-    handlers: {
-        'CHANGE_ROUTE': 'onChangeRoute'
-    },
-
-    initialize: function () {
+class ApplicationStore extends BaseStore {
+    constructor(dispatcher) {
+        super(dispatcher);
         this.currentRoute = null;
-    },
+    }
 
-    onChangeRoute: function (route) {
+    onChangeRoute(route) {
         if (this.currentRoute && route.path === this.currentRoute.path) {
             return;
         }
         this.currentRoute = _.omit(route, 'routes');
         this.emitChange();
-    },
+    }
 
-    getState: function () {
+    getState() {
         return {
             route: this.currentRoute
         };
-    },
-
-    dehydrate: function () {
-        return this.getState();
-    },
-
-    rehydrate: function (state) {
-        this.currentRoute = state.route;
     }
 
-});
+    dehydrate() {
+        return this.getState();
+    }
 
+    rehydrate(state) {
+        this.currentRoute = state.route;
+    }
+}
 
-module.exports = ApplicationStore;
+ApplicationStore.storeName = 'ApplicationStore';
+ApplicationStore.handlers = {
+    'CHANGE_ROUTE': 'onChangeRoute'
+};
+
+export default ApplicationStore;

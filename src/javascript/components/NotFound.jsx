@@ -1,15 +1,11 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var NotFound = React.createClass({
-
-    render: function() {
+export default class NotFound extends React.Component{
+    render () {
         return (
             <h1>404 (Not Found)</h1>
         );
     }
-
-});
-
-module.exports = NotFound;
+}

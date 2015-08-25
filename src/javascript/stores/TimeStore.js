@@ -1,39 +1,38 @@
 'use strict';
 
-var createStore = require('fluxible/addons').createStore;
+import BaseStore from 'fluxible/addons/BaseStore';
 
-var TimeStore = createStore({
-
-    storeName: 'TimeStore',
-
-    handlers: {
-        'CHANGE_ROUTE': 'handleTimeChange',
-        'UPDATE_TIME': 'handleTimeChange'
-    },
-
-    initialize: function () {
+class TimeStore extends BaseStore {
+    constructor (dispatcher) {
+        super(dispatcher);
         this.time = new Date();
-    },
+    }
 
-    handleTimeChange: function (payload) {
+    handleTimeChange (payload) {
         this.time = new Date();
         this.emitChange();
-    },
+    }
 
-    getState: function () {
+    getState () {
         return {
             time: this.time.getTime()
         };
-    },
+    }
 
-    dehydrate: function () {
+    dehydrate () {
         return this.getState();
-    },
+    }
 
-    rehydrate: function (state) {
+    rehydrate (state) {
         this.time = new Date(state.time);
     }
 
-});
+}
 
-module.exports = TimeStore;
+TimeStore.storeName = 'TimeStore';
+TimeStore.handlers = {
+    'CHANGE_ROUTE': 'handleTimeChange',
+    'UPDATE_TIME': 'handleTimeChange'
+};
+
+export default TimeStore;
