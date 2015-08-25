@@ -1,9 +1,7 @@
 // Inspired by
 // http://fluxible.io/tutorials/routing.html
 // https://github.com/yahoo/flux-examples/tree/master/react-router
-
-require('node-jsx').install({ extension: '.jsx' })
-
+require('babel/register');
 
 var express = require('express');
 var expressState = require('express-state');

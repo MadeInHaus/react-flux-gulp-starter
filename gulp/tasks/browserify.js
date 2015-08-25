@@ -18,6 +18,8 @@ var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
 var _ = require('lodash');
 
+var babelify = require('babelify');
+
 var browserifyTask = function(callback, devMode) {
 
     var bundleQueue = config.bundleConfigs.length;
@@ -35,6 +37,8 @@ var browserifyTask = function(callback, devMode) {
         }
 
         var b = browserify(bundleConfig);
+
+        b.transform(babelify);
 
         var bundle = function() {
             // Log when bundling starts
