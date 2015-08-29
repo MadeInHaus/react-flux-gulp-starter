@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var Home = React.createClass({
+export default class Home extends React.Component{
 
-    render: function() {
+    render () {
         return (
             <div>
                 <h1>Welcome to react-flux-gulp-starter!</h1>
@@ -13,7 +13,4 @@ var Home = React.createClass({
             </div>
         );
     }
-
-});
-
-module.exports = Home;
+}

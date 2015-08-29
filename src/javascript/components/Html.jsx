@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var Html = React.createClass({
-    render: function() {
+export default class Html extends React.Component{
+    render () {
         return (
             <html>
                 <head>
@@ -28,6 +28,4 @@ var Html = React.createClass({
             </html>
         );
     }
-});
-
-module.exports = Html;
+}

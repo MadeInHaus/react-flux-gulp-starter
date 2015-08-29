@@ -1,41 +1,34 @@
 'use strict';
 
-var React = require('react');
-var FluxibleMixin = require('fluxible-addons-react/FluxibleMixin');
-var TimeStore = require('../stores/TimeStore');
-var updateTime = require('../actions/updateTime');
+import React from 'react';
 
-var Timestamp = React.createClass({
+import {connectToStores}  from 'fluxible-addons-react';
+import TimeStore from '../stores/TimeStore';
+import updateTime from '../actions/updateTime';
 
-    mixins: [FluxibleMixin],
+class Timestamp extends React.Component{
 
-    statics: {
-        storeListeners: [TimeStore]
-    },
+    onReset (event) {
+        this.context.executeAction(updateTime);
+    }
 
-    getInitialState: function () {
-        return this.getStore(TimeStore).getState();
-    },
-
-    onChange: function () {
-        var state = this.getStore(TimeStore).getState();
-        this.setState(state);
-    },
-
-    onReset: function (event) {
-        this.executeAction(updateTime);
-    },
-
-    render: function() {
-        var currentTime = new Date(this.state.time);
+    render () {
+        var currentTime = new Date(this.props.time);
         return (
             <div className="timestamp">
                 <span>{currentTime.toGMTString()}</span>
-                <button onClick={this.onReset}>Update</button>
+                <button onClick={this.onReset.bind(this)}>Update</button>
             </div>
         );
     }
+}
 
+Timestamp.contextTypes = {
+    executeAction: React.PropTypes.func.isRequired
+};
+
+Timestamp = connectToStores(Timestamp, [TimeStore], (context, props) => {
+    return context.getStore(TimeStore).getState();
 });
 
-module.exports = Timestamp;
+export default Timestamp;

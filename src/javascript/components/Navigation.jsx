@@ -1,15 +1,10 @@
 'use strict';
 
-var React = require('react');
-var Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
-var Navigation = React.createClass({
-
-    contextTypes: {
-        router: React.PropTypes.func.isRequired
-    },
-
-    render: function() {
+export default class Navigation extends React.Component{
+    render () {
         var isActive = this.context.router.isActive;
         var homeClass = isActive('/') ? 'selected' : '';
         var aboutClass = isActive('/about') ? 'selected' : ''
@@ -22,7 +17,8 @@ var Navigation = React.createClass({
             </ul>
         );
     }
+}
 
-});
-
-module.exports = Navigation;
+Navigation.contextTypes = {
+    router: React.PropTypes.func.isRequired
+};

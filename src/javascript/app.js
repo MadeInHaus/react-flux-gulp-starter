@@ -1,6 +1,6 @@
 'use strict';
 
-var Fluxible = require('fluxible');
+import Fluxible from 'fluxible';
 
 var app = new Fluxible({
     component: require('./components/Routes.jsx')
@@ -9,4 +9,4 @@ var app = new Fluxible({
 app.registerStore(require('./stores/ApplicationStore'));
 app.registerStore(require('./stores/TimeStore'));
 
-module.exports = app;
+export default app;
