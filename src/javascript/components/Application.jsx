@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Navigation from './Navigation';
 import Timestamp from './Timestamp';
 import ApplicationStore from '../stores/ApplicationStore';

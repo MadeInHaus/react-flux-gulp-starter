@@ -7,7 +7,7 @@ var express = require('express');
 var expressState = require('express-state');
 var debug = require('debug')('Server');
 var React = require('react');
-var FluxibleComponent = require('fluxible-addons-react/FluxibleComponent');
+var provideContext = require('fluxible-addons-react').provideContext;
 var app = require('./src/javascript/app');
 var Html = require('./src/javascript/components/Html.jsx');
 var navigateAction = require('./src/javascript/actions/navigate');
@@ -26,8 +26,21 @@ expressState.extend(server);
 server.use('/', express.static(__dirname + '/build'));
 
 server.use(function (req, res, next) {
-    var context = app.createContext();
     var location = createLocation(req.url);
+
+    var context = app.createContext({
+        env: process.env.NODE_ENV || 'local',
+        siteUrl: process.env.SITE_URL || req.protocol + '://' + req.hostname,
+        //Uncomment this code to specify where on S3 remote assets are stored
+        // aws: {
+        //     bucket: process.env.S3_BUCKET || 'madeinhaus',
+        //     prefix: process.env.S3_PREFIX || 'react-flux-gulp-starter',
+        //     folder: process.env.S3_PATH || process.env.NODE_ENV || false,
+        //     urlHash: process.env.URL_HASH || false,
+        //     cloudfront: process.env.CLOUDFRONT_URL || false,
+        //     bypassCdn: req.query.bypass || false
+        // }
+    });
 
     match({
         routes: Routes,
@@ -47,26 +60,23 @@ server.use(function (req, res, next) {
                 appState.env = process.env.NODE_ENV || 'local';
                 res.expose(appState, 'App');
 
-                var htmlComponent = React.createFactory(Html);
-                var routerComponent = React.createFactory(RoutingContext);
+                renderProps.context = context.getComponentContext();
+
+                var RouterComponent = provideContext(RoutingContext, app.customContexts);
+
+                var HtmlComponent = provideContext(Html, app.customContexts);
 
                 var markup = React.renderToString(React.createElement(
-                    FluxibleComponent, {
-                        context: context.getComponentContext()
-                    },
-                    routerComponent(renderProps)
-                ));
+                    RouterComponent, renderProps));
 
                 var html = React.renderToStaticMarkup(React.createElement(
-                    FluxibleComponent, {
-                        context: context.getComponentContext()
-                    },
-                    htmlComponent({
+                    HtmlComponent, {
+                        context: context.getComponentContext(),
                         state: res.locals.state,
                         markup: markup,
                         location: location
                     })
-                ));
+                );
 
                 res.send('<!doctype html>' + html);
             });

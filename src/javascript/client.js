@@ -10,6 +10,8 @@ import { FluxibleComponent } from 'fluxible-addons-react';
 import app from './app';
 import navigateAction from './actions/navigate';
 
+import {provideContext} from 'fluxible-addons-react';
+
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 
 import debug from 'debug';
@@ -36,13 +38,15 @@ function renderApp(context, app) {
         context.executeAction(navigateAction, route);
     }
 
+    let RouterWithContext = provideContext(Router, app.customContexts);
+
     React.render(
-        <FluxibleComponent context={context.getComponentContext()}>
-            <Router
+            <RouterWithContext
+                context={context.getComponentContext()}
                 history={createBrowserHistory()}
                 routes={app.getComponent()}
                 onUpdate={navigate}/>
-        </FluxibleComponent>,
+        ,
         document.getElementById('app'), () => {
             appDebug('React Rendered');
         }
