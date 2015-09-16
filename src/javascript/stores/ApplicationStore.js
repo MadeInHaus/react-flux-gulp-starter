@@ -10,10 +10,10 @@ class ApplicationStore extends BaseStore {
     }
 
     onChangeRoute(route) {
-        if (this.currentRoute && route.path === this.currentRoute.path) {
+        if (this.currentRoute && route.pathname === this.currentRoute.pathname) {
             return;
         }
-        this.currentRoute = _.omit(route, 'routes');
+        this.currentRoute = route;
         this.emitChange();
     }
 

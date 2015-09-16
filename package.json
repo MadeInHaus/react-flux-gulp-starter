@@ -48,8 +48,9 @@
     "express-state": "^1.2.0",
     "fluxible": "^0.5.2",
     "fluxible-addons-react": "^0.1.6",
+    "history": "^1.9.1",
     "lodash": "^3.10.0",
     "react": "^0.13.3",
-    "react-router": "^0.13.2"
+    "react-router": "^1.0.0-rc1"
   }
 }

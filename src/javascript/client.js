@@ -2,49 +2,48 @@
 
 require("babelify/polyfill");
 
-import React from 'react';;
+import _ from 'lodash';
+
+import React from 'react';
 import Router from 'react-router';
-import {FluxibleComponent} from 'fluxible-addons-react';
+import { FluxibleComponent } from 'fluxible-addons-react';
 import app from './app';
 import navigateAction from './actions/navigate';
 
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+
 import debug from 'debug';
 
-var appDebug = debug('App');
-var firstRender = true;
+let appDebug = debug('App');
 
 debug.enable('App, Fluxible, Fluxible:*');
 
-appDebug('Rehydrating..');
+appDebug('Rehydrating...');
 
 app.rehydrate(window.App, function (err, context) {
-    if (err) { throw err; }
-    Router.run(app.getComponent(), Router.HistoryLocation, (Handler, state) => {
-        if (firstRender) {
-            // Don't call the action on the first render on top of the server rehydration
-            // Otherwise there is a race condition where the action gets executed before
-            // render has been called, which can cause the checksum to fail.
-            firstRender = false;
-            renderApp(context, Handler);
-        } else {
-            context.executeAction(navigateAction, state, () => {
-                renderApp(context, Handler);
-            });
-        }
-    });
+    if (err) {
+        throw err;
+    }
+
+    renderApp(context, app);
 });
 
-function renderApp(context, Handler) {
+function renderApp(context, app) {
     appDebug('React Rendering');
-    var handlerComponent = React.createFactory(Handler);
+
+    function navigate() {
+        var route = _.cloneDeep(this.state.location);
+        context.executeAction(navigateAction, route);
+    }
+
     React.render(
-        React.createElement(
-            FluxibleComponent,
-            { context: context.getComponentContext() },
-            handlerComponent()
-        ),
-        document.getElementById('app'),
-        () => {
+        <FluxibleComponent context={context.getComponentContext()}>
+            <Router
+                history={createBrowserHistory()}
+                routes={app.getComponent()}
+                onUpdate={navigate}/>
+        </FluxibleComponent>,
+        document.getElementById('app'), () => {
             appDebug('React Rendered');
         }
     );
