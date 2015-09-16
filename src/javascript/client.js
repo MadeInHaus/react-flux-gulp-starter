@@ -1,5 +1,7 @@
 'use strict';
 
+require("babelify/polyfill");
+
 import React from 'react';;
 import Router from 'react-router';
 import {FluxibleComponent} from 'fluxible-addons-react';
