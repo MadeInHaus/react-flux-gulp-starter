@@ -1,6 +1,6 @@
 'use strict';
 
-require("babelify/polyfill");
+import polyfill from 'babel/polyfill';
 
 import _ from 'lodash';
 
