@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link } from 'react-router';
 import Application from './Application';
 import Home from './Home';
 import About from './About';

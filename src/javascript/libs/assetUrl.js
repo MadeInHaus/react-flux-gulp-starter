@@ -68,7 +68,7 @@ var assetUrl = {
                 };
 
                 componentContext.siteUrl = () => {
-                    return siteUrl
+                    return siteUrl;
                 };
 
                 return componentContext;

@@ -12,7 +12,7 @@ import navigateAction from './actions/navigate';
 
 import {provideContext} from 'fluxible-addons-react';
 
-import createBrowserHistory from 'history/lib/createBrowserHistory'
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import debug from 'debug';
 
