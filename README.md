@@ -2,16 +2,17 @@
 
 We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this.
 
-- [react](https://facebook.github.io/react/) 0.13
-- [react-router](https://github.com/rackt/react-router) 0.13
-- [fluxible](http://fluxible.io/) 0.4
-- [lodash](https://lodash.com/) 3.6
-- [express](http://expressjs.com/) 4.12
+- [react](https://facebook.github.io/react/) 0.14
+- [react-router](https://github.com/rackt/react-router) 1.0rc1
+- [fluxible](http://fluxible.io/) 1.0
+- [lodash](https://lodash.com/) 3.10
+- [express](http://expressjs.com/) 4.13
 
 #### Build tools
 
 - [gulp](http://gulpjs.com/)
 - [sass](http://sass-lang.com/)
+- [babel](https://babeljs.io/)
 - [browserify](http://browserify.org/)
 - [browser-sync](http://www.browsersync.io/)
 - etc, see [package.json](https://raw.githubusercontent.com/MadeInHaus/react-flux-gulp-starter/master/package.json)
