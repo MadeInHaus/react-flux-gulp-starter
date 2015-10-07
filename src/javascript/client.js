@@ -1,34 +1,17 @@
-'use strict';
-
-import polyfill from 'babel/polyfill';
+import polyfill from 'babel/polyfill'; // eslint-disable-line no-unused-vars
 
 import _ from 'lodash';
-
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Router from 'react-router';
-import { FluxibleComponent } from 'fluxible-addons-react';
 import app from './app';
 import navigateAction from './actions/navigate';
-
 import {provideContext} from 'fluxible-addons-react';
-
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import history from './history';
 
 import debug from 'debug';
-
 let appDebug = debug('App');
-
 debug.enable('App, Fluxible, Fluxible:*');
-
-appDebug('Rehydrating...');
-
-app.rehydrate(window.App, function (err, context) {
-    if (err) {
-        throw err;
-    }
-
-    renderApp(context, app);
-});
 
 function renderApp(context, app) {
     appDebug('React Rendering');
@@ -40,15 +23,24 @@ function renderApp(context, app) {
 
     let RouterWithContext = provideContext(Router, app.customContexts);
 
-    React.render(
-            <RouterWithContext
+    ReactDOM.render(
+        <RouterWithContext
                 context={context.getComponentContext()}
-                history={createBrowserHistory()}
+                history={history}
                 routes={app.getComponent()}
-                onUpdate={navigate}/>
-        ,
+                onUpdate={navigate}/>,
         document.getElementById('app'), () => {
             appDebug('React Rendered');
         }
     );
 }
+
+appDebug('Rehydrating...');
+
+app.rehydrate(window.App, function (err, context) {
+    if (err) {
+        throw err;
+    }
+
+    renderApp(context, app);
+});

@@ -7,13 +7,14 @@ var express = require('express');
 var expressState = require('express-state');
 var debug = require('debug')('Server');
 var React = require('react');
+var ReactDOMServer = require('react-dom/server');
 var provideContext = require('fluxible-addons-react').provideContext;
 var app = require('./src/javascript/app');
 var Html = require('./src/javascript/components/Html.jsx');
 var navigateAction = require('./src/javascript/actions/navigate');
 
 //Routing
-var createLocation = require('history/lib/createLocation');
+var history = require('./src/javascript/history');
 var Router = require('react-router');
 var RoutingContext = Router.RoutingContext;
 var match = Router.match;
@@ -26,7 +27,7 @@ expressState.extend(server);
 server.use('/', express.static(__dirname + '/build'));
 
 server.use(function (req, res, next) {
-    var location = createLocation(req.url);
+    var location = history.createLocation(req.url);
 
     var context = app.createContext({
         env: process.env.NODE_ENV || 'local',
@@ -66,10 +67,10 @@ server.use(function (req, res, next) {
 
                 var HtmlComponent = provideContext(Html, app.customContexts);
 
-                var markup = React.renderToString(React.createElement(
+                var markup = ReactDOMServer.renderToString(React.createElement(
                     RouterComponent, renderProps));
 
-                var html = React.renderToStaticMarkup(React.createElement(
+                var html = ReactDOMServer.renderToStaticMarkup(React.createElement(
                     HtmlComponent, {
                         context: context.getComponentContext(),
                         state: res.locals.state,
