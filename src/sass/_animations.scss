@@ -2,7 +2,7 @@
 // CSS3 Keyframe Animations
 // --------------------------------------------------
 
-@include keyframes(fadeIn) {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }

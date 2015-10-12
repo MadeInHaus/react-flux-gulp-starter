@@ -21,7 +21,7 @@ class Html extends React.Component{
                     <link rel="stylesheet" href={this.context.assetUrl("/css/styles.css")} />
                 </head>
                 <body>
-                    <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
+                    <div id="app" className="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
                     <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
                     <script src={this.context.assetUrl("/js/client.js")} defer></script>
                 </body>

@@ -35,37 +35,3 @@
 // Misc
 @import "animations"; // CSS3 Keyframe animations
 @import "utilities"; // Must be last to override
-
-
-// Media Queries
-
-// 480px
-@media (min-width: 480px) {
-    @import "mq/480";
-}
-
-// 600px
-@media (min-width: 600px) {
-    @import "mq/600";
-}
-
-// 768px
-@media (min-width: 768px) {
-    @import "mq/768";
-}
-
-// 992px
-@media (min-width: 992px) {
-    @import "mq/992";
-}
-
-// 1382px
-@media (min-width: 1382px) {
-    @import "mq/1382";
-}
-
-// 2x
-@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
-    @import "mq/2x";
-}
-

@@ -60,6 +60,15 @@ $btnBackgroundHighlight:    darken($white, 10%) !default;
 $btnBorder:                 darken($white, 10%) !default;
 
 
+// Breakpoints
+// -------------------------
+$mobileWidth:               "480px";
+$largeMobileWidth:          "600px";
+$tabletWidth:               "768px";
+$desktopWidth:              "992px";
+$largeDesktopWidth:         "1392px";
+
+
 // Easing presets
 // --------------------------
 $linear:                    cubic-bezier(0.25, 0.25, 0.75, 0.75);

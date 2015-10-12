@@ -3,3 +3,23 @@
 // ---------------------------
 
 .app {}
+
+@include mobile {
+    .app {}
+}
+
+@include largeMobile {
+    .app {}
+}
+
+@include tablet {
+    .app {}
+}
+
+@include desktop {
+    .app {}
+}
+
+@include largeDesktop {
+    .app {}
+}

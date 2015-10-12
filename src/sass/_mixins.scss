@@ -4,33 +4,29 @@
 
 // https://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 @function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
+    @return $num / ($num * 0 + 1);
 }
+
 @mixin rem($property, $values...) {
-  $max: length($values);
-  $pxValues: '';
-  $remValues: '';
-
-  @for $i from 1 through $max {
-    $value: strip-unit(nth($values, $i));
-    $pxValues: #{$pxValues + $value*10}px;
-
-    @if $i < $max {
-      $pxValues: #{$pxValues + " "};
+    $max: length($values);
+    $pxValues: "";
+    $remValues: "";
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $pxValues: #{$pxValues + $value * 10}px;
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
     }
-  }
-
-  @for $i from 1 through $max {
-    $value: strip-unit(nth($values, $i));
-    $remValues: #{$remValues + $value}rem;
-
-    @if $i < $max {
-      $remValues: #{$remValues + " "};
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $remValues: #{$remValues + $value}rem;
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
     }
-  }
-
-  #{$property}: $pxValues;
-  #{$property}: $remValues;
+    #{$property}: $pxValues;
+    #{$property}: $remValues;
 }
 
 // Placeholder text
@@ -60,7 +56,7 @@
 }
 
 // Clearfix
-@mixin clearfix() {
+@mixin clearfix {
     &:before,
     &:after {
         content: "";
@@ -79,32 +75,12 @@
     white-space: nowrap;
 }
 
-// User select
-// For selecting text on the page
-@mixin user-select($select) {
-    -webkit-user-select: $select;
-    -moz-user-select: $select;
-    -ms-user-select: $select;
-    -o-user-select: $select;
-    user-select: $select;
-}
-
 // Resize anything
 @mixin resizable($direction) {
     resize: $direction;
     // Options: horizontal, vertical, both
     overflow: auto;
     // Safari fix
-}
-
-// Optional hyphenation
-@mixin hyphens($mode: auto) {
-    word-wrap: break-word;
-    -webkit-hyphens: $mode;
-    -moz-hyphens: $mode;
-    -ms-hyphens: $mode;
-    -o-hyphens: $mode;
-    hyphens: $mode;
 }
 
 @mixin line-break {
@@ -115,43 +91,35 @@
     @include hyphens;
 }
 
-// CSS3 KEYFRAME ANIMATION
-// --------------------------------------------------
-// We can remove this, and sub it out for Compass' animation technique on the next release
+//
+// Media Queries
 
-$default-prefixes: webkit moz ms o;
-
-@mixin build-prefix-values($property, $value, $prefixes: $default-prefixes) {
-    @each $prefix in $prefixes {
-        -#{$prefix}-#{$property}: #{$value};
+@mixin mobile {
+    @media (min-width: #{$mobileWidth}) {
+        @content;
     }
-    #{$property}: #{$value};
 }
 
-@mixin animation($name, $duration: 1s, $timingFunction: ease, $iteration: infinite) {
-    $value: $name $duration $timingFunction $iteration;
-    // use default prefixes
-    @include build-prefix-values("animation", $value);
+@mixin largeMobile {
+    @media (min-width: #{$largeMobileWidth}) {
+        @content;
+    }
 }
 
-@mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
+@mixin tablet {
+    @media (min-width: #{$tabletWidth}) {
         @content;
     }
+}
 
-    @-moz-keyframes #{$name} {
+@mixin desktop {
+    @media (min-width: #{$desktopWidth}) {
         @content;
     }
+}
 
-    @-ms-keyframes #{$name} {
-        @content;
-    }
-
-    @-o-keyframes #{$name} {
-        @content;
-    }
-
-    @keyframes #{$name} {
+@mixin largeDesktop {
+    @media (min-width: #{$largeDesktopWidth}) {
         @content;
     }
 }
