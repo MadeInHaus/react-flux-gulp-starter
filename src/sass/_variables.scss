@@ -6,16 +6,19 @@
 // -------------------------
 $baseUrl: env_or_default("STATIC_URL", "/static/");
 
+
 // Colors
 // -------------------------
 $white:                     #fff !default;
 $black:                     #444 !default;
+
 
 // Scaffolding
 // -------------------------
 $bodyBackground:            $white !default;
 $textColor:                 $black !default;
 $hrBorder:                  $black !default;
+
 
 // Links
 // -------------------------
@@ -44,9 +47,11 @@ $headingsFontWeight:        $bold !default;
 $headingsFontFamily:        inherit !default;
 $headingsColor:             inherit !default;
 
+
 // Borders
 // -------------------------
 $borderColor:               $black !default;
+
 
 // Buttons
 // -------------------------
@@ -54,13 +59,6 @@ $btnBackground:             $white !default;
 $btnBackgroundHighlight:    darken($white, 10%) !default;
 $btnBorder:                 darken($white, 10%) !default;
 
-// Animation
-// -------------------------
-$transTime:                 0.3s;
-$transTimeFast:             $transTime * 0.5;
-$transTimeSlow:             $transTime * 1.5;
-$transTimeSuperSlow:        $transTime * 2;
-$easeDefault:               ease;
 
 // Easing presets
 // --------------------------
@@ -90,3 +88,13 @@ $easeInOutQuint:            cubic-bezier(0.86, 0, 0.07, 1);
 $easeInOutSine:             cubic-bezier(0.445, 0.05, 0.55, 0.95);
 $easeInOutExpo:             cubic-bezier(1, 0, 0, 1);
 $easeInOutCirc:             cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+
+// Animation
+// -------------------------
+$transTime:                 0.3s;
+$transTimeFast:             $transTime * 0.5;
+$transTimeSlow:             $transTime * 1.5;
+$transTimeSuperSlow:        $transTime * 2;
+$easeDefault:               $ease;
+
