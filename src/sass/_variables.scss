@@ -9,8 +9,9 @@ $baseUrl: env_or_default("STATIC_URL", "/static/");
 
 // Colors
 // -------------------------
-$white:                     #fff !default;
-$black:                     #444 !default;
+$white:                     #ffffff !default;
+$black:                     #000000 !default;
+$gold:                      #9F8548 !default;
 
 
 // Scaffolding
@@ -22,8 +23,8 @@ $hrBorder:                  $black !default;
 
 // Links
 // -------------------------
-$linkColor:                 #444 !default;
-$linkColorHover:            darken($linkColor, 20%) !default;
+$linkColor:                 $gold !default;
+$linkColorHover:            darken($linkColor, 10%) !default;
 
 
 // Typography
@@ -31,6 +32,7 @@ $linkColorHover:            darken($linkColor, 20%) !default;
 
 $sans:                      sans-serif !default;
 $serif:                     serif !default;
+$dosis:                     "Dosis", $sans !default;
 
 $thin:                      100 !default;
 $light:                     300 !default;
@@ -40,8 +42,8 @@ $bold:                      600 !default;
 $ultraBold:                 800 !default;
 
 $baseFontSize:              1.6 !default;
-$baseFontFamily:            $sans !default;
-$baseLineHeight:            22px !default;
+$baseFontFamily:            $dosis !default;
+$baseLineHeight:            20px !default;
 
 $headingsFontWeight:        $bold !default;
 $headingsFontFamily:        inherit !default;

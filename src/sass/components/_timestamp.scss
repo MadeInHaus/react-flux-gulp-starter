@@ -1,10 +1,14 @@
+//
+// Timestamp
+// ---------------------------
+
 .timestamp {
-    margin: 0;
+    @extend %transition-background-color-slow;
+    text-align: right;
     @include rem(padding, 1);
     @include rem(font-size, 1.4);
-
-    > button {
-        @include rem(margin-left, 1);
+    button {
         text-decoration: underline;
+        @include rem(margin-left, 1);
     }
 }

@@ -1,31 +1,45 @@
-body {
-    background-image: url(/images/theme-art.png);
-}
+//
+// Application
+// ---------------------------
 
-#app {
+// Note: This partial should not be utilized for a production application
+// Application-level components should be defined at the top level, i.e. base.scss, layout.scss, etc
+// This partial is set aside to provide an initial "skin" for the boilerplate, and should probably be deleted entirely
+
+.app {
+    $padding: 2em;
+    position: absolute;
+    top: $padding;
+    right: $padding;
+    bottom: $padding;
+    left: $padding;
+    background-color: #8bd5a1;
+    background-image: url(../images/theme-art.png);
     > div {
         overflow: hidden;
-
-        > nav {
-            position: fixed;
-            background-image: url(/images/logo.png);
-            background-repeat: no-repeat;
-            @include rem(background-size, 10, 10);
-            @include rem(margin, 2.2);
-            @include rem(padding-top, 10);
-            @include rem(width, 10);
-            text-align: center;
-        }
-
-        > main {
-            @include rem(margin, 3, 2, 2, 17);
-        }
-
-        > footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid #444;
-        }
+        letter-spacing: 0.025em;
+        text-transform: uppercase;
     }
+}
+
+nav {
+    position: absolute;
+    background-image: url(../images/haus-friend.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    @include rem(margin, 2.5);
+    @include rem(padding-top, 10);
+    @include rem(width, 10);
+}
+
+main {
+    max-width: 50em;
+    @include rem(margin, 6, 2, 2, 16);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

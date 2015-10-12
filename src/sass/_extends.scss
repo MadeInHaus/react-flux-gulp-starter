@@ -25,6 +25,9 @@
 
 // Background color
 %transition-background-color { transition: background-color $transTime $easeDefault; }
+%transition-background-color-fast { transition: background-color $transTimeFast $easeDefault; }
+%transition-background-color-slow { transition: background-color $transTimeSlow $easeDefault; }
+%transition-background-color-super-slow { transition: background-color $transTimeSuperSlow $easeDefault; }
 
 // Transition delays
 %transition-no-delay { transition-delay: 0s; }

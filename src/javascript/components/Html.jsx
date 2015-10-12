@@ -18,6 +18,7 @@ class Html extends React.Component{
                     <meta property="og:image" content={this.context.assetUrl("/image.jpg")} />
                     <meta property="og:description" content="Description Here" />
                     <link rel="shortcut icon" href={this.context.assetUrl("favicon.ico")} />
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,600" />
                     <link rel="stylesheet" href={this.context.assetUrl("/css/styles.css")} />
                 </head>
                 <body>
