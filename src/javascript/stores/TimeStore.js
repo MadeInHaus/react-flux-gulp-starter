@@ -1,5 +1,3 @@
-'use strict';
-
 import BaseStore from 'fluxible/addons/BaseStore';
 
 class TimeStore extends BaseStore {

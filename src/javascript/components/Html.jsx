@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {PropTypes} from 'react';
 
 class Html extends React.Component{

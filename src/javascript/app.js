@@ -1,5 +1,3 @@
-'use strict';
-
 import Fluxible from 'fluxible';
 import {PropTypes} from 'react';
 import Routes from './components/Routes.jsx';

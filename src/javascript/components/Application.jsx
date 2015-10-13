@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {PropTypes} from 'react';
 import Navigation from './Navigation';
 import Timestamp from './Timestamp';

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { Router, Route, IndexRoute, Link } from 'react-router';
 import Application from './Application';

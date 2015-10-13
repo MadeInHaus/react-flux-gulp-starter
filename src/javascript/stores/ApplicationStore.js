@@ -1,5 +1,3 @@
-'use strict';
-
 import _ from 'lodash';
 import BaseStore from 'fluxible/addons/BaseStore';
 
