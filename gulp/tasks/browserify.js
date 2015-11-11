@@ -12,7 +12,7 @@ var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var watchify = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
@@ -100,7 +100,7 @@ var browserifyTask = function(callback, devMode) {
     config.bundleConfigs.forEach(browserifyThis);
 };
 
-gulp.task('browserify', browserifyTask);
+gulp.task('browserify', false, browserifyTask);
 
 // Exporting the task so we can call it directly in our watch task, with the 'devMode' option
 module.exports = browserifyTask;
