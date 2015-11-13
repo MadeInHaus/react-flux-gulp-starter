@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -6,7 +6,7 @@ var handleErrors = require('../util/handleErrors');
 var config = require('../config').sass;
 var autoprefixer = require('gulp-autoprefixer');
 
-var taskDef = function () {
+var taskDef = function() {
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
@@ -23,4 +23,4 @@ var taskDef = function () {
 
 module.exports = taskDef;
 
-gulp.task('sass', taskDef);
+gulp.task('sass', false, taskDef);

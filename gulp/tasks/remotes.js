@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 var spawn = require('child_process').spawn;
 var config = require('../config').heroku;
 var flags = require('minimist')(process.argv.slice(2));
@@ -23,13 +23,13 @@ function addRemote(env) {
     }
 
     var remote = spawn('git', ['remote', 'add', config[env].remoteName, config[env].remoteUrl]);
-    remote.stdout.on('data', function (data) {
+    remote.stdout.on('data', function(data) {
         console.log(data.toString());
     });
-    remote.stderr.on('data', function (data) {
+    remote.stderr.on('data', function(data) {
         console.log(data.toString());
     });
-    remote.on('exit', function (code) {
+    remote.on('exit', function(code) {
         if (code == 0) {
             deferred.resolve();
         } else {
@@ -41,11 +41,11 @@ function addRemote(env) {
     return deferred.promise;
 }
 
-gulp.task('remotes', function (callback) {
+gulp.task('remotes', 'Adds heroku as remotes to git', function(callback) {
     function curry(func) {
         var args = Array.prototype.slice.call(arguments, 1);
 
-        return function () {
+        return function() {
             return func.apply(func, args);
         };
     }

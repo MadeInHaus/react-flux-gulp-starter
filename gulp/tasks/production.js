@@ -1,3 +1,3 @@
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 
-gulp.task('production', ['images', 'minifyCss', 'uglifyJs']);
+gulp.task('production', 'Build static assets and compress for production', ['images', 'minifyCss', 'uglifyJs']);

@@ -1,3 +1,3 @@
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'));
 
-gulp.task('default', ['sass', 'images', 'browserSync']);
+gulp.task('default', 'Runs build and starts watch task', ['sass', 'images', 'browserSync']);
