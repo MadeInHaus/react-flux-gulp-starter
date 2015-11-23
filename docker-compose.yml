@@ -1,0 +1,20 @@
+web:
+  build: .
+  # links:
+  #  - redis
+  #  - mysql
+  env_file: .docker/.env
+  ports:
+    - 3000:3000
+  environment:
+    - NODE_PATH=/install/node_modules
+    - VIRTUAL_HOST=${VIRTUAL_HOST}
+# redis:
+#   image: redis
+# mysql:
+#   image: mysql:latest
+#   environment:
+#     - MYSQL_DATABASE=ooh
+#     - MYSQL_ROOT_PASSWORD=root
+#   volumes:
+#     - ./.docker/data:/docker-entrypoint-initdb.d
