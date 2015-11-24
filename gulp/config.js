@@ -1,6 +1,6 @@
 var dest = "./build";
 var src = './src';
-var port = 3000;
+var port = parseInt(process.env.PORT, 10) || 3000;
 
 module.exports = {
     nodemon: {
