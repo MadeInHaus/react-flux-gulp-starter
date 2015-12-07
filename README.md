@@ -3,9 +3,8 @@
 We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this.
 
 - [react](https://facebook.github.io/react/) 0.14
-- [react-router](https://github.com/rackt/react-router) 1.0rc1
+- [react-router](https://github.com/rackt/react-router) 1.0
 - [fluxible](http://fluxible.io/) 1.0
-- [lodash](https://lodash.com/) 3.10
 - [express](http://expressjs.com/) 4.13
 
 #### Build tools
