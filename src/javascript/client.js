@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'react-router';
 import app from './app';
-import navigateAction from './actions/navigate';
+import fetchRouteData from './utils/fetchRouteData';
 import {provideContext} from 'fluxible-addons-react';
 import history from './history';
 
@@ -16,34 +16,33 @@ d.enable('App, Fluxible, Fluxible:*');
 
 debug('Rehydrating...');
 
-function renderApp(context, app) {
-    debug('React Rendering');
+app.rehydrate(window.App, (err, context) => {
 
-    function navigate() {
-        var route = _.cloneDeep(this.state.location);
-        context.executeAction(navigateAction, route);
-    }
+    let isRehydrating = true;
 
-    let RouterWithContext = provideContext(Router, app.customContexts);
-
-    ReactDOM.render(
-        <RouterWithContext
-                context={context.getComponentContext()}
-                history={history}
-                routes={app.getComponent()}
-                onUpdate={navigate}/>,
-        document.getElementById('app'), () => {
-            debug('React Rendered');
-        }
-    );
-}
-
-debug('Rehydrating...');
-
-app.rehydrate(window.App, function (err, context) {
     if (err) {
         throw err;
     }
 
-    renderApp(context, app);
+    debug('React Rendering');
+
+    const RouterWithContext = provideContext(Router, app.customContexts);
+
+    ReactDOM.render(
+        <RouterWithContext
+            context={context.getComponentContext()}
+            history={history}
+            routes={app.getComponent()}
+            onUpdate={function () {
+                if (isRehydrating) {
+                    isRehydrating = false;
+                    return;
+                }
+                fetchRouteData(context, this.state, err => {});
+            }}
+        />,
+        document.getElementById('app'),
+        () => { debug('React Rendered'); }
+    );
+
 });

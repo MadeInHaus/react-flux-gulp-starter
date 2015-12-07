@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
 import {IndexLink, Link} from 'react-router';
 
-export default class Navigation extends React.Component{
+export default class Navigation extends React.Component {
+
     render () {
         return (
             <ul className="navigation">
@@ -11,8 +12,5 @@ export default class Navigation extends React.Component{
             </ul>
         );
     }
-}
 
-Navigation.contextTypes = {
-    history: PropTypes.object.isRequired
-};
+}

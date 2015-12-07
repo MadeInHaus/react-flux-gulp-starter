@@ -6,12 +6,12 @@ import ReactDOMServer from 'react-dom/server';
 import {provideContext} from 'fluxible-addons-react';
 import app from './src/javascript/app';
 import Html from './src/javascript/components/Html.jsx';
-import navigateAction from './src/javascript/actions/navigate';
 
 // Routing
 import Router, {RoutingContext, match} from 'react-router';
 import routes from './src/javascript/components/Routes.jsx';
 import history from './src/javascript/history';
+import fetchRouteData from './src/javascript/utils/fetchRouteData';
 
 const debug = d('Server');
 
@@ -47,7 +47,7 @@ server.use(function (req, res, next) {
             res.status(404).send('Not found');
         } else {
 
-            context.executeAction(navigateAction, location, function (err) {
+            fetchRouteData(context, renderProps, err => {
 
                 if (err) {
                     res.status(500).send(err.message);

@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import Navigation from './Navigation';
-import ApplicationStore from '../stores/ApplicationStore';
 import {connectToStores}  from 'fluxible-addons-react';
 
 class Application extends React.Component {
@@ -12,7 +11,7 @@ class Application extends React.Component {
                     <Navigation />
                 </nav>
                 <main>
-                    {this.props.children}
+                    {React.cloneElement(this.props.children, { appState: this.props.appState })}
                 </main>
             </div>
         );
@@ -20,9 +19,9 @@ class Application extends React.Component {
 
 }
 
-Application = connectToStores(Application, [ApplicationStore], (context, props) => (
-    context.getStore(ApplicationStore).getState()
-));
+Application = connectToStores(Application, ['ApplicationStore'], (context, props) => ({
+    appState: context.getStore('ApplicationStore').getState()
+}));
 
 export default Application;
 

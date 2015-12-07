@@ -1,23 +1,20 @@
-import _ from 'lodash';
 import BaseStore from 'fluxible/addons/BaseStore';
 
 class ApplicationStore extends BaseStore {
+
     constructor(dispatcher) {
         super(dispatcher);
-        this.currentRoute = null;
+        this.stuff = null;
     }
 
-    onChangeRoute(route) {
-        if (this.currentRoute && route.pathname === this.currentRoute.pathname) {
-            return;
-        }
-        this.currentRoute = route;
+    onDoStuff(stuff) {
+        this.stuff = stuff;
         this.emitChange();
     }
 
     getState() {
         return {
-            route: this.currentRoute
+            stuff: this.stuff
         };
     }
 
@@ -26,13 +23,15 @@ class ApplicationStore extends BaseStore {
     }
 
     rehydrate(state) {
-        this.currentRoute = state.route;
+        this.stuff = state.stuff;
     }
+
 }
 
 ApplicationStore.storeName = 'ApplicationStore';
+
 ApplicationStore.handlers = {
-    'CHANGE_ROUTE': 'onChangeRoute'
+    'DO_STUFF': 'onDoStuff'
 };
 
 export default ApplicationStore;
