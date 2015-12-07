@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import Navigation from './Navigation';
-import Timestamp from './Timestamp';
 import ApplicationStore from '../stores/ApplicationStore';
 import {connectToStores}  from 'fluxible-addons-react';
 
@@ -15,9 +14,6 @@ class Application extends React.Component {
                 <main>
                     {this.props.children}
                 </main>
-                <footer>
-                    <Timestamp />
-                </footer>
             </div>
         );
     }
