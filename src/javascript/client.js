@@ -1,6 +1,7 @@
-import polyfill from 'babel/polyfill'; // eslint-disable-line no-unused-vars
+import polyfill from 'babel-polyfill'; // eslint-disable-line no-unused-vars
 
 import _ from 'lodash';
+import d from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'react-router';
@@ -9,12 +10,14 @@ import navigateAction from './actions/navigate';
 import {provideContext} from 'fluxible-addons-react';
 import history from './history';
 
-import debug from 'debug';
-let appDebug = debug('App');
-debug.enable('App, Fluxible, Fluxible:*');
+const debug = d('App');
+
+d.enable('App, Fluxible, Fluxible:*');
+
+debug('Rehydrating...');
 
 function renderApp(context, app) {
-    appDebug('React Rendering');
+    debug('React Rendering');
 
     function navigate() {
         var route = _.cloneDeep(this.state.location);
@@ -30,12 +33,12 @@ function renderApp(context, app) {
                 routes={app.getComponent()}
                 onUpdate={navigate}/>,
         document.getElementById('app'), () => {
-            appDebug('React Rendered');
+            debug('React Rendered');
         }
     );
 }
 
-appDebug('Rehydrating...');
+debug('Rehydrating...');
 
 app.rehydrate(window.App, function (err, context) {
     if (err) {

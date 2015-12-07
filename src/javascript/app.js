@@ -1,6 +1,8 @@
 import Fluxible from 'fluxible';
 import {PropTypes} from 'react';
 import Routes from './components/Routes.jsx';
+import ApplicationStore from './stores/ApplicationStore';
+import TimeStore from './stores/TimeStore';
 
 let assetUrl = require('./libs/assetUrl');
 
@@ -15,7 +17,7 @@ app.customContexts = {
     siteUrl: PropTypes.func.isRequired,
 };
 
-app.registerStore(require('./stores/ApplicationStore'));
-app.registerStore(require('./stores/TimeStore'));
+app.registerStore(ApplicationStore);
+app.registerStore(TimeStore);
 
 export default app;
