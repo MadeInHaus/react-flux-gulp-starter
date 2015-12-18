@@ -20,6 +20,22 @@ We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this
 
 [https://react-flux-gulp-starter-test.herokuapp.com/](https://react-flux-gulp-starter-test.herokuapp.com/)
 
+## Getting Started (The Docker Version 🐳)
+
+1. Make sure [Homebrew](http://brew.sh/) is installed
+2. Install and/or update [VirtualBox](https://www.virtualbox.org/wiki/Download)
+3. Install [docker-osx-dev](https://github.com/brikis98/docker-osx-dev#install)
+
+```
+        curl -o /usr/local/bin/docker-osx-dev https://raw.githubusercontent.com/brikis98/docker-osx-dev/master/src/docker-osx-dev
+        chmod +x /usr/local/bin/docker-osx-dev
+        docker-osx-dev install
+```
+
+4. Run `./dev.sh`
+
+The project should now be viewable at [http://dockerhost:3000](http://dockerhost:3000). You can adjust default Browsersync settings at [http://dockerhost:3002](http://dockerhost:3002).
+
 ## Getting Started
 
 #### 1. Install gulp globally:
