@@ -1,24 +1,27 @@
-FROM node:4.2.2
+# Inherit from Heroku's stack
+FROM heroku/cedar:14
 
-RUN npm install -g gulp
+# Internally, we arbitrarily use port 3000
+ENV PORT 3000
+# Which version of node?
+ENV NODE_ENGINE 4.2.2
+# Locate our binaries
+ENV PATH /app/heroku/node/bin/:/app/user/node_modules/.bin:$PATH
 
-# use changes to package.json to force Docker not to use the cache
-# when we change our application's nodejs dependencies:
-RUN mkdir /install
-ADD package.json /install/package.json
-RUN cd /install && npm install && npm cache clear
+# Create some needed directories
+RUN mkdir -p /app/heroku/node /app/.profile.d
+WORKDIR /app/user
 
-# From here we load our application's code in, therefore the previous docker
-# "layer" thats been cached will be used if possible
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-ADD . /usr/src/app
+# Install node
+RUN curl -s https://s3pository.heroku.com/node/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.gz | tar --strip-components=1 -xz -C /app/heroku/node
+RUN /app/heroku/node/bin/npm install npm -g
 
-RUN ln -s /install/node_modules /usr/src/app/node_modules
+# Export the node path in .profile.d
+RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
+
+ADD package.json /app/user/
+RUN /app/heroku/node/bin/npm -v
+RUN /app/heroku/node/bin/npm install
+ADD . /app/user/
+
 RUN gulp production
-
-ADD .docker/.env /user/src/app/.env
-
-EXPOSE 3000
-
-CMD node server.js
