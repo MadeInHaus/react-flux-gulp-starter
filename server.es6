@@ -4,7 +4,7 @@ import expressState from 'express-state';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {provideContext} from 'fluxible-addons-react';
-import app from './src/javascript/app.js';
+import app from './src/javascript/app';
 import Html from './src/javascript/components/Html.jsx';
 
 // Routing
