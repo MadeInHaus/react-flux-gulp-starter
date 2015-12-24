@@ -22,6 +22,7 @@ function create_npm_archive() {
     rm -Rf .docker/node_modules
 }
 
+docker-osx-dev install
 boot2docker up
 eval "$(boot2docker shellinit)"
 
@@ -43,9 +44,11 @@ docker-compose -f docker-compose.dev.yml build
 
 trap ctrl_c SIGINT SIGTERM INT TERM
 
-docker-compose -f docker-compose.dev.yml up &
+docker-osx-dev -c docker-compose.dev.yml &
 
 pids="$pids $!"
+
+docker-compose -f docker-compose.dev.yml up
 
 if [ "$CURRENT_NPM_REVISION" != "$CACHED_NPM_REVISION" ]; then
     rm -Rf .docker/node_modules
@@ -56,5 +59,4 @@ if [ "$CURRENT_NPM_REVISION" != "$CACHED_NPM_REVISION" ]; then
     echo $CURRENT_NPM_REVISION > .docker/.npm_revision
 fi
 
-docker-osx-dev -c docker-compose.dev.yml
 
