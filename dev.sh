@@ -22,6 +22,17 @@ function create_npm_archive() {
     rm -Rf .docker/node_modules
 }
 
+function export_node_modules() {
+    if [ "$CURRENT_NPM_REVISION" != "$CACHED_NPM_REVISION" ]; then
+        rm -Rf .docker/node_modules
+        echo "Creating node_modules cache in .docker/node_modules"
+        WEB_CONTAINER="$(docker-compose ps | grep -Eo '.+web[^ ]+')"
+        docker cp $WEB_CONTAINER:/app/user/node_modules .docker/
+        create_npm_archive
+        echo $CURRENT_NPM_REVISION > .docker/.npm_revision
+    fi
+}
+
 docker-osx-dev install
 boot2docker up
 eval "$(boot2docker shellinit)"
@@ -44,19 +55,17 @@ docker-compose -f docker-compose.dev.yml build
 
 trap ctrl_c SIGINT SIGTERM INT TERM
 
+docker events -f event=start | export_node_modules &
+pids="$pids $!"
+
+
 docker-osx-dev -c docker-compose.dev.yml &
 
 pids="$pids $!"
 
-docker-compose -f docker-compose.dev.yml up
+docker-compose -f docker-compose.dev.yml up &
 
-if [ "$CURRENT_NPM_REVISION" != "$CACHED_NPM_REVISION" ]; then
-    rm -Rf .docker/node_modules
-    echo "Creating node_modules cache in .docker/node_modules"
-    WEB_CONTAINER="$(docker-compose ps | grep -Eo '.+web[^ ]+')"
-    docker cp $WEB_CONTAINER:/app/user/node_modules .docker/
-    create_npm_archive
-    echo $CURRENT_NPM_REVISION > .docker/.npm_revision
-fi
+pids="$pids $!"
 
 
+wait $pids
