@@ -23,6 +23,7 @@ function create_npm_archive() {
 }
 
 boot2docker up
+eval "$(boot2docker shellinit)"
 
 CURRENT_NPM_REVISION="$(git rev-list -1 HEAD package.json)"
 
