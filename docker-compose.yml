@@ -11,13 +11,13 @@ web:
   # links:
   #   - herokuPostgresql
   #   - herokuRedis
-shell:
-  extends:
-    file: docker-compose.common.yml
-    service: web
-  command: bash
-  environment:
-    NODE_ENV: 'production'
+# shell:
+#   extends:
+#     file: docker-compose.common.yml
+#     service: web
+#   command: bash
+#   environment:
+#     NODE_ENV: 'production'
 #   links:
 #     - herokuPostgresql
 #     - herokuRedis
