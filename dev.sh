@@ -14,12 +14,22 @@ function ctrl_c() {
     exit $?
 }
 
+function create_npm_archive() {
+    if [ -f ".docker/node_modules.tar.gz" ]; then
+        rm .docker/node_modules.tar.gz
+    fi
+    tar -cvzf .docker/node_modules.tar.gz -C .docker node_modules
+    rm -Rf .docker/node_modules
+}
+
 boot2docker up
 
 CURRENT_NPM_REVISION="$(git rev-list -1 HEAD package.json)"
 
-if [ ! -d ".docker/" ]; then
-    mkdir .docker/
+# Make sure node_modules.tar.gz exists
+if [ ! -f ".docker/node_modules.tar.gz" ]; then
+    mkdir -p .docker/node_modules
+    create_npm_archive;
 fi
 
 if [ -f ".docker/.npm_revision" ]; then
@@ -41,10 +51,9 @@ if [ "$CURRENT_NPM_REVISION" != "$CACHED_NPM_REVISION" ]; then
     echo "Creating node_modules cache in .docker/node_modules"
     WEB_CONTAINER="$(docker-compose ps | grep -Eo '.+web[^ ]+')"
     docker cp $WEB_CONTAINER:/app/user/node_modules .docker/
-    rm .docker/node_modules.tar.gz
-    tar -cvzf .docker/node_modules.tar.gz -C .docker node_modules
-    rm -Rf .docker/node_modules
+    create_npm_archive
     echo $CURRENT_NPM_REVISION > .docker/.npm_revision
 fi
 
 docker-osx-dev -c docker-compose.dev.yml
+
