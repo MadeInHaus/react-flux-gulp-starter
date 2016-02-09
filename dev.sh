@@ -118,6 +118,6 @@ export_node_modules
 docker-osx-dev -c docker-compose.dev.yml | sed "s/$/$(printf '\r')/" &
 pids="$pids $!"
 
-docker-compose -p "$dockerName" -f docker-compose.dev.yml run --service-ports web
+docker-compose -p "$dockerName" -f docker-compose.dev.yml run --rm --service-ports web
 
 ctrl_c
