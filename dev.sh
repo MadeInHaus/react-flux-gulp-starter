@@ -27,6 +27,21 @@ function getWebContainer(){
     WEB_CONTAINER=$(docker ps -a | grep -Eo "$webContainerName[^ ]+") || true
 }
 
+function install_notification_server() {
+    hash terminal-notifier &> /dev/null
+    if [ $? -eq 1 ]; then
+        echo "terminal-notifier not installed, installing now"
+        brew install terminal-notifier
+    fi
+
+    hash notify-send-server &> /dev/null
+    if [ $? -eq 1 ]; then
+        echo "notify-send-server not installed, installing now"
+        curl -L https://github.com/fgrehm/notify-send-http/releases/download/v0.2.0/server-darwin_amd64 > /usr/local/bin/notify-send-server
+        chmod +x /usr/local/bin/notify-send-server
+    fi
+}
+
 function create_npm_archive() {
     if [ -f ".docker/node_modules.tar.gz" ]; then
         rm .docker/node_modules.tar.gz
@@ -96,6 +111,7 @@ else
 fi
 
 # Skip Dependencies isn't supported in older versions
+install_notification_server
 docker-osx-dev install --skip-dependencies || docker-osx-dev install
 pkill -f docker-osx-dev || true
 
@@ -116,6 +132,9 @@ trap ctrl_c SIGINT SIGTERM INT TERM
 export_node_modules
 
 docker-osx-dev -c docker-compose.dev.yml | sed "s/$/$(printf '\r')/" &
+pids="$pids $!"
+
+PORT=12345 notify-send-server &
 pids="$pids $!"
 
 docker-compose -p "$dockerName" -f docker-compose.dev.yml run --rm --service-ports web
