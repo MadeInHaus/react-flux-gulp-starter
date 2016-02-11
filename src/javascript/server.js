@@ -8,9 +8,10 @@ import app from './app';
 import Html from './components/Html.jsx';
 
 // Routing
-import Router, {RoutingContext, match} from 'react-router';
+import {Router, RouterContext, match} from 'react-router';
 import routes from './components/Routes.jsx';
-import history from './history';
+import {createMemoryHistory} from 'react-router';
+
 import fetchRouteData from './utils/fetchRouteData';
 
 const debug = d('Server');
@@ -19,10 +20,10 @@ const server = express();
 
 expressState.extend(server);
 
-server.use('/', express.static(__dirname + '/build'));
+server.use('/', express.static(__dirname + '/../../build'));
 
 server.use(function (req, res, next) {
-    const location = history.createLocation(req.url);
+    const location = createMemoryHistory().createLocation(req.url);
     const context = app.createContext({
         env: process.env.NODE_ENV || 'local',
         siteUrl: process.env.SITE_URL || req.protocol + '://' + req.hostname,
@@ -60,7 +61,7 @@ server.use(function (req, res, next) {
 
                 renderProps.context = context.getComponentContext();
 
-                const RouterComponent = provideContext(RoutingContext, app.customContexts);
+                const RouterComponent = provideContext(RouterContext, app.customContexts);
                 const HtmlComponent = provideContext(Html, app.customContexts);
 
                 const markup = ReactDOMServer.renderToString(React.createElement(RouterComponent, renderProps));

@@ -4,11 +4,11 @@ import _ from 'lodash';
 import d from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from 'react-router';
+import { Router, browserHistory } from 'react-router';
+import routes from './components/Routes';
 import app from './app';
 import fetchRouteData from './utils/fetchRouteData';
 import {provideContext} from 'fluxible-addons-react';
-import history from './history';
 
 const debug = d('App');
 
@@ -31,8 +31,7 @@ app.rehydrate(window.App, (err, context) => {
     ReactDOM.render(
         <RouterWithContext
             context={context.getComponentContext()}
-            history={history}
-            routes={app.getComponent()}
+            history={browserHistory}
             onUpdate={function () {
                 if (isRehydrating) {
                     isRehydrating = false;
@@ -40,7 +39,7 @@ app.rehydrate(window.App, (err, context) => {
                 }
                 fetchRouteData(context, this.state, err => {});
             }}
-        />,
+        >{routes}</RouterWithContext>,
         document.getElementById('app'),
         () => { debug('React Rendered'); }
     );
