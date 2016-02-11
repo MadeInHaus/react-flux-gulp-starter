@@ -48,35 +48,31 @@ server.use(function (req, res, next) {
             res.status(404).send('Not found');
         } else {
 
-            fetchRouteData(context, renderProps, err => {
+            fetchRouteData(context, renderProps)
+                .then(() => {
+                    const appState = app.dehydrate(context);
+                    appState.env = process.env.NODE_ENV || 'local';
+                    res.expose(appState, 'App');
 
-                if (err) {
-                    res.status(500).send(err.message);
-                    return;
-                }
+                    renderProps.context = context.getComponentContext();
 
-                const appState = app.dehydrate(context);
-                appState.env = process.env.NODE_ENV || 'local';
-                res.expose(appState, 'App');
+                    const RouterComponent = provideContext(RouterContext, app.customContexts);
+                    const HtmlComponent = provideContext(Html, app.customContexts);
 
-                renderProps.context = context.getComponentContext();
+                    const markup = ReactDOMServer.renderToString(React.createElement(RouterComponent, renderProps));
+                    const html = ReactDOMServer.renderToStaticMarkup(React.createElement(HtmlComponent, {
+                        title: 'react-flux-gulp-starter - madeinhaus.com',
+                        context: context.getComponentContext(),
+                        state: res.locals.state,
+                        markup: markup,
+                        location: location
+                    }));
 
-                const RouterComponent = provideContext(RouterContext, app.customContexts);
-                const HtmlComponent = provideContext(Html, app.customContexts);
-
-                const markup = ReactDOMServer.renderToString(React.createElement(RouterComponent, renderProps));
-                const html = ReactDOMServer.renderToStaticMarkup(React.createElement(HtmlComponent, {
-                    title: 'react-flux-gulp-starter - madeinhaus.com',
-                    context: context.getComponentContext(),
-                    state: res.locals.state,
-                    markup: markup,
-                    location: location
-                }));
-
-                res.send('<!DOCTYPE html>' + html);
-
-            });
-
+                    res.send('<!DOCTYPE html>' + html);
+                })
+                .catch(err => {
+                    res.status(500).send(err.stack);
+                });
         }
     });
 });
@@ -87,7 +83,7 @@ const instance = server.listen(port, () => {
 
     process.on('SIGTERM', () => {
         debug('Received SIGTERM, shutting down');
-        
+
         instance.close(() => {
             debug('Server stopped successfully');
             process.exit(0);

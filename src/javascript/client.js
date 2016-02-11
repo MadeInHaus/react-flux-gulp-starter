@@ -37,7 +37,11 @@ app.rehydrate(window.App, (err, context) => {
                     isRehydrating = false;
                     return;
                 }
-                fetchRouteData(context, this.state, err => {});
+                fetchRouteData(context, this.state)
+                    .then(() => {})
+                    .catch(err => {
+                        console.error(err.stack);
+                    });
             }}
         >{routes}</RouterWithContext>,
         document.getElementById('app'),

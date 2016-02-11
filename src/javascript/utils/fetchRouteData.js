@@ -9,6 +9,13 @@ export default function fetchRouteData(context, routerState, done) {
                         .map(component => component.load(context, routerState.params))
                         .reduce((actions, componentActions) => _.assign(actions, componentActions), {});
 
-    executeMultiple(context, actions, done);
+    return new Promise((resolve, reject) => {
+        executeMultiple(context, actions, err => {
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        });
+    });
 
 }
