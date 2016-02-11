@@ -81,5 +81,20 @@ server.use(function (req, res, next) {
 });
 
 var port = process.env.PORT || 3000;
-server.listen(port);
-debug('Listening on port ' + port);
+const instance = server.listen(port, () => {
+    debug('Listening on port ' + port);
+
+    process.on('SIGTERM', () => {
+        debug('Received SIGTERM, shutting down');
+        
+        instance.close(() => {
+            debug('Server stopped successfully');
+            process.exit(0);
+        });
+
+        setTimeout(() => {
+            debug('Server didn\'t stop in top, terminating');
+            process.exit(0);
+        }, 9.9 * 1000);
+    });
+});
