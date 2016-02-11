@@ -4,14 +4,14 @@ import expressState from 'express-state';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {provideContext} from 'fluxible-addons-react';
-import app from './src/javascript/app';
-import Html from './src/javascript/components/Html.jsx';
+import app from './app';
+import Html from './components/Html.jsx';
 
 // Routing
 import Router, {RoutingContext, match} from 'react-router';
-import routes from './src/javascript/components/Routes.jsx';
-import history from './src/javascript/history';
-import fetchRouteData from './src/javascript/utils/fetchRouteData';
+import routes from './components/Routes.jsx';
+import history from './history';
+import fetchRouteData from './utils/fetchRouteData';
 
 const debug = d('Server');
 

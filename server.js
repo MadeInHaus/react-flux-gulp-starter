@@ -1,3 +1,3 @@
 require('babel-register');
 require('dotenv').load({ silent: true });
-require('./server.es6');
+require('./src/javascript/server');
