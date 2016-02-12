@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 pids=""
 
@@ -127,7 +126,7 @@ fi
 
 docker-compose -p "$dockerName" -f docker-compose.dev.yml build web
 
-trap ctrl_c SIGINT SIGTERM INT TERM
+trap ctrl_c SIGINT SIGTERM INT TERM ERR
 
 export_node_modules
 
