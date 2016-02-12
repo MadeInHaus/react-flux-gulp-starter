@@ -39,6 +39,15 @@ module.exports = {
         src: src + "/html/**/*.html",
         dest: dest
     },
+    staticAssets: {
+        // Put an array of folder globs, such as src + '/**/fonts/**/*', 
+        // src + '/**/html/**/*'
+        src: [
+            // src + '/**/fonts/**/*',
+            // src + '/**/html/**/*',
+        ], 
+        dest: dest
+    },
     browserify: {
         // A separate bundle will be generated for each
         // bundle config in the list below
