@@ -4,5 +4,15 @@
         "react",
         "stage-2"
     ],
-    "plugins": ["transform-class-properties"]
+    "plugins": [
+        "transform-class-properties",
+        ["babel-plugin-module-alias", [
+              { "src": "./src/javascript/actions", "expose": "actions" },
+              { "src": "./src/javascript/components", "expose": "components" },
+              { "src": "./src/javascript/libs", "expose": "libs" },
+              { "src": "./src/javascript/stores", "expose": "stores" },
+              { "src": "./src/javascript/utils", "expose": "utils" }
+            ]
+        ]
+    ]
 }

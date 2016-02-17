@@ -4,9 +4,9 @@ import d from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
-import routes from './components/Routes';
+import routes from 'components/Routes';
 import app from './app';
-import fetchRouteData from './utils/fetchRouteData';
+import fetchRouteData from 'utils/fetchRouteData';
 import { provideContext } from 'fluxible-addons-react';
 
 const debug = d('App');

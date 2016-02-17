@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Navigation from './Navigation';
+import Navigation from 'components/Navigation';
 import { connectToStores } from 'fluxible-addons-react';
 
 class Application extends React.Component {

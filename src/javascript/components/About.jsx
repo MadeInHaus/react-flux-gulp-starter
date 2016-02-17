@@ -1,5 +1,5 @@
 import React from 'react';
-import doStuff from '../actions/doStuff';
+import doStuff from 'actions/doStuff';
 
 class About extends React.Component {
 
