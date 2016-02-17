@@ -2,6 +2,12 @@ import BaseStore from 'fluxible/addons/BaseStore';
 
 class ApplicationStore extends BaseStore {
 
+    static storeName = 'ApplicationStore';
+
+    static handlers = {
+        DO_STUFF: 'onDoStuff',
+    };
+
     constructor(dispatcher) {
         super(dispatcher);
         this.stuff = null;
@@ -14,7 +20,7 @@ class ApplicationStore extends BaseStore {
 
     getState() {
         return {
-            stuff: this.stuff
+            stuff: this.stuff,
         };
     }
 
@@ -27,11 +33,5 @@ class ApplicationStore extends BaseStore {
     }
 
 }
-
-ApplicationStore.storeName = 'ApplicationStore';
-
-ApplicationStore.handlers = {
-    'DO_STUFF': 'onDoStuff'
-};
 
 export default ApplicationStore;

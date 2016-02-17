@@ -1,19 +1,16 @@
-
-var assetUrl = {
+const assetUrl = {
     name: 'assetUrl',
     env: null,
     bucket: null,
     prefix: null,
     cloudfront: false,
 
-    plugContext: function (options, context, app) {
-        // `options` is the same as what is passed into `Fluxible.createContext(options)`
-
-        if(!this.rehydrated){
+    plugContext(options) {
+        if (!this.rehydrated) {
             this.env = options.env;
             this.siteUrl = options.siteUrl;
 
-            if(options.aws){
+            if (options.aws) {
                 this.useAws = true;
                 this.bucket = options.aws.bucket;
                 this.prefix = options.aws.prefix;
@@ -24,58 +21,52 @@ var assetUrl = {
             }
         }
 
-        var useAws = this.useAws;
-        var env = this.env;
-        var siteUrl = this.siteUrl;
-        var bucket = this.bucket;
-        var prefix = this.prefix;
-        var folder = this.folder;
-        var cloudfront = this.cloudfront;
-        var bypassCdn = this.bypassCdn;
-        var urlHash = this.urlHash;
+        const useAws = this.useAws;
+        const env = this.env;
+        const siteUrl = this.siteUrl;
+        const bucket = this.bucket;
+        const prefix = this.prefix;
+        const folder = this.folder;
+        const cloudfront = this.cloudfront;
+        const bypassCdn = this.bypassCdn;
+        const urlHash = this.urlHash;
 
-        var urlBase;
+        let urlBase;
 
-        if(cloudfront && !bypassCdn){
-            urlBase = cloudfront + urlHash + '/';
+        if (cloudfront && !bypassCdn) {
+            urlBase = `${cloudfront}${urlHash}/`;
         } else {
-            urlBase = 'http://' + bucket + '.s3.amazonaws.com/' + prefix + '/'+ folder +'/';
+            urlBase = `http://${bucket}.s3.amazonaws.com/${prefix}/${folder}/`;
         }
 
-        var slashRegex = /([^:])\/{1,}/g;
+        const slashRegex = /([^:])\/{1,}/g;
 
         // Returns a context plugin
         return {
-            plugComponentContext: (componentContext, context, app) => {
-                // debugger;
-                componentContext.assetUrl = function(path){
-                    if(env === 'local' || !useAws){
-                        return path;
-                    }
+            plugComponentContext(componentContext) {
+                return Object.assign(componentContext, {
+                    assetUrl(path) {
+                        if (env === 'local' || !useAws) {
+                            return path;
+                        }
 
-                    if(path.indexOf('http') === 0 || path.indexOf(urlBase) === 0){
-                        return path;
-                    }
+                        if (path.indexOf('http') === 0 || path.indexOf(urlBase) === 0) {
+                            return path;
+                        }
 
-                    if(path.slice(0, 1) === '/'){
-                        path = path.slice(1);
-                    }
+                        const cleanPath = (path.slice(0, 1) === '/') ? path.slice(1) : path;
 
-                    //Prepend the urlBase and remove any incidences of multiple
-                    //slashes after the initial http://
-                    return (urlBase + path).replace(slashRegex, '$1/');
-                };
-
-                componentContext.siteUrl = () => {
-                    return siteUrl;
-                };
-
-                return componentContext;
+                        // Prepend the urlBase and remove any incidences of multiple
+                        // slashes after the initial http://
+                        return (`${urlBase}${cleanPath}`).replace(slashRegex, '$1/');
+                    },
+                    siteUrl() { return siteUrl; },
+                });
             },
         };
     },
 
-    dehydrate: function () {
+    dehydrate() {
         return {
             env: this.env,
             siteUrl: this.siteUrl,
@@ -88,7 +79,7 @@ var assetUrl = {
         };
     },
 
-    rehydrate: function (state) {
+    rehydrate(state) {
         this.env = state.env;
         this.siteUrl = state.siteUrl;
         this.bucket = state.bucket;
@@ -102,4 +93,4 @@ var assetUrl = {
     },
 };
 
-module.exports = assetUrl;
+export default assetUrl;

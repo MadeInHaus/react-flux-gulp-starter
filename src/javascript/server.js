@@ -1,16 +1,17 @@
+import path from 'path';
 import d from 'debug';
 import express from 'express';
 import expressState from 'express-state';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {provideContext} from 'fluxible-addons-react';
+import { provideContext } from 'fluxible-addons-react';
 import app from './app';
 import Html from './components/Html.jsx';
 
 // Routing
-import {Router, RouterContext, match} from 'react-router';
+import { RouterContext, match } from 'react-router';
 import routes from './components/Routes.jsx';
-import {createMemoryHistory} from 'react-router';
+import { createMemoryHistory } from 'react-router';
 
 import fetchRouteData from './utils/fetchRouteData';
 
@@ -20,14 +21,14 @@ const server = express();
 
 expressState.extend(server);
 
-server.use('/', express.static(__dirname + '/../../build'));
+server.use('/', express.static(path.resolve('./build')));
 
-server.use(function (req, res, next) {
+server.use((req, res) => {
     const location = createMemoryHistory().createLocation(req.url);
     const context = app.createContext({
         env: process.env.NODE_ENV || 'local',
-        siteUrl: process.env.SITE_URL || req.protocol + '://' + req.hostname,
-        //Uncomment this code to specify where on S3 remote assets are stored
+        siteUrl: process.env.SITE_URL || `${req.protocol}://${req.hostname}`,
+        // Uncomment this code to specify where on S3 remote assets are stored
         // aws: {
         //     bucket: process.env.S3_BUCKET || 'madeinhaus',
         //     prefix: process.env.S3_PREFIX || 'react-flux-gulp-starter',
@@ -39,7 +40,6 @@ server.use(function (req, res, next) {
     });
 
     match({ routes, location }, (error, redirectLocation, renderProps) => {
-
         if (redirectLocation) {
             res.redirect(301, redirectLocation.pathname + redirectLocation.search);
         } else if (error) {
@@ -47,28 +47,37 @@ server.use(function (req, res, next) {
         } else if (renderProps === null) {
             res.status(404).send('Not found');
         } else {
-
             fetchRouteData(context, renderProps)
                 .then(() => {
                     const appState = app.dehydrate(context);
                     appState.env = process.env.NODE_ENV || 'local';
                     res.expose(appState, 'App');
 
-                    renderProps.context = context.getComponentContext();
+                    const props = Object.assign(
+                                        {},
+                                        renderProps,
+                                        { context: context.getComponentContext() }
+                                    );
 
                     const RouterComponent = provideContext(RouterContext, app.customContexts);
                     const HtmlComponent = provideContext(Html, app.customContexts);
 
-                    const markup = ReactDOMServer.renderToString(React.createElement(RouterComponent, renderProps));
-                    const html = ReactDOMServer.renderToStaticMarkup(React.createElement(HtmlComponent, {
-                        title: 'react-flux-gulp-starter - madeinhaus.com',
-                        context: context.getComponentContext(),
-                        state: res.locals.state,
-                        markup: markup,
-                        location: location
-                    }));
+                    const markup = ReactDOMServer.renderToString(
+                                        React.createElement(RouterComponent, props)
+                                    );
 
-                    res.send('<!DOCTYPE html>' + html);
+                    const html =
+                        ReactDOMServer.renderToStaticMarkup(
+                            React.createElement(HtmlComponent, {
+                                title: 'react-flux-gulp-starter - madeinhaus.com',
+                                context: context.getComponentContext(),
+                                state: res.locals.state,
+                                markup,
+                                location,
+                            }
+                        ));
+
+                    res.send(`<!DOCTYPE html>${html}`);
                 })
                 .catch(err => {
                     res.status(500).send(err.stack);
@@ -77,9 +86,9 @@ server.use(function (req, res, next) {
     });
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const instance = server.listen(port, () => {
-    debug('Listening on port ' + port);
+    debug(`Listening on port ${port}`);
 
     process.on('SIGTERM', () => {
         debug('Received SIGTERM, shutting down');
