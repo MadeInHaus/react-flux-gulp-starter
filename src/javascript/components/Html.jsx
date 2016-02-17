@@ -1,7 +1,18 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-class Html extends React.Component{
-    render () {
+class Html extends React.Component {
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        markup: PropTypes.string.isRequired,
+        state: PropTypes.object.isRequired,
+    };
+
+    static contextTypes = {
+        assetUrl: PropTypes.func.isRequired,
+        siteUrl: PropTypes.func.isRequired,
+    };
+
+    render() {
         return (
             <html>
                 <head>
@@ -13,25 +24,24 @@ class Html extends React.Component{
                     <meta property="og:title" content={this.props.title} />
                     <meta property="og:type" content="article" />
                     <meta property="og:url" content={this.context.siteUrl()} />
-                    <meta property="og:image" content={this.context.assetUrl("/image.jpg")} />
+                    <meta property="og:image" content={this.context.assetUrl('/image.jpg')} />
                     <meta property="og:description" content="Description Here" />
-                    <link rel="shortcut icon" href={this.context.assetUrl("favicon.ico")} />
+                    <link rel="shortcut icon" href={this.context.assetUrl('favicon.ico')} />
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,600" />
-                    <link rel="stylesheet" href={this.context.assetUrl("/css/styles.css")} />
+                    <link rel="stylesheet" href={this.context.assetUrl('/css/styles.css')} />
                 </head>
                 <body>
-                    <div id="app" className="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
-                    <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
-                    <script src={this.context.assetUrl("/js/client.js")} defer></script>
+                    <div
+                        id="app"
+                        className="app"
+                        dangerouslySetInnerHTML={{ __html: this.props.markup }}
+                    />
+                    <script dangerouslySetInnerHTML={{ __html: this.props.state }} />
+                    <script src={this.context.assetUrl('/js/client.js')} defer />
                 </body>
             </html>
         );
     }
 }
 
-Html.contextTypes = {
-    assetUrl: PropTypes.func.isRequired,
-    siteUrl: PropTypes.func.isRequired
-};
-
-export default Html
+export default Html;
