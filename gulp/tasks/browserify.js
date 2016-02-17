@@ -38,7 +38,7 @@ var browserifyTask = function(callback, devMode) {
 
         var b = browserify(bundleConfig);
 
-        b.transform(babelify, { presets: ['es2015', 'react', 'stage-2'] });
+        b.transform(babelify);
 
         var bundle = function() {
             // Log when bundling starts
