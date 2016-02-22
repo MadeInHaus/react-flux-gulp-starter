@@ -11,7 +11,7 @@ const assetUrl = {
             this.siteUrl = options.siteUrl;
 
             if (options.aws) {
-                this.useAws = true;
+                this.useAws = options.aws.useAws;
                 this.bucket = options.aws.bucket;
                 this.prefix = options.aws.prefix;
                 this.folder = options.aws.folder;
