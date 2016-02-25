@@ -83,15 +83,15 @@ function export_node_modules() {
 }
 
 
-USE_BOOT2DOCKER=true
+USE_BOOT2DOCKER=false
 
 while [[ $# > 0 ]]
 do
 key="$1"
 
 case $key in
-    -d|--docker-machine)
-    USE_BOOT2DOCKER=false
+    -b|--boot2docker)
+    USE_BOOT2DOCKER=true
     ;;
     *)
             # unknown option
@@ -129,6 +129,8 @@ docker-compose -p "$dockerName" -f docker-compose.dev.yml build web
 trap ctrl_c SIGINT SIGTERM INT TERM ERR
 
 export_node_modules
+
+docker-osx-dev sync-only -c docker-compose.dev.yml || true
 
 docker-osx-dev -c docker-compose.dev.yml | sed "s/$/$(printf '\r')/" &
 pids="$pids $!"
