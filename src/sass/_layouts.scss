@@ -2,24 +2,11 @@
 // Layouts
 // ---------------------------
 
-.app {}
+@import "layouts/application";
+@import "layouts/main";
+@import "layouts/navigation";
 
-@include mobile {
-    .app {}
-}
-
-@include largeMobile {
-    .app {}
-}
-
-@include tablet {
-    .app {}
-}
-
-@include desktop {
-    .app {}
-}
-
-@include largeDesktop {
-    .app {}
+.container {
+    display: flex;
+    justify-content: flex-start;
 }

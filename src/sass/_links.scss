@@ -1,0 +1,12 @@
+//
+// Links
+// ---------------------------
+
+a {
+    color: $linkColor;
+    text-transform: uppercase;
+    text-decoration: none;
+    &:hover {
+        color: $linkColorHover;
+    }
+}
