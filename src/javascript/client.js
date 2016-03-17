@@ -11,7 +11,9 @@ import { provideContext } from 'fluxible-addons-react';
 
 const debug = d('App');
 
-d.enable('App, Fluxible, Fluxible:*');
+if (window.App.env !== 'production') {
+    d.enable('App, Fluxible, Fluxible:*');
+}
 
 debug('Rehydrating...');
 
