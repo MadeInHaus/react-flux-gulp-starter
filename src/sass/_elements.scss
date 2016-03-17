@@ -2,7 +2,9 @@
 // Elements
 // ---------------------------
 
-// Horizontal rules
+figure {
+    margin: 0;
+}
 
 hr {
     margin: $baseLineHeight 0;
@@ -10,25 +12,16 @@ hr {
     border-top: 1px solid $hrBorder;
 }
 
-// img
-
 img {
     max-width: 100%;
+    height: auto;
     border-width: 0;
     vertical-align: middle;
     -ms-interpolation-mode: bicubic;
 }
 
-// figure
-
-figure {
-    margin: 0;
-    img {}
-    figcaption {}
-}
-
-/* ul, ol {
+ul, ol {
     margin: 0;
     padding: 0;
     list-style: none;
-} */
+}
