@@ -1,0 +1,8 @@
+// Variables, mixins and extends
+@import "variables";
+@import "mixins";
+@import "extends";
+
+.inline-syle {
+    background-color: $bodyBackground;
+}

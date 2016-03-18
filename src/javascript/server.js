@@ -13,6 +13,9 @@ import { RouterContext, match } from 'react-router';
 import routes from 'components/Routes.jsx';
 import { createMemoryHistory } from 'react-router';
 
+// Middleware
+import inlineStyles from 'middleware/inlineStyles';
+
 import fetchRouteData from 'utils/fetchRouteData';
 
 const debug = d('Server');
@@ -22,6 +25,7 @@ const server = express();
 expressState.extend(server);
 
 server.use('/', express.static(path.resolve('./build')));
+server.use(inlineStyles('./build/css/inline.css'));
 
 server.use((req, res) => {
     const location = createMemoryHistory().createLocation(req.url);
