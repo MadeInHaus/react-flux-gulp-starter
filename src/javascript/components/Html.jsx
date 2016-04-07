@@ -37,6 +37,7 @@ class Html extends React.Component {
                         dangerouslySetInnerHTML={{ __html: this.props.markup }}
                     />
                     <script dangerouslySetInnerHTML={{ __html: this.props.state }} />
+                    <script src={this.context.assetUrl('/js/modernizr-custom.js')} defer />
                     <script src={this.context.assetUrl('/js/client.js')} defer />
                 </body>
             </html>
