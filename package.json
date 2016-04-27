@@ -4,7 +4,6 @@
   "engines": {
     "node": ">=5.0.0"
   },
-  "private": true,
   "description": "React-Gulp starter with common tasks and scenarios",
   "scripts": {
     "postinstall": "gulp production",
@@ -14,6 +13,7 @@
     "type": "git",
     "url": "git://github.com/MadeInHaus/react-gulp-starter.git"
   },
+  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "5.0.0",
     "babelify": "7.2.0",
