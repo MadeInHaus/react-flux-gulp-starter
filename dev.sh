@@ -138,6 +138,9 @@ pids="$pids $!"
 PORT=12345 notify-send-server &
 pids="$pids $!"
 
-docker-compose -p "$dockerName" -f docker-compose.dev.yml run --rm --service-ports web
+docker-compose -p "$dockerName" -f docker-compose.dev.yml up -d
+getWebContainer
+echo "container is $WEB_CONTAINER"
+docker attach --detach-keys='ctrl-c' $WEB_CONTAINER;
 
 ctrl_c
