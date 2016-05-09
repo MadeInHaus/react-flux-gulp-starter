@@ -111,7 +111,7 @@ fi
 
 # Skip Dependencies isn't supported in older versions
 install_notification_server
-docker-osx-dev install --skip-dependencies || docker-osx-dev install
+docker-osx-dev install --skip-dependencies --remove-shared-folders || docker-osx-dev install --skip-dependencies || docker-osx-dev install
 pkill -f docker-osx-dev || true
 
 docker-compose  -p "$dockerName" -f docker-compose.dev.yml stop || true
