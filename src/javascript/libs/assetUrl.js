@@ -60,7 +60,9 @@ const assetUrl = {
                         // slashes after the initial http://
                         return (`${urlBase}${cleanPath}`).replace(slashRegex, '$1/');
                     },
-                    siteUrl() { return siteUrl; },
+                    siteUrl() {
+                        return siteUrl;
+                    },
                 });
             },
         };

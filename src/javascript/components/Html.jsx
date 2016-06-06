@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 class Html extends React.Component {
     static propTypes = {
-        title: PropTypes.string.isRequired,
         markup: PropTypes.string.isRequired,
         state: PropTypes.object.isRequired,
+        title: PropTypes.string.isRequired,
     };
 
     static contextTypes = {

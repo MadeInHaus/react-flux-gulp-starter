@@ -1,6 +1,6 @@
-var dest = "./build";
-var src = './src';
-var port = parseInt(process.env.PORT, 10) || 3000;
+const dest = './build';
+const src = './src';
+const port = parseInt(process.env.PORT, 10) || 3000;
 
 module.exports = {
     nodemon: {
@@ -10,8 +10,8 @@ module.exports = {
         env: {
             'NODE_ENV': 'development',
             'DEBUG': 'Server',
-            'PORT': port
-        }
+            'PORT': port,
+        },
     },
     browserSync: {
         // Don't use browsersync's static browser.
@@ -19,25 +19,25 @@ module.exports = {
         proxy: 'localhost:' + port,
         port: port + 1,
         notify: false,
-        open: false
+        open: false,
     },
     sass: {
-        src: src + "/sass/**/*.{sass,scss}",
-        dest: dest + "/css",
+        src: src + '/sass/**/*.{sass,scss}',
+        dest: dest + '/css',
         settings: {
             // Required if you want to use SASS syntax
             // See https://github.com/dlmanning/gulp-sass/issues/81
             sourceComments: 'map',
-            imagePath: '/images' // Used by the image-url helper
-        }
+            imagePath: '/images', // Used by the image-url helper
+        },
     },
     images: {
-        src: src + "/images/**",
-        dest: dest + "/images"
+        src: src + '/images/**',
+        dest: dest + '/images',
     },
     markup: {
-        src: src + "/html/**/*.html",
-        dest: dest
+        src: src + '/html/**/*.html',
+        dest,
     },
     staticAssets: {
         // Put an array of folder globs, such as src + '/**/fonts/**/*',
@@ -46,7 +46,7 @@ module.exports = {
             // src + '/**/fonts/**/*',
             // src + '/**/html/**/*',
         ],
-        dest: dest
+        dest,
     },
     browserify: {
         // A separate bundle will be generated for each
@@ -55,74 +55,74 @@ module.exports = {
             entries: src + '/javascript/client.js',
             dest: dest + '/js',
             outputName: 'client.js',
-            extensions: ['.js', '.jsx']
-        }]
+            extensions: ['.js', '.jsx'],
+        }],
     },
     production: {
         cssSrc: dest + '/css/*.css',
         jsSrc: dest + '/js/*.js',
-        dest: dest
+        dest,
     },
     heroku: {
         development: {
             branch: 'dev',
             remoteName: 'dev',
             remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_DEV.git',
-            website: 'http://HEROKU_APP_NAME_DEV.herokuapp.com'
+            website: 'http://HEROKU_APP_NAME_DEV.herokuapp.com',
         },
         staging: {
             branch: 'staging',
             remoteName: 'staging',
             remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_STAGING.git',
-            website: 'http://HEROKU_APP_NAME_STAGING.herokuapp.com'
+            website: 'http://HEROKU_APP_NAME_STAGING.herokuapp.com',
         },
         production: {
             branch: 'master',
             remoteName: 'prod',
             remoteUrl: 'https://git.heroku.com/HEROKU_APP_NAME_PRODUCTION.git',
-            website: 'http://HEROKU_APP_NAME_PRODUCTION.herokuapp.com'
-        }
+            website: 'http://HEROKU_APP_NAME_PRODUCTION.herokuapp.com',
+        },
     },
     settings: {
         src: './settings.json',
-        dest: dest
+        dest,
     },
     modernizr: {
-        "fileName": "modernizr-custom.js",
-        "dest": dest + "/js",
-        "options": {
+        'fileName': 'modernizr-custom.js',
+        'dest': dest + '/js',
+        'options': {
 
             // Based on default settings on http://modernizr.com/download/
-            "options" : [
-                "setClasses",
-                "addTest",
-                "html5printshiv",
-                "testProp",
-                "fnBind"
+            'options': [
+                'setClasses',
+                'addTest',
+                'html5printshiv',
+                'testProp',
+                'fnBind',
             ],
 
             // Define any tests you want to explicitly include
-            "tests" : [
-                "autoplay",
-                "csspointerevents",
-                "devicemotion",
-                "deviceorientation",
-                "preserve3d",
-                "touchevents",
-                "video",
-                "videoautoplay",
-                "webgl"
+            'tests': [
+                'autoplay',
+                'csspointerevents',
+                'devicemotion',
+                'deviceorientation',
+                'preserve3d',
+                'touchevents',
+                'video',
+                'videoautoplay',
+                'webgl',
             ],
 
             // By default, will crawl your project for references to Modernizr tests
             // Set to false to disable
-            "crawl" : false,
+            'crawl': false,
 
-            // Set to true to pass in buffers via the "files" parameter below
-            "useBuffers" : false,
+            // Set to true to pass in buffers via the 'files' parameter below
+            'useBuffers': false,
 
             // Have custom Modernizr tests? Add them here.
-            "customTests" : []
-        }
-    }
+            'customTests': [],
+        },
+    },
 };
