@@ -7,7 +7,7 @@ const append = (w, s) => {
 
 const template = (css, cssFile) => {
     return `<style>
-// Styles embedded from ${cssFile}
+/* Styles embedded from ${cssFile} */
 ${css}
 </style>`;
 };
