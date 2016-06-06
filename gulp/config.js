@@ -40,12 +40,12 @@ module.exports = {
         dest: dest
     },
     staticAssets: {
-        // Put an array of folder globs, such as src + '/**/fonts/**/*', 
+        // Put an array of folder globs, such as src + '/**/fonts/**/*',
         // src + '/**/html/**/*'
         src: [
             // src + '/**/fonts/**/*',
             // src + '/**/html/**/*',
-        ], 
+        ],
         dest: dest
     },
     browserify: {
@@ -86,5 +86,43 @@ module.exports = {
     settings: {
         src: './settings.json',
         dest: dest
+    },
+    modernizr: {
+        "fileName": "modernizr-custom.js",
+        "dest": dest + "/js",
+        "options": {
+
+            // Based on default settings on http://modernizr.com/download/
+            "options" : [
+                "setClasses",
+                "addTest",
+                "html5printshiv",
+                "testProp",
+                "fnBind"
+            ],
+
+            // Define any tests you want to explicitly include
+            "tests" : [
+                "autoplay",
+                "csspointerevents",
+                "devicemotion",
+                "deviceorientation",
+                "preserve3d",
+                "touchevents",
+                "video",
+                "videoautoplay",
+                "webgl"
+            ],
+
+            // By default, will crawl your project for references to Modernizr tests
+            // Set to false to disable
+            "crawl" : false,
+
+            // Set to true to pass in buffers via the "files" parameter below
+            "useBuffers" : false,
+
+            // Have custom Modernizr tests? Add them here.
+            "customTests" : []
+        }
     }
 };

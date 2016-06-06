@@ -1,1 +1,3 @@
 gulp
+**/build
+**/src/javascript/libs/vendor/

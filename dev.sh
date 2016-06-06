@@ -111,7 +111,7 @@ fi
 
 # Skip Dependencies isn't supported in older versions
 install_notification_server
-docker-osx-dev install --skip-dependencies || docker-osx-dev install
+docker-osx-dev install --skip-dependencies --remove-shared-folders || docker-osx-dev install --skip-dependencies || docker-osx-dev install
 pkill -f docker-osx-dev || true
 
 docker-compose  -p "$dockerName" -f docker-compose.dev.yml stop || true
@@ -138,6 +138,9 @@ pids="$pids $!"
 PORT=12345 notify-send-server &
 pids="$pids $!"
 
-docker-compose -p "$dockerName" -f docker-compose.dev.yml run --rm --service-ports web
+docker-compose -p "$dockerName" -f docker-compose.dev.yml up -d
+getWebContainer
+echo "container is $WEB_CONTAINER"
+docker attach --detach-keys='ctrl-c' $WEB_CONTAINER;
 
 ctrl_c
