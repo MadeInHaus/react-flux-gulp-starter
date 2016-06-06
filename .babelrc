@@ -11,7 +11,8 @@
               { "src": "./src/javascript/components", "expose": "components" },
               { "src": "./src/javascript/libs", "expose": "libs" },
               { "src": "./src/javascript/stores", "expose": "stores" },
-              { "src": "./src/javascript/utils", "expose": "utils" }
+              { "src": "./src/javascript/utils", "expose": "utils" },
+              { "src": "./src/javascript/middleware", "expose": "middleware" }
             ]
         ]
     ]
