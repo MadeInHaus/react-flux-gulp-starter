@@ -11,7 +11,7 @@ const assetUrl = {
             this.siteUrl = options.siteUrl;
 
             if (options.aws) {
-                this.useAws = options.aws.useAws;
+                this.useS3 = options.aws.useS3;
                 this.bucket = options.aws.bucket;
                 this.prefix = options.aws.prefix;
                 this.folder = options.aws.folder;
@@ -21,7 +21,7 @@ const assetUrl = {
             }
         }
 
-        const useAws = this.useAws;
+        const useS3 = this.useS3;
         const env = this.env;
         const siteUrl = this.siteUrl;
         const bucket = this.bucket;
@@ -46,7 +46,7 @@ const assetUrl = {
             plugComponentContext(componentContext) {
                 return Object.assign(componentContext, {
                     assetUrl(path) {
-                        if (env === 'local' || !useAws) {
+                        if (env === 'local' || !useS3) {
                             return path;
                         }
 
@@ -91,7 +91,7 @@ const assetUrl = {
         this.bypassCdn = state.bypassCdn;
         this.urlHash = state.urlHash;
         this.rehydrated = true;
-        this.useAws = state.useAws;
+        this.useS3 = state.useS3;
     },
 };
 

@@ -42,13 +42,14 @@ server.use((req, res) => {
         siteUrl: process.env.SITE_URL || `${req.protocol}://${req.hostname}`,
         // Uncomment this code to specify where on S3 remote assets are stored
         // aws: {
+        //     useS3: process.env.USE_S3 && process.env.USE_S3 !== 'false' || false,
         //     bucket: process.env.S3_BUCKET || 'madeinhaus',
         //     prefix: process.env.S3_PREFIX || 'react-flux-gulp-starter',
         //     folder: process.env.S3_PATH || process.env.NODE_ENV || false,
         //     urlHash: process.env.URL_HASH || false,
         //     cloudfront: process.env.CLOUDFRONT_URL || false,
-        //     bypassCdn: req.query.bypass || false
-        // }
+        //     bypassCdn: req.query.bypass || false,
+        // },
     });
 
     match({ routes, location }, (error, redirectLocation, renderProps) => {
