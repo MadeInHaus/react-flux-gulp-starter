@@ -23,20 +23,14 @@ We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this
 ## Getting Started (The Docker Version 🐳)
 
 1. Make sure [Homebrew](http://brew.sh/) is installed
-2. Install and/or update [VirtualBox](https://www.virtualbox.org/wiki/Download)
-3. Install [docker-osx-dev](https://github.com/brikis98/docker-osx-dev#install)
+2. Install and/or update [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+3. Install [Kitematic](https://kitematic.com)
+4. Install [docker-osx-dev](https://github.com/brikis98/docker-osx-dev#install)
+5. Run `./dev.sh`
 
-```
-        curl -o /usr/local/bin/docker-osx-dev https://raw.githubusercontent.com/brikis98/docker-osx-dev/master/src/docker-osx-dev
-        chmod +x /usr/local/bin/docker-osx-dev
-        docker-osx-dev install
-```
+The project should now be viewable at [http://default:3000](http://default:3000). You can adjust default Browsersync settings at [http://default:3002](http://default:3002).
 
-4. Run `./dev.sh`
-
-The project should now be viewable at [http://dockerhost:3000](http://dockerhost:3000). You can adjust default Browsersync settings at [http://dockerhost:3002](http://dockerhost:3002).
-
-## Getting Started
+Of course, if you don't want to run Docker, you can also run it locally. 
 
 #### 1. Install gulp globally:
 
@@ -97,3 +91,26 @@ Just push it. That is all.
 ```
 $ git push heroku master
 ```
+## Troubleshooting & Gotchas
+
+### Docker Issues
+
+![alt meltdown](https://media.giphy.com/media/ReImZejkBnqYU/giphy.gif)
+
+#### Docker keeps telling me `ERROR: mkdir [...] no space left on device`
+
+Run the cleanup script:
+
+```sh
+./_scripts/docker-cleanup.sh
+```
+
+#### Docker won't run, and it's affecting my self-esteem.
+
+This is typically related to a dependency (or sub-dependency) conflict during `npm install`. Sometimes shutting down your currently running `default` vm and re-running `./dev.sh` will help. If that doesn't work, you can get the knife out :knife::
+
+```sh
+rm -rf .docker/.npm_revision && rm -rf .docker/node_modules.tar.gz
+```
+
+Then re-run `./dev.sh`.
