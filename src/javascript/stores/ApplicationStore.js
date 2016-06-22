@@ -48,30 +48,11 @@ class ApplicationStore extends BaseStore {
             const previousName = prevBreakpoint.currentName;
             const previousValue = prevBreakpoint.currentValue;
 
-            //let innerWidth;
-
-            // switch (currentName) {
-            // case 'isTablet':
-            //     innerWidth = 718;
-            //     break;
-            // case 'isDesktop':
-            //     innerWidth = 1088;
-            //     break;
-            // case 'isLargeDesktop':
-            //     innerWidth = 1391;
-            //     break;
-            // case 'isMobile':
-            // case 'isLargeMobile':
-            // default:
-            //     innerWidth = currentValue;
-            // }
-
             this.state.breakpoint = {
                 currentName,
                 currentValue,
                 previousName,
                 previousValue,
-                //innerWidth,
             };
 
             this.emitChange();
@@ -82,10 +63,6 @@ class ApplicationStore extends BaseStore {
             if (this.state.breakpoint.previousValue === null) {
                 return;
             }
-
-            // if ((current >= 992 && previous <= 992) || (current <= 992 && previous >= 992)) {
-            //     this.emit('mobiledesktopchange');
-            // }
         }
     }
 
