@@ -9,6 +9,12 @@
 @import "mixins";
 @import "extends";
 
+// For writing CSS media queries in an easy and maintainable way
+@import "plugins/include-media";
+
+// For exporting breakpoints from Sass to JavaScript
+@import "plugins/include-media-export";
+
 // Root document (*, html, body)
 @import "root";
 

@@ -57,14 +57,24 @@ $btnBackground:             $white !default;
 $btnBackgroundHighlight:    darken($white, 10%) !default;
 $btnBorder:                 darken($white, 10%) !default;
 
-
 // Breakpoints
 // -------------------------
-$mobileWidth:               "480px";
-$largeMobileWidth:          "600px";
-$tabletWidth:               "768px";
-$desktopWidth:              "992px";
-$largeDesktopWidth:         "1392px";
+$mobileWidth:               480px;
+$largeMobileWidth:          600px;
+$tabletWidth:               768px;
+$desktopWidth:              992px;
+$largeDesktopWidth:         1392px;
+
+// Import Breakpoints
+// -------------------------
+// gives names to the breakpoints when imported to the javascript side
+$breakpoints: (
+    'isMobile':                $mobileWidth,
+    'isLargeMobile':           $largeMobileWidth,
+    'isTablet':                $tabletWidth,
+    'isDesktop':               $desktopWidth,
+    'isLargeDesktop':          $largeDesktopWidth
+) !default;
 
 
 // Easing presets
