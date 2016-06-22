@@ -72,6 +72,7 @@ const assetUrl = {
         return {
             env: this.env,
             siteUrl: this.siteUrl,
+            useS3: this.useS3,
             bucket: this.bucket,
             prefix: this.prefix,
             folder: this.folder,
@@ -84,6 +85,7 @@ const assetUrl = {
     rehydrate(state) {
         this.env = state.env;
         this.siteUrl = state.siteUrl;
+        this.useS3 = state.useS3;
         this.bucket = state.bucket;
         this.prefix = state.prefix;
         this.folder = state.folder;
@@ -91,7 +93,6 @@ const assetUrl = {
         this.bypassCdn = state.bypassCdn;
         this.urlHash = state.urlHash;
         this.rehydrated = true;
-        this.useS3 = state.useS3;
     },
 };
 
