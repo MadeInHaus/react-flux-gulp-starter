@@ -8,6 +8,7 @@ export default class Navigation extends React.Component {
             <div className="container">
                 <IndexLink to="/" className="logo" activeClassName="selected">Home</IndexLink>
                 <Link to="/about" activeClassName="selected">About</Link>
+                <Link to="/contact">Contact</Link>
                 <Link to="/makejavascriptgreatagain" activeClassName="selected">404</Link>
                 <Link to="https://github.com/MadeInHaus/react-flux-gulp-starter" target="_blank">Github</Link>
             </div>

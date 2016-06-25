@@ -1,6 +1,7 @@
 const dest = './build';
 const src = './src';
 const port = parseInt(process.env.PORT, 10) || 3000;
+const path = require('path');
 
 module.exports = {
     nodemon: {
@@ -12,14 +13,6 @@ module.exports = {
             'DEBUG': 'Server',
             'PORT': port,
         },
-    },
-    browserSync: {
-        // Don't use browsersync's static browser.
-        // We just proxy into the actual server.js here.
-        proxy: 'localhost:' + port,
-        port: port + 1,
-        notify: false,
-        open: false,
     },
     sass: {
         src: src + '/sass/**/*.{sass,scss}',
@@ -47,16 +40,6 @@ module.exports = {
             // src + '/**/html/**/*',
         ],
         dest,
-    },
-    browserify: {
-        // A separate bundle will be generated for each
-        // bundle config in the list below
-        bundleConfigs: [{
-            entries: src + '/javascript/client.js',
-            dest: dest + '/js',
-            outputName: 'client.js',
-            extensions: ['.js', '.jsx'],
-        }],
     },
     production: {
         cssSrc: dest + '/css/*.css',
@@ -86,6 +69,16 @@ module.exports = {
     settings: {
         src: './settings.json',
         dest,
+    },
+    webpackDevServer:  {
+        contentBase: path.resolve('../build/'),
+        publicPath: '/js/',
+        fileName: 'client.js',
+        quiet: false,
+        noInfo: true,
+        stats: {
+            colors: true
+        }
     },
     modernizr: {
         'fileName': 'modernizr-custom.js',

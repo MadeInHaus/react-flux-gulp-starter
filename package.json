@@ -7,7 +7,8 @@
   "description": "React-Gulp starter with common tasks and scenarios",
   "scripts": {
     "postinstall": "gulp production",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node webpack/dev_server.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "6.0.4",
+    "babel-loader": "^6.2.4",
     "babelify": "7.3.0",
     "browser-sync": "2.13.0",
     "browserify": "13.0.1",
@@ -37,13 +39,16 @@
     "gulp-uglify": "1.5.3",
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.6",
+    "http-proxy": "^1.14.0",
     "minimist": "1.2.0",
     "pretty-hrtime": "1.0.2",
     "q": "1.4.1",
     "require-dir": "0.3.0",
     "slack-node": "0.2.0",
     "vinyl-source-stream": "1.1.0",
-    "watchify": "3.7.0"
+    "watchify": "3.7.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "babel-plugin-module-alias": "1.4.0",
@@ -63,6 +68,7 @@
     "fluxible-action-utils": "0.2.4",
     "fluxible-addons-react": "0.2.8",
     "lodash": "4.13.1",
+    "node-ensure": "0.0.0",
     "react": "15.1.0",
     "react-dom": "15.1.0",
     "react-router": "2.4.1"

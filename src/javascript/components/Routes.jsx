@@ -1,14 +1,38 @@
+if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
+
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 import Application from 'components/Application';
 import Home from 'components/Home';
-import About from 'components/About';
 import NotFound from 'components/NotFound';
 
-export default (
-    <Route path="/" component={Application}>
-        <IndexRoute component={Home}/>
-        <Route path="about" component={About}/>
-        <Route path="*" component={NotFound} isNotFound/>
-    </Route>
-);
+export default {
+    path : '/',
+    component : Application,
+    childRoutes: [
+        {
+            path: 'about',
+            getComponent(nextState, cb){
+                require.ensure([], require => {
+                    cb(null, require('./About.jsx').default);
+                });
+            }
+        },
+        {
+            path: 'contact',
+            getComponent(nextState, cb) {
+                require.ensure([], require => {
+                    cb(null, require('./Contact.jsx').default);
+                });
+            }
+        },
+        {
+            path: '*',
+            component: NotFound
+        }
+
+    ],
+    indexRoute : {
+        component: Home
+    }
+};

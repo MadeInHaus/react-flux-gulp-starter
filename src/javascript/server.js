@@ -35,6 +35,21 @@ server.use(compression());
 server.use('/', express.static(path.resolve('./build')));
 server.use(inlineStyles('./build/css/inline.css'));
 
+// proxy webpack dev server assets
+if(process.env.NODE_ENV !== 'production'){
+    const httpProxy = require('http-proxy');
+    const proxy = httpProxy.createProxyServer();
+    server.all('/js/*', (req, res) => {
+        proxy.web(req, res, {
+            target: 'http://localhost:8080'
+        });
+        return;
+    });
+    proxy.on('error', (e) => {
+        console.log('Could not connect to proxy, please try again...');
+    });
+}
+
 server.use((req, res) => {
     const location = createMemoryHistory().createLocation(req.url);
     const context = app.createContext({
@@ -70,15 +85,14 @@ server.use((req, res) => {
                     const props = Object.assign(
                                         {},
                                         renderProps,
-                                        { context: context.getComponentContext() }
+                                        {
+                                            context: context.getComponentContext(),
+                                            key: Date.now()
+                                        }
                                     );
 
                     const RouterComponent = provideContext(RouterContext, app.customContexts);
                     const HtmlComponent = provideContext(Html, app.customContexts);
-
-                    const markup = ReactDOMServer.renderToString(
-                                        React.createElement(RouterComponent, props)
-                                    );
 
                     const html =
                         ReactDOMServer.renderToStaticMarkup(
@@ -86,11 +100,10 @@ server.use((req, res) => {
                                 title: 'react-flux-gulp-starter - madeinhaus.com',
                                 context: context.getComponentContext(),
                                 state: res.locals.state,
-                                markup,
+                                children: [React.createElement(RouterComponent, props)],
                                 location,
                             }
                         ));
-
                     res.send(`<!DOCTYPE html>${html}`);
                 })
                 .catch(err => {

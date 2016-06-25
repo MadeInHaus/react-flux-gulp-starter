@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 class Html extends React.Component {
     static propTypes = {
-        markup: PropTypes.string.isRequired,
+        children: PropTypes.array.isRequired,
         state: PropTypes.object.isRequired,
         title: PropTypes.string.isRequired,
     };
@@ -34,10 +34,10 @@ class Html extends React.Component {
                     <div
                         id="app"
                         className="app"
-                        dangerouslySetInnerHTML={{ __html: this.props.markup }}
-                    />
+                    >{this.props.children}</div>
                     <script dangerouslySetInnerHTML={{ __html: this.props.state }} />
                     <script src={this.context.assetUrl('/js/modernizr-custom.js')} defer />
+                        <script src={this.context.assetUrl('/js/vendor.bundle.js')} defer />
                     <script src={this.context.assetUrl('/js/client.js')} defer />
                 </body>
             </html>

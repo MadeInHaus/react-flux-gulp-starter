@@ -12,8 +12,7 @@ var sassTask = require('./sass');
 var imagesTask = require('./images');
 var staticAssets = require('./staticAssets');
 
-gulp.task('watch', 'Listen for file changes and recompile', ['watchify'], function(callback) {
-
+gulp.task('watch', 'Listen for file changes and recompile', ['webpack-dev-server'], function(callback) {
     watch(config.sass.src, {
         name: 'watch-sass',
         read: false
@@ -24,13 +23,11 @@ gulp.task('watch', 'Listen for file changes and recompile', ['watchify'], functi
         read: false
     }, imagesTask);
 
-
-
     if(!_.isEmpty(config.staticAssets.src)) {
         watch(config.staticAssets.src, {
             name: 'watch-static-assets',
             read: false
-        }, staticAssets);        
+        }, staticAssets);
     }
 
     callback();
