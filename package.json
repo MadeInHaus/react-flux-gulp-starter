@@ -7,8 +7,7 @@
   "description": "React-Gulp starter with common tasks and scenarios",
   "scripts": {
     "postinstall": "gulp production",
-    "start": "node server.js",
-    "dev": "node webpack/dev_server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

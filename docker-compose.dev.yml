@@ -10,6 +10,7 @@ web:
     - '3000:3000'
     - '3001:3001'
     - '3002:3002'
+    - '8080:8080'
   tty: true
   stdin_open: true
   read_only: false

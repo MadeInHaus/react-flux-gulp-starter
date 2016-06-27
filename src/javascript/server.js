@@ -32,23 +32,32 @@ const server = express();
 expressState.extend(server);
 
 server.use(compression());
-server.use('/', express.static(path.resolve('./build')));
-server.use(inlineStyles('./build/css/inline.css'));
 
 // proxy webpack dev server assets
-if(process.env.NODE_ENV !== 'production'){
+if(process.env.NODE_ENV === 'development'){
     const httpProxy = require('http-proxy');
     const proxy = httpProxy.createProxyServer();
-    server.all('/js/*', (req, res) => {
+    server.all('/js/*', (req, res, next) => {
+
+        let _break = false;
+        ['modernizr'].forEach(exclude => {
+            if(req.url.includes(exclude)) _break = true;
+        });
+
+        if(_break) return next();
+
         proxy.web(req, res, {
-            target: 'http://localhost:8080'
+            target: 'http://0.0.0.0:8080'
         });
         return;
     });
     proxy.on('error', (e) => {
-        console.log('Could not connect to proxy, please try again...');
+        console.log(`There was an error while connecting to the webpack dev server proxy. ${e}`);
     });
 }
+
+server.use('/', express.static(path.resolve('./build')));
+server.use(inlineStyles('./build/css/inline.css'));
 
 server.use((req, res) => {
     const location = createMemoryHistory().createLocation(req.url);

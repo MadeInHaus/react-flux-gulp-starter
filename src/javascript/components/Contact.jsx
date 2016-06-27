@@ -4,7 +4,7 @@ class Contact extends React.Component {
     render () {
         return (
             <p>
-                Don't call, don't text. 
+                Don't call, don't text.
             </p>
         );
     }

@@ -50,7 +50,9 @@ gulp.task('webpack:build-dev', callback => {
 
 gulp.task('webpack-dev-server', callback => {
     let firstBundle = true;
-    config.entry.app.unshift('webpack-dev-server/client?http://localhost:8080/');
+
+    devConfig.entry.app.unshift('webpack-dev-server/client?http://0.0.0.0:8080/');
+
     const compiler = webpack(devConfig);
     let bundleStart;
 
@@ -59,8 +61,6 @@ gulp.task('webpack-dev-server', callback => {
         bundleStart = Date.now();
     });
 
-    // We also give notice when it is done compiling, including the
-    // time it took. Nice to have
     compiler.plugin('done', function() {
         if(firstBundle){
             callback();
