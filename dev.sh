@@ -20,6 +20,7 @@ CURRENT_DIR=${PWD##*/}
 dockerName=${CURRENT_DIR//[^a-zA-Z0-9]/}
 webContainerName="${dockerName}_web"
 
+
 WEB_CONTAINER=""
 
 function getWebContainer(){
@@ -83,35 +84,8 @@ function export_node_modules() {
 }
 
 
-USE_BOOT2DOCKER=false
-
-while [[ $# > 0 ]]
-do
-key="$1"
-
-case $key in
-    -b|--boot2docker)
-    USE_BOOT2DOCKER=true
-    ;;
-    *)
-            # unknown option
-    ;;
-esac
-shift # past argument or value
-done
-
-if [ "$USE_BOOT2DOCKER" = true ]; then
-    boot2docker up
-    eval "$(boot2docker shellinit)"
-
-else
-    docker-machine start default || true
-    eval "$(docker-machine env default)"
-fi
-
 # Skip Dependencies isn't supported in older versions
 install_notification_server
-docker-osx-dev install --skip-dependencies --remove-shared-folders || docker-osx-dev install --skip-dependencies || docker-osx-dev install
 pkill -f docker-osx-dev || true
 
 docker-compose  -p "$dockerName" -f docker-compose.dev.yml stop || true
@@ -130,9 +104,6 @@ trap ctrl_c SIGINT SIGTERM INT TERM ERR
 
 export_node_modules
 
-docker-osx-dev sync-only -c docker-compose.dev.yml || true
-
-docker-osx-dev -c docker-compose.dev.yml | sed "s/$/$(printf '\r')/" &
 pids="$pids $!"
 
 PORT=12345 notify-send-server &
@@ -141,6 +112,7 @@ pids="$pids $!"
 docker-compose -p "$dockerName" -f docker-compose.dev.yml up -d
 getWebContainer
 echo "container is $WEB_CONTAINER"
+
 docker attach --detach-keys='ctrl-c' $WEB_CONTAINER;
 
 ctrl_c
