@@ -6,14 +6,17 @@
     ],
     "plugins": [
         "transform-class-properties",
-        ["babel-plugin-module-alias", [
-              { "src": "./src/javascript/actions", "expose": "actions" },
-              { "src": "./src/javascript/components", "expose": "components" },
-              { "src": "./src/javascript/libs", "expose": "libs" },
-              { "src": "./src/javascript/stores", "expose": "stores" },
-              { "src": "./src/javascript/utils", "expose": "utils" },
-              { "src": "./src/javascript/middleware", "expose": "middleware" }
-            ]
-        ]
+        [ "module-resolver", {
+            "root": [ "./src/javascript" ],
+            "alias": {
+                "actions": "actions",
+                "components": "components",
+                "config": "config",
+                "libs": "libs",
+                "stores": "stores",
+                "utils": "utils",
+                "middleware": "middleware"
+            }
+        }]
     ]
 }
