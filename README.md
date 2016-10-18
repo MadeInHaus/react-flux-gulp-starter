@@ -27,10 +27,12 @@ We don't always choose isomorphic React/Flux/Gulp, but when we do, we clone this
 3. Install [Kitematic](https://kitematic.com)
 4. Install [docker-osx-dev](https://github.com/brikis98/docker-osx-dev#install)
 5. Run `./dev.sh`
+6. To exit from gulp type `ctrl-c` + enter
+7. To exit the docker container type `ctrl-d` + enter
 
 The project should now be viewable at [http://default:3000](http://default:3000). You can adjust default Browsersync settings at [http://default:3002](http://default:3002).
 
-Of course, if you don't want to run Docker, you can also run it locally. 
+Of course, if you don't want to run Docker, you can also run it locally.
 
 #### 1. Install gulp globally:
 
