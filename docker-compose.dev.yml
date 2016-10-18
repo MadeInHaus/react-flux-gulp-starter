@@ -1,29 +1,34 @@
-web:
-  extends:
-    file: docker-compose.common.yml
-    service: web
-  volumes:
-    - ./src:/app/user/src
-  environment:
-    NODE_ENV: 'development'
-  ports:
-    - '3000:3000'
-    - '3001:3001'
-    - '3002:3002'
-  tty: true
-  stdin_open: true
-  read_only: false
-#   links:
-#     - herokuPostgresql
-#     - herokuRedis
-# herokuPostgresql:
-#   ports:
-#     - '5432:5432'
-#   extends:
-#     file: docker-compose.common.yml
-#     service: herokuPostgresql
-# herokuRedis:
-#   image: redis
-#   extends:
-#     file: docker-compose.common.yml
-#     service: herokuRedis
+version: '2'
+volumes:
+  yarn:
+    external: true
+  npmCache:
+    external: true
+  nodeModules:
+    external: false
+services:
+  web:
+    extends:
+      file: docker-compose.common.yml
+      service: web
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+      args:
+        PACKAGE_INSTALLER: yarn
+    network_mode: "bridge"
+    command: 'bash'
+    volumes:
+      - .:/app/user
+      - nodeModules:/app/user/node_modules
+      - npmCache:/root/.npm
+      - yarn:/root/.yarn-cache
+    environment:
+      NODE_ENV: 'development'
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+      - '3002:3002'
+    tty: true
+    stdin_open: true
+    read_only: false

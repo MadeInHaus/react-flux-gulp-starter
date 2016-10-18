@@ -2,3 +2,12 @@ node_modules
 build
 dev.sh
 .git
+.docker
+_scripts
+docker-compose.yml
+docker-compose.dev.yml
+docker-compose.common.yml
+Dockerfile
+Dockerfile-dev
+README.md
+LICENSE.md

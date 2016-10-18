@@ -17,8 +17,4 @@ RUN mkdir -p /app/user && \
     ${PACKAGE_INSTALLER} config set registry "$NPM_REGISTRY"
 
 WORKDIR /app/user
-COPY package.json yarn.lock /app/user/
-RUN $PACKAGE_INSTALLER install && \
-    $PACKAGE_INSTALLER cache clean
-COPY . /app/user
-RUN gulp production
+RUN echo "${PACKAGE_INSTALLER} install && gulp" >> /root/.bashrc
