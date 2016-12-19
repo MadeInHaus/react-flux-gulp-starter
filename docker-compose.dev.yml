@@ -24,6 +24,9 @@ services:
       - yarn:/root/.yarn-cache
     environment:
       NODE_ENV: 'development'
+    env_file:
+      - ./.docker/common.env
+      - ./.env
     ports:
       - '3000:3000'
       - '3001:3001'

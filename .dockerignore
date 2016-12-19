@@ -3,10 +3,10 @@ build
 dev.sh
 .git
 .docker
+.env
+Jenkinsfile
 _scripts
-docker-compose.yml
-docker-compose.dev.yml
-docker-compose.common.yml
+docker-compose.*
 Dockerfile
 Dockerfile-dev
 README.md

@@ -16,3 +16,6 @@ services:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_EMAIL: sam@madeinhaus.com
+    env_file:
+      - ./.docker/common.env
+      - ./.env
