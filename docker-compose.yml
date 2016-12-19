@@ -1,11 +1,10 @@
-version: '2'
+version: '2.1'
 services:
   web:
     extends:
       file: docker-compose.common.yml
       service: web
     build:
-      context: .
       args:
         NPM_REGISTRY: http://sinopia.view.build
         PACKAGE_INSTALLER: yarn

@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 volumes:
   yarn:
     external: true
@@ -12,7 +12,6 @@ services:
       file: docker-compose.common.yml
       service: web
     build:
-      context: .
       dockerfile: Dockerfile-dev
       args:
         PACKAGE_INSTALLER: yarn

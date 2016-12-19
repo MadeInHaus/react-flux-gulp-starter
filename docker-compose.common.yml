@@ -1,7 +1,10 @@
-version: '2'
+version: '2.1'
 services:
   web:
-    build: .
+    image: "377941069960.dkr.ecr.us-east-1.amazonaws.com/react-flux-gulp-starter/web:${ENV:-local}"
+    build:
+      context: .
+      dockerfile: Dockerfile
     network_mode: "bridge"
     command: 'bash -c ''gulp'''
     working_dir: /app/user
