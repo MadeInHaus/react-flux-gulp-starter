@@ -1,3 +1,10 @@
 var gulp = require('gulp-help')(require('gulp'));
 
-gulp.task('default', 'Runs build and starts watch task', ['staticAssets' ,'sass', 'images', 'modernizr', 'browserSync']);
+gulp.task('default', 'Runs build and starts watch task', [
+    'clean',
+    'sass',
+    'images',
+    'modernizr',
+    'browserSync',
+    'staticAssets',
+]);
