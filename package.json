@@ -6,7 +6,6 @@
   },
   "description": "React-Gulp starter with common tasks and scenarios",
   "scripts": {
-    "postinstall": "gulp production",
     "start": "node server.js"
   },
   "repository": {
