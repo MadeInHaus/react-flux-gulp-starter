@@ -96,5 +96,7 @@ project/settings/hosts/localhost.py
 # Keep credentials out of the repo
 settings.json
 .env
+.env.*
+!.env.*.*
 .docker/node_modules.tar.gz
 .docker/.npm_revision
