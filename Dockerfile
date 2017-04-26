@@ -21,4 +21,4 @@ COPY package.json yarn.lock /app/user/
 RUN $PACKAGE_INSTALLER install && \
     $PACKAGE_INSTALLER cache clean
 COPY . /app/user
-RUN gulp production
+RUN NODE_ENV=production gulp production
