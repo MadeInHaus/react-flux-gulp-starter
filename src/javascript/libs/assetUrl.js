@@ -36,7 +36,7 @@ const assetUrl = {
         if (cloudfront && !bypassCdn) {
             urlBase = `${cloudfront}${urlHash}/`;
         } else {
-            urlBase = `http://${bucket}.s3.amazonaws.com/${prefix}/${folder}/`;
+            urlBase = `https://${bucket}.s3.amazonaws.com/${prefix}/${folder}/`;
         }
 
         const slashRegex = /([^:])\/{1,}/g;
