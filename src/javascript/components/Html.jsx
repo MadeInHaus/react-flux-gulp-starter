@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class Html extends React.Component {
+class Html extends Component {
     static propTypes = {
         markup: PropTypes.string.isRequired,
         state: PropTypes.object.isRequired,

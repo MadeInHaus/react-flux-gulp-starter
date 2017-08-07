@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import doStuff from 'actions/doStuff';
 
-class About extends React.Component {
+class About extends PureComponent {
     // See https://github.com/yahoo/fluxible-action-utils#executemultiple-context-actions-done
     static load = (/** context, props **/) => ({
         doStuff: {

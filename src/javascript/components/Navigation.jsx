@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Link, IndexLink } from 'react-router';
 
-export default class Navigation extends React.Component {
+export default class Navigation extends PureComponent {
     render() {
         return (
             <div className="container">
