@@ -2,23 +2,29 @@
 // Utilities
 // --------------------------------------------------
 
-// Floats
-.pull-right { float: right; }
-.pull-left { float: left; }
-
 // Toggling
-.hide, .hidden { display: none; }
-.show { display: block; }
+.hide,
+.hidden {
+    display: none;
+}
+.show {
+    display: block;
+}
 
 // Visibility
-.invisible { visibility: hidden; }
-.visible { visibility: visible; }
-
-// Clearing floats
-.clearfix { @include clearfix; }
+.invisible {
+    visibility: hidden;
+}
+.visible {
+    visibility: visible;
+}
 
 // Accessible yet invisible text
-.hide-text { @include hide-text; }
+.hide-text {
+    @include hide-text;
+}
 
 // No pointer events
-.no-pointer-events { pointer-events: none; }
+.no-pointer-events {
+    pointer-events: none;
+}

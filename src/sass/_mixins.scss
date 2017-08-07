@@ -85,18 +85,6 @@
     }
 }
 
-// Clearfix
-@mixin clearfix {
-    &:before,
-    &:after {
-        content: "";
-        display: table;
-    }
-    &:after {
-        clear: both;
-    }
-}
-
 // Text overflow
 // Requires inline-block or block for proper styling
 @mixin text-overflow {
