@@ -7,8 +7,8 @@ import NotFound from 'components/NotFound';
 
 export default (
     <Route path="/" component={Application}>
-        <IndexRoute component={Home}/>
-        <Route path="about" component={About}/>
-        <Route path="*" component={NotFound} isNotFound/>
+        <IndexRoute component={Home} />
+        <Route path="about" component={About} />
+        <Route path="*" component={NotFound} isNotFound />
     </Route>
 );

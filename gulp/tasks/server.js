@@ -3,10 +3,13 @@ var changed = require('gulp-changed'),
     config = require('../config').nodemon,
     nodemon = require('gulp-nodemon');
 
-gulp.task('server', 'Starts local development server and watches', ['watch'], function(cb) {
-    var started = false;
-    return nodemon(config)
-        .on('start', function() {
+gulp.task(
+    'server',
+    'Starts local development server and watches',
+    ['watch'],
+    function(cb) {
+        var started = false;
+        return nodemon(config).on('start', function() {
             if (!started) {
                 started = true;
                 setTimeout(function() {
@@ -14,4 +17,5 @@ gulp.task('server', 'Starts local development server and watches', ['watch'], fu
                 }, 1000);
             }
         });
-});
+    }
+);
