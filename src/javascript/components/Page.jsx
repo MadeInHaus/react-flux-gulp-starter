@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import doStuff from 'actions/doStuff';
 
-class About extends PureComponent {
+export default class Page extends PureComponent {
     // See https://github.com/yahoo/fluxible-action-utils#executemultiple-context-actions-done
     static load = (/** context, props **/) => ({
         doStuff: {
@@ -11,8 +11,8 @@ class About extends PureComponent {
 
     render() {
         return (
-            <div>
-                <h1>About</h1>
+            <article>
+                <h1>Sample Page</h1>
                 <p>
                     Salvia irony slow-carb readymade, forage Etsy small batch
                     aesthetic hoodie. Pop-up leggings sartorial jean shorts
@@ -38,9 +38,7 @@ class About extends PureComponent {
                     street art single-origin coffee lo-fi brunch chia, High Life
                     fap locavore.
                 </p>
-            </div>
+            </article>
         );
     }
 }
-
-export default About;

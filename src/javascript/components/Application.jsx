@@ -10,16 +10,12 @@ class Application extends Component {
 
     render() {
         return (
-            <div>
-                <nav>
-                    <Navigation />
-                </nav>
-                <main>
-                    {React.cloneElement(this.props.children, {
-                        appState: this.props.appState,
-                    })}
-                </main>
-            </div>
+            <main>
+                <Navigation />
+                {React.cloneElement(this.props.children, {
+                    appState: this.props.appState,
+                })}
+            </main>
         );
     }
 }

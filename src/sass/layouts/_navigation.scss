@@ -3,27 +3,11 @@
 // ---------------------------
 
 nav {
-    padding: 2em;
-    a {
-        flex: 0 0 auto;
-        align-self: center;
-        padding: 0.5em 1em;
-        font-size: 1.5em;
-    }
+    margin-bottom: 5em;
     .selected {
-        &, &:hover {
-            color: $black;
+        &,
+        &:hover {
             text-decoration: none;
-            cursor: default;
         }
-    }
-    .logo {
-        width: 3.2em;
-        height: 3.2em;
-        margin-right: 1em;
-        padding: 0;
-        text-indent: -999em;
-        background-image: url(../images/haus-friend.png);
-        background-size: contain;
     }
 }
