@@ -1,5 +1,5 @@
 // Utils
-import _ from 'lodash';
+import _last from 'lodash/last';
 import path from 'path';
 import d from 'debug';
 
@@ -61,7 +61,7 @@ server.use((req, res) => {
         } else if (error) {
             res.status(500).send(error.message);
         } else {
-            if (_.last(renderProps.routes).isNotFound) {
+            if (_last(renderProps.routes).isNotFound) {
                 res.status(404);
             }
             fetchRouteData(context, renderProps)

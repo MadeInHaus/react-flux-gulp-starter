@@ -1,13 +1,14 @@
-import _ from 'lodash';
+import _isFunction from 'lodash/isFunction';
+import _assign from 'lodash/assign';
 
 import executeMultiple from 'fluxible-action-utils/async/executeMultiple';
 
 export default function fetchRouteData(context, routerState) {
     const actionsArray = routerState.components
-        .filter(component => component && _.isFunction(component.load))
+        .filter(component => component && _isFunction(component.load))
         .map(component => component.load(context, routerState.params))
         .reduce(
-            (actions, componentActions) => _.assign(actions, componentActions),
+            (actions, componentActions) => _assign(actions, componentActions),
             {}
         );
 
