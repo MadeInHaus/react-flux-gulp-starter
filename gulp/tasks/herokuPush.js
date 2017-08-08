@@ -10,7 +10,9 @@ var isProd = flags.production || flags.prod || false;
 var isStaging = flags.staging || flags.stage || false;
 var isDev = flags.development || flags.dev || false;
 
-gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(callback) {
+gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
+    callback
+) {
     var env;
     var uptodate = false;
 
@@ -26,7 +28,11 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(c
     }
 
     console.log('Pushing latest to Heroku ' + env + ' environment...\n\n');
-    var push = spawn('git', ['push', configHeroku[env].remoteName, configHeroku[env].branch + ':master']);
+    var push = spawn('git', [
+        'push',
+        configHeroku[env].remoteName,
+        configHeroku[env].branch + ':master',
+    ]);
 
     push.stdout.on('data', function(data) {
         console.log(data.toString());
@@ -40,12 +46,16 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(c
     });
     push.on('exit', function(code) {
         if (code == 0 && !uptodate) {
-            if (configSettings && configSettings.src && fs.existsSync(configSettings.src)) {
+            if (
+                configSettings &&
+                configSettings.src &&
+                fs.existsSync(configSettings.src)
+            ) {
                 var settings;
                 try {
                     settings = JSON.parse(fs.readFileSync(configSettings.src));
                 } catch (e) {
-                    console.error("Malformed settings.json");
+                    console.error('Malformed settings.json');
                 }
                 if (settings && settings.slack) {
                     console.log('Sending message to ' + slackSettings.channel);
@@ -53,13 +63,18 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(c
                     var slack = new Slack();
                     var slackSettings = settings.slack;
                     slack.setWebHook(slackSettings.webhook);
-                    slack.webhook({
-                        channel: slackSettings.channel,
-                        username: slackSettings.username,
-                        text: slackSettings.message + configHeroku[env].website
-                    }, function(err, response) {
-                        callback();
-                    });
+                    slack.webhook(
+                        {
+                            channel: slackSettings.channel,
+                            username: slackSettings.username,
+                            text:
+                                slackSettings.message +
+                                configHeroku[env].website,
+                        },
+                        function(err, response) {
+                            callback();
+                        }
+                    );
 
                     return;
                 }

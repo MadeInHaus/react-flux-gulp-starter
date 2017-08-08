@@ -1,7 +1,6 @@
 import BaseStore from 'fluxible/addons/BaseStore';
 
 class ApplicationStore extends BaseStore {
-
     static storeName = 'ApplicationStore';
 
     static handlers = {
@@ -31,7 +30,6 @@ class ApplicationStore extends BaseStore {
     rehydrate(state) {
         this.stuff = state.stuff;
     }
-
 }
 
 export default ApplicationStore;

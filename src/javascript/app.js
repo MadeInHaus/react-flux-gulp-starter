@@ -1,5 +1,5 @@
 import Fluxible from 'fluxible';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import Routes from 'components/Routes.jsx';
 import ApplicationStore from 'stores/ApplicationStore';
 

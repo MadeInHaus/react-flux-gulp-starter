@@ -50,15 +50,22 @@ const assetUrl = {
                             return path;
                         }
 
-                        if (path.indexOf('http') === 0 || path.indexOf(urlBase) === 0) {
+                        if (
+                            path.indexOf('http') === 0 ||
+                            path.indexOf(urlBase) === 0
+                        ) {
                             return path;
                         }
 
-                        const cleanPath = (path.slice(0, 1) === '/') ? path.slice(1) : path;
+                        const cleanPath =
+                            path.slice(0, 1) === '/' ? path.slice(1) : path;
 
                         // Prepend the urlBase and remove any incidences of multiple
                         // slashes after the initial http://
-                        return (`${urlBase}${cleanPath}`).replace(slashRegex, '$1/');
+                        return `${urlBase}${cleanPath}`.replace(
+                            slashRegex,
+                            '$1/'
+                        );
                     },
                     siteUrl() {
                         return siteUrl;

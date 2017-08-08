@@ -1,17 +1,31 @@
 import React from 'react';
 
-export default class Home extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <h1>Welcome to react-flux-gulp-starter!</h1>
-                <ul>
-                    <li>Clone on <a href="https://github.com/MadeInHaus/react-flux-gulp-starter" target="_blank">GitHub</a></li>
-                    <li>Made in <a href="http://madeinhaus.com/" target="_blank">HAUS</a></li>
-                </ul>
-            </div>
-        );
-    }
-
+export default function Home() {
+    return (
+        <article>
+            <h1>Hello. Greetings.</h1>
+            <p>You're viewing barebones UI for our React/Flux/Gulp starter.</p>
+            <ul>
+                <li>
+                    Clone on{' '}
+                    <a
+                        href="https://github.com/MadeInHaus/react-flux-gulp-starter"
+                        target="_blank"
+                    >
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    Made in{' '}
+                    <a
+                        href="https://madeinhaus.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        HAUS
+                    </a>
+                </li>
+            </ul>
+        </article>
+    );
 }

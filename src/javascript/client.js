@@ -38,12 +38,16 @@ app.rehydrate(window.App, (err, context) => {
                     return;
                 }
                 fetchRouteData(context, this.state)
-                    .then(() => { /* emit an event? */ })
+                    .then(() => {
+                        /* emit an event? */
+                    })
                     .catch(fetchDataErr => {
                         console.error(fetchDataErr.stack);
                     });
             }}
-        >{routes}</RouterWithContext>,
+        >
+            {routes}
+        </RouterWithContext>,
         document.getElementById('app'),
         () => {
             debug('React Rendered');

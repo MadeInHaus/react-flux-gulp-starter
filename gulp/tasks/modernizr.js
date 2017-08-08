@@ -4,7 +4,8 @@ var uglify = require('gulp-uglify');
 var config = require('../config').modernizr;
 
 gulp.task('modernizr', function() {
-    gulp.src('*.js')
+    gulp
+        .src('*.js')
         .pipe(modernizr(config.fileName, config.options))
         .pipe(uglify())
         .pipe(gulp.dest(config.dest));

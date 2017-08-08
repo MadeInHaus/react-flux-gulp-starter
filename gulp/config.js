@@ -8,9 +8,9 @@ module.exports = {
         ext: 'js',
         ignore: ['build/*', 'node_modules/*'],
         env: {
-            'NODE_ENV': 'development',
-            'DEBUG': 'Server',
-            'PORT': port,
+            NODE_ENV: 'development',
+            DEBUG: 'Server',
+            PORT: port,
         },
     },
     browserSync: {
@@ -51,12 +51,14 @@ module.exports = {
     browserify: {
         // A separate bundle will be generated for each
         // bundle config in the list below
-        bundleConfigs: [{
-            entries: src + '/javascript/client.js',
-            dest: dest + '/js',
-            outputName: 'client.js',
-            extensions: ['.js', '.jsx'],
-        }],
+        bundleConfigs: [
+            {
+                entries: src + '/javascript/client.js',
+                dest: dest + '/js',
+                outputName: 'client.js',
+                extensions: ['.js', '.jsx'],
+            },
+        ],
     },
     production: {
         cssSrc: dest + '/css/*.css',
@@ -88,12 +90,11 @@ module.exports = {
         dest,
     },
     modernizr: {
-        'fileName': 'modernizr-custom.js',
-        'dest': dest + '/js',
-        'options': {
-
+        fileName: 'modernizr-custom.js',
+        dest: dest + '/js',
+        options: {
             // Based on default settings on http://modernizr.com/download/
-            'options': [
+            options: [
                 'setClasses',
                 'addTest',
                 'html5printshiv',
@@ -102,7 +103,7 @@ module.exports = {
             ],
 
             // Define any tests you want to explicitly include
-            'tests': [
+            tests: [
                 'autoplay',
                 'csspointerevents',
                 'devicemotion',
@@ -116,13 +117,13 @@ module.exports = {
 
             // By default, will crawl your project for references to Modernizr tests
             // Set to false to disable
-            'crawl': false,
+            crawl: false,
 
             // Set to true to pass in buffers via the 'files' parameter below
-            'useBuffers': false,
+            useBuffers: false,
 
             // Have custom Modernizr tests? Add them here.
-            'customTests': [],
+            customTests: [],
         },
     },
 };

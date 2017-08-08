@@ -1,5 +1,5 @@
 // Utils
-import _ from 'lodash';
+import _last from 'lodash/last';
 import path from 'path';
 import d from 'debug';
 
@@ -54,11 +54,14 @@ server.use((req, res) => {
 
     match({ routes, location }, (error, redirectLocation, renderProps) => {
         if (redirectLocation) {
-            res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+            res.redirect(
+                301,
+                redirectLocation.pathname + redirectLocation.search
+            );
         } else if (error) {
             res.status(500).send(error.message);
         } else {
-            if (_.last(renderProps.routes).isNotFound) {
+            if (_last(renderProps.routes).isNotFound) {
                 res.status(404);
             }
             fetchRouteData(context, renderProps)
@@ -67,29 +70,32 @@ server.use((req, res) => {
                     appState.env = process.env.NODE_ENV || 'local';
                     res.expose(appState, 'App');
 
-                    const props = Object.assign(
-                                        {},
-                                        renderProps,
-                                        { context: context.getComponentContext() }
-                                    );
+                    const props = Object.assign({}, renderProps, {
+                        context: context.getComponentContext(),
+                    });
 
-                    const RouterComponent = provideContext(RouterContext, app.customContexts);
-                    const HtmlComponent = provideContext(Html, app.customContexts);
+                    const RouterComponent = provideContext(
+                        RouterContext,
+                        app.customContexts
+                    );
+                    const HtmlComponent = provideContext(
+                        Html,
+                        app.customContexts
+                    );
 
                     const markup = ReactDOMServer.renderToString(
-                                        React.createElement(RouterComponent, props)
-                                    );
+                        React.createElement(RouterComponent, props)
+                    );
 
-                    const html =
-                        ReactDOMServer.renderToStaticMarkup(
-                            React.createElement(HtmlComponent, {
-                                title: 'react-flux-gulp-starter - madeinhaus.com',
-                                context: context.getComponentContext(),
-                                state: res.locals.state,
-                                markup,
-                                location,
-                            }
-                        ));
+                    const html = ReactDOMServer.renderToStaticMarkup(
+                        React.createElement(HtmlComponent, {
+                            title: 'react-flux-gulp-starter - madeinhaus.com',
+                            context: context.getComponentContext(),
+                            state: res.locals.state,
+                            markup,
+                            location,
+                        })
+                    );
 
                     res.send(`<!DOCTYPE html>${html}`);
                 })
@@ -113,7 +119,7 @@ const instance = server.listen(port, () => {
         });
 
         setTimeout(() => {
-            debug('Server didn\'t stop in top, terminating');
+            debug("Server didn't stop in top, terminating");
             process.exit(0);
         }, 9.9 * 1000);
     });
