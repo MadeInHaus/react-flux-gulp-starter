@@ -67,6 +67,7 @@
         "fluxible-action-utils": "0.2.4",
         "fluxible-addons-react": "0.2.13",
         "lodash": "4.17.4",
+        "prop-types": "^15.5.10",
         "react": "15.6.1",
         "react-dom": "15.6.1",
         "react-router": "3.0.2"
