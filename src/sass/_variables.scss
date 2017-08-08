@@ -6,8 +6,6 @@
 // -------------------------
 $white: #ffffff !default;
 $black: #000000 !default;
-$green: #8bd5a1 !default;
-$gold: #9f8548 !default;
 
 // Scaffolding
 // -------------------------
@@ -17,8 +15,8 @@ $hrBorder: $black !default;
 
 // Links
 // -------------------------
-$linkColor: $gold !default;
-$linkColorHover: darken($linkColor, 10%) !default;
+$linkColor: 'inherit' !default;
+$linkColorHover: 'inherit' !default;
 
 // Typography
 // -------------------------
