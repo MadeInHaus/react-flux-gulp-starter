@@ -1,14 +1,14 @@
-var gulp = require('gulp-help')(require('gulp'));
-var spawn = require('child_process').spawn;
-var config = require('../config').heroku;
-var flags = require('minimist')(process.argv.slice(2));
-var isProd = flags.production || flags.prod || false;
-var isStaging = flags.staging || flags.stage || false;
-var isDev = flags.development || flags.dev || false;
-var Q = require('q');
+const gulp = require('gulp-help')(require('gulp'));
+const spawn = require('child_process').spawn;
+const config = require('../config').heroku;
+const flags = require('minimist')(process.argv.slice(2));
+const isProd = flags.production || flags.prod || false;
+const isStaging = flags.staging || flags.stage || false;
+const isDev = flags.development || flags.dev || false;
+const Q = require('q');
 
 function addRemote(env) {
-    var deferred = Q.defer(),
+    let deferred = Q.defer(),
         command;
 
     if (
@@ -22,11 +22,10 @@ function addRemote(env) {
 
         setTimeout(deferred.resolve, 0);
         return deferred.promise;
-    } else {
-        console.log('Adding ' + env + ' remote');
     }
+    console.log('Adding ' + env + ' remote');
 
-    var remote = spawn('git', [
+    const remote = spawn('git', [
         'remote',
         'add',
         config[env].remoteName,
@@ -42,7 +41,7 @@ function addRemote(env) {
         if (code == 0) {
             deferred.resolve();
         } else {
-            var command =
+            const command =
                 '$ git remote add ' +
                 config[env].remoteName +
                 ' ' +
@@ -59,7 +58,7 @@ function addRemote(env) {
 
 gulp.task('remotes', 'Adds heroku as remotes to git', function(callback) {
     function curry(func) {
-        var args = Array.prototype.slice.call(arguments, 1);
+        const args = Array.prototype.slice.call(arguments, 1);
 
         return function() {
             return func.apply(func, args);

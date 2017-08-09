@@ -1,9 +1,9 @@
-var gulp = require('gulp');
-var changed = require('gulp-changed');
-var browserSync = require('browser-sync');
-var config = require('../config').staticAssets;
+const gulp = require('gulp');
+const changed = require('gulp-changed');
+const browserSync = require('browser-sync');
+const config = require('../config').staticAssets;
 
-var taskDef = function() {
+const taskDef = function() {
     return gulp
         .src(config.src)
         .pipe(changed(config.dest)) // Ignore unchanged files

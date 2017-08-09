@@ -1,7 +1,7 @@
-var gulp = require('gulp-help')(require('gulp'));
-var config = require('../config').production;
-var size = require('gulp-filesize');
-var uglify = require('gulp-uglify');
+const gulp = require('gulp-help')(require('gulp'));
+const config = require('../config').production;
+const size = require('gulp-filesize');
+const uglify = require('gulp-uglify');
 
 gulp.task('uglifyJs', false, ['browserify'], function() {
     return gulp

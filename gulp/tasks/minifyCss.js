@@ -1,7 +1,7 @@
-var gulp = require('gulp-help')(require('gulp'));
-var config = require('../config').production;
-var cleanCSS = require('gulp-clean-css');
-var size = require('gulp-filesize');
+const gulp = require('gulp-help')(require('gulp'));
+const config = require('../config').production;
+const cleanCSS = require('gulp-clean-css');
+const size = require('gulp-filesize');
 
 gulp.task('minifyCss', false, ['sass'], function() {
     return gulp

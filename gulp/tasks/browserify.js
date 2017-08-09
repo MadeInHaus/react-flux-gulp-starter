@@ -8,22 +8,22 @@
    See browserify.bundleConfigs in gulp/config.js
 */
 
-var browserify = require('browserify');
-var browserSync = require('browser-sync');
-var watchify = require('watchify');
-var bundleLogger = require('../util/bundleLogger');
-var gulp = require('gulp-help')(require('gulp'));
-var handleErrors = require('../util/handleErrors');
-var source = require('vinyl-source-stream');
-var config = require('../config').browserify;
-var _ = require('lodash');
+const browserify = require('browserify');
+const browserSync = require('browser-sync');
+const watchify = require('watchify');
+const bundleLogger = require('../util/bundleLogger');
+const gulp = require('gulp-help')(require('gulp'));
+const handleErrors = require('../util/handleErrors');
+const source = require('vinyl-source-stream');
+const config = require('../config').browserify;
+const _ = require('lodash');
 
-var babelify = require('babelify');
+const babelify = require('babelify');
 
-var browserifyTask = function(callback, devMode) {
-    var bundleQueue = config.bundleConfigs.length;
+const browserifyTask = function(callback, devMode) {
+    let bundleQueue = config.bundleConfigs.length;
 
-    var browserifyThis = function(bundleConfig) {
+    const browserifyThis = function(bundleConfig) {
         if (devMode) {
             // Add watchify args and debug (sourcemaps) option
             _.extend(bundleConfig, watchify.args, {
@@ -34,11 +34,11 @@ var browserifyTask = function(callback, devMode) {
             bundleConfig = _.omit(bundleConfig, ['external', 'require']);
         }
 
-        var b = browserify(bundleConfig);
+        let b = browserify(bundleConfig);
 
         b.transform(babelify);
 
-        var bundle = function() {
+        const bundle = function() {
             // Log when bundling starts
             bundleLogger.start(bundleConfig.outputName);
 

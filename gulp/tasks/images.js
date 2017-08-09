@@ -1,10 +1,10 @@
-var changed = require('gulp-changed');
-var gulp = require('gulp-help')(require('gulp'));
-var imagemin = require('gulp-imagemin');
-var config = require('../config').images;
-var browserSync = require('browser-sync');
+const changed = require('gulp-changed');
+const gulp = require('gulp-help')(require('gulp'));
+const imagemin = require('gulp-imagemin');
+const config = require('../config').images;
+const browserSync = require('browser-sync');
 
-var taskDef = function() {
+const taskDef = function() {
     return gulp
         .src(config.src)
         .pipe(changed(config.dest)) // Ignore unchanged files

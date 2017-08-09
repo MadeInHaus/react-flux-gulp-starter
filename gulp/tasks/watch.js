@@ -3,14 +3,14 @@
    - gulp/tasks/browserSync.js watches and reloads compiled files
 */
 
-var _ = require('lodash');
-var gulp = require('gulp-help')(require('gulp'));
-var watch = require('gulp-watch');
-var config = require('../config');
+const _ = require('lodash');
+const gulp = require('gulp-help')(require('gulp'));
+const watch = require('gulp-watch');
+const config = require('../config');
 
-var sassTask = require('./sass');
-var imagesTask = require('./images');
-var staticAssets = require('./staticAssets');
+const sassTask = require('./sass');
+const imagesTask = require('./images');
+const staticAssets = require('./staticAssets');
 
 gulp.task(
     'watch',

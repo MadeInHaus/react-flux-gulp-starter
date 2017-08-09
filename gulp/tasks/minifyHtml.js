@@ -1,7 +1,7 @@
-var gulp = require('gulp-help')(require('gulp'));
-var config = require('../config').markup;
-var htmlmin = require('gulp-htmlmin');
-var size = require('gulp-filesize');
+const gulp = require('gulp-help')(require('gulp'));
+const config = require('../config').markup;
+const htmlmin = require('gulp-htmlmin');
+const size = require('gulp-filesize');
 
 gulp.task('minifyHtml', false, function() {
     return gulp
