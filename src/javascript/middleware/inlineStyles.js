@@ -28,11 +28,11 @@ const inlineStyles = cssFile => {
         });
     } catch (e) {
         switch (e.code) {
-        case 'ENOENT':
-            error = 'File not found';
-            break;
-        default:
-            error = 'Unknown';
+            case 'ENOENT':
+                error = 'File not found';
+                break;
+            default:
+                error = 'Unknown';
         }
         return inject({
             rules: [

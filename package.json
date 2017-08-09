@@ -1,12 +1,13 @@
 {
     "name": "react-gulp-starter",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "engines": {
         "node": ">=6.11.2"
     },
     "description": "React-Gulp starter with common tasks and scenarios",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "format": "prettier-eslint --single-quote --trailing-comma es5 --tab-width 4 --prettierLast --write \"src/**/*.{js,jsx}\" \"gulp/**/*.js\""
     },
     "repository": {
         "type": "git",
@@ -37,11 +38,14 @@
         "gulp-uglify": "3.0.0",
         "gulp-util": "3.0.8",
         "gulp-watch": "4.3.11",
-        "imagemin-gifsicle": "^5.0.0",
-        "imagemin-jpegtran": "^5.0.0",
-        "imagemin-optipng": "^5.1.0",
-        "imagemin-svgo": "^5.1.0",
+        "imagemin-gifsicle": "5.2.0",
+        "imagemin-jpegtran": "5.0.2",
+        "imagemin-optipng": "5.2.1",
+        "imagemin-svgo": "5.2.2",
         "minimist": "1.2.0",
+        "prettier": "1.5.3",
+        "prettier-eslint": "6.4.2",
+        "prettier-eslint-cli": "4.1.1",
         "pretty-hrtime": "1.0.3",
         "q": "1.5.0",
         "require-dir": "0.3.2",
@@ -67,7 +71,7 @@
         "fluxible-action-utils": "0.2.4",
         "fluxible-addons-react": "0.2.13",
         "lodash": "4.17.4",
-        "prop-types": "^15.5.10",
+        "prop-types": "15.5.10",
         "react": "15.6.1",
         "react-dom": "15.6.1",
         "react-router": "3.0.2"

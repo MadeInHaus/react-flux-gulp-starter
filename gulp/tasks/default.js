@@ -1,4 +1,4 @@
-var gulp = require('gulp-help')(require('gulp'));
+const gulp = require('gulp-help')(require('gulp'));
 
 gulp.task('default', 'Runs build and starts watch task', [
     'clean',

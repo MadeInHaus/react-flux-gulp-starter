@@ -1,20 +1,20 @@
-var fs = require('fs');
-var gulp = require('gulp-help')(require('gulp'));
-var spawn = require('child_process').spawn;
-var Slack = require('slack-node');
-var configHeroku = require('../config').heroku;
-var configSettings = require('../config').settings;
+const fs = require('fs');
+const gulp = require('gulp-help')(require('gulp'));
+const spawn = require('child_process').spawn;
+const Slack = require('slack-node');
+const configHeroku = require('../config').heroku;
+const configSettings = require('../config').settings;
 
-var flags = require('minimist')(process.argv.slice(2));
-var isProd = flags.production || flags.prod || false;
-var isStaging = flags.staging || flags.stage || false;
-var isDev = flags.development || flags.dev || false;
+const flags = require('minimist')(process.argv.slice(2));
+const isProd = flags.production || flags.prod || false;
+const isStaging = flags.staging || flags.stage || false;
+const isDev = flags.development || flags.dev || false;
 
 gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
     callback
 ) {
-    var env;
-    var uptodate = false;
+    let env;
+    let uptodate = false;
 
     if (isDev) {
         env = 'development';
@@ -28,7 +28,7 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
     }
 
     console.log('Pushing latest to Heroku ' + env + ' environment...\n\n');
-    var push = spawn('git', [
+    const push = spawn('git', [
         'push',
         configHeroku[env].remoteName,
         configHeroku[env].branch + ':master',
@@ -38,7 +38,7 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
         console.log(data.toString());
     });
     push.stderr.on('data', function(data) {
-        var msg = data.toString();
+        const msg = data.toString();
         if (msg.indexOf('Everything up-to-date') > -1) {
             uptodate = true;
         }
@@ -51,7 +51,7 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
                 configSettings.src &&
                 fs.existsSync(configSettings.src)
             ) {
-                var settings;
+                let settings;
                 try {
                     settings = JSON.parse(fs.readFileSync(configSettings.src));
                 } catch (e) {
@@ -60,7 +60,7 @@ gulp.task('heroku-push', 'Publish to heroku: gulp heroku-push [env]', function(
                 if (settings && settings.slack) {
                     console.log('Sending message to ' + slackSettings.channel);
 
-                    var slack = new Slack();
+                    const slack = new Slack();
                     var slackSettings = settings.slack;
                     slack.setWebHook(slackSettings.webhook);
                     slack.webhook(

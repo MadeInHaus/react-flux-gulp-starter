@@ -1,8 +1,8 @@
-var exec = require('child_process').exec;
+const exec = require('child_process').exec;
 
 module.exports = function(err) {
-    var args = Array.prototype.slice.call(arguments);
-    var exec = require('child_process').exec;
+    const args = Array.prototype.slice.call(arguments);
+    const exec = require('child_process').exec;
 
     console.log(err.message);
 

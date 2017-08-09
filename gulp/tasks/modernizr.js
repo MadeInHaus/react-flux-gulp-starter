@@ -1,7 +1,7 @@
-var gulp = require('gulp');
-var modernizr = require('gulp-modernizr');
-var uglify = require('gulp-uglify');
-var config = require('../config').modernizr;
+const gulp = require('gulp');
+const modernizr = require('gulp-modernizr');
+const uglify = require('gulp-uglify');
+const config = require('../config').modernizr;
 
 gulp.task('modernizr', function() {
     gulp
