@@ -1,11 +1,19 @@
+// if supporting IE, `useBuiltIns` must be set to `false`
 {
     "presets": [
-        "es2015",
+        ["env", {
+            "targets": {
+                "browsers": [
+                    "last 2 versions"
+                ]
+            },
+            "useBuiltIns": false,
+            "debug": true
+        }],
         "react",
         "stage-2"
     ],
     "plugins": [
-        "transform-class-properties",
         [ "module-resolver", {
             "alias": {
                 "actions": "./src/javascript/actions",

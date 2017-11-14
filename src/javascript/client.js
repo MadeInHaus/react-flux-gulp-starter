@@ -1,4 +1,4 @@
-import polyfill from 'babel-polyfill'; // eslint-disable-line no-unused-vars
+import 'babel-polyfill';
 
 import d from 'debug';
 import React from 'react';
