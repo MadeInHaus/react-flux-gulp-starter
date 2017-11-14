@@ -7,15 +7,14 @@
     "plugins": [
         "transform-class-properties",
         [ "module-resolver", {
-            "root": [ "./src/javascript" ],
             "alias": {
-                "actions": "actions",
-                "components": "components",
-                "config": "config",
-                "libs": "libs",
-                "stores": "stores",
-                "utils": "utils",
-                "middleware": "middleware"
+                "actions": "./src/javascript/actions",
+                "components": "./src/javascript/components",
+                "config": "./src/javascript/config",
+                "libs": "./src/javascript/libs",
+                "stores": "./src/javascript/stores",
+                "utils": "./src/javascript/utils",
+                "middleware": "./src/javascript/middleware"
             }
         }]
     ]

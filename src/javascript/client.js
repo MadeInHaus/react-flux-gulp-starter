@@ -28,7 +28,7 @@ app.rehydrate(window.App, (err, context) => {
 
     const RouterWithContext = provideContext(Router, app.customContexts);
 
-    ReactDOM.render(
+    ReactDOM.hydrate(
         <RouterWithContext
             context={context.getComponentContext()}
             history={browserHistory}
