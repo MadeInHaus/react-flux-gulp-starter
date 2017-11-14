@@ -21,8 +21,6 @@ class Application extends Component {
     }
 }
 
-Application = connectToStores(Application, ['ApplicationStore'], context => ({
+export default connectToStores(Application, ['ApplicationStore'], context => ({
     appState: context.getStore('ApplicationStore').getState(),
 }));
-
-export default Application;
