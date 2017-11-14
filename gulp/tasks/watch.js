@@ -3,7 +3,7 @@
    - gulp/tasks/browserSync.js watches and reloads compiled files
 */
 
-const _ = require('lodash');
+const _isEmpty = require('lodash/isEmpty');
 const gulp = require('gulp-help')(require('gulp'));
 const watch = require('gulp-watch');
 const config = require('../config');
@@ -35,7 +35,7 @@ gulp.task(
             imagesTask
         );
 
-        if (!_.isEmpty(config.staticAssets.src)) {
+        if (!_isEmpty(config.staticAssets.src)) {
             watch(
                 config.staticAssets.src,
                 {

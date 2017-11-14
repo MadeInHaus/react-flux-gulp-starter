@@ -16,7 +16,8 @@ const gulp = require('gulp-help')(require('gulp'));
 const handleErrors = require('../util/handleErrors');
 const source = require('vinyl-source-stream');
 const config = require('../config').browserify;
-const _ = require('lodash');
+const _extend = require('lodash/extend');
+const _omit = require('lodash/omit');
 
 const babelify = require('babelify');
 
@@ -26,12 +27,12 @@ const browserifyTask = function(callback, devMode) {
     const browserifyThis = function(bundleConfig) {
         if (devMode) {
             // Add watchify args and debug (sourcemaps) option
-            _.extend(bundleConfig, watchify.args, {
+            _extend(bundleConfig, watchify.args, {
                 debug: true,
             });
             // A watchify require/external bug that prevents proper recompiling,
             // so (for now) we'll ignore these options during development
-            bundleConfig = _.omit(bundleConfig, ['external', 'require']);
+            bundleConfig = _omit(bundleConfig, ['external', 'require']);
         }
 
         let b = browserify(bundleConfig);
