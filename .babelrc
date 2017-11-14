@@ -8,7 +8,7 @@
                 ]
             },
             "useBuiltIns": false,
-            "debug": true
+            "debug": false
         }],
         "react",
         "stage-2"
