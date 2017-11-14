@@ -11,6 +11,7 @@ export default function Home() {
                     <a
                         href="https://github.com/MadeInHaus/react-flux-gulp-starter"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         GitHub
                     </a>
